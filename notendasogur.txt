@@ -9,6 +9,14 @@ Lýsing: Forritið á að geta sýnt ýmis gröf útfrá gögnunum
 Titill: Sýna fréttir tengdar fyrirtæki
 Lýsing: Forrit á að geta sýnt fréttir tengdar fyrirtækinu.
 
- 
 Titill: Sýna fréttir 
 Lýsing: Forrit á að geta sýnt helstu fréttir af fjármálamarkaðinum.
+
+Titill: Framkvæma tæknigreiningu
+Lýsing: Forritið á að geta framkvæmt einfalda tæknigreiningu.
+
+Titill: Sýnt tæknigreiningar gröf
+Lýsing: Forritið á að geta sýnt gröf útfrá tæknigreiningu á gögnum
+
+Titill: Aðstoð við ákvarðanatöku
+Lýsing: Forritið á að aðstoða við ákvarðanatöku með tæknigreiningunni
