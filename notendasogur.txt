@@ -1,10 +1,10 @@
 Notendasögur
 
-Titill: Sækja söguleg gögn
-Lýsing: Forritið á að geta sótt söguleg gögn sjálfvirkt af netinu.
+Titill: Sækja söguleg gögn um hlutabréf fyrirtækis.
+Lýsing: Forritið á að geta sótt söguleg gögn um hlutabréf fyrirtækist sjálfvirkt af netinu.
 
-Titill: Sýnt gröf
-Lýsing: Forritið á að geta sýnt ýmis gröf útfrá gögnunum
+Titill: Sýnt gröf um fyrirtæki
+Lýsing: Forritið á að geta sýnt ýmis gröf útfrá gögnunum um fyrirtækið
 
 Titill: Sýna fréttir tengdar fyrirtæki
 Lýsing: Forrit á að geta sýnt fréttir tengdar fyrirtækinu.
@@ -13,10 +13,52 @@ Titill: Sýna fréttir
 Lýsing: Forrit á að geta sýnt helstu fréttir af fjármálamarkaðinum.
 
 Titill: Framkvæma tæknigreiningu
-Lýsing: Forritið á að geta framkvæmt einfalda tæknigreiningu.
+Lýsing: Forritið á að geta framkvæmt einfalda tæknigreiningu útfrá sögulegum gögnum.
 
 Titill: Sýnt tæknigreiningar gröf
 Lýsing: Forritið á að geta sýnt gröf útfrá tæknigreiningu á gögnum
 
 Titill: Aðstoð við ákvarðanatöku
 Lýsing: Forritið á að aðstoða við ákvarðanatöku með tæknigreiningunni
+
+Titill: Sækja gögn um verslunarvörur
+Lýsing: Forritið á að geta sótt söguleg gögn um verð verslunarvara sjálfvirkt af netinu.
+
+Titill: Sýnt gröf um verslunarvörur
+Lýsing: Forritið á að geta sýnt ýmis gröf út frá gögnum um verð á verslunarvörum
+
+Titill: Samanburður á upplýsingum
+Lýsing: Forrit á að geta borið saman upplýsingar um mismunani fyrirtæki eða verslunarvörur.
+
+Titill: Skipting eftir löndum
+Lýsing: Forritið á að geta skipt upp fyrirtækjum eftir í hvaða landi það er skráð.
+
+Titill: Sækja gögn um gengi
+Lýsing: Hægt á að vera að sækja söguleg gögn um gengi milli mismunandi gjaldmiðla
+
+Titill: Sýna gröf um gengi
+Lýsing: Hægt á að vera að sýna gröf um þróun gengis milli mismunandi gjaldmiðla.
+
+Titill: Upphafssýn
+Lýsing: Við opnun forrits á að koma upp upphafssýn sem sýnir nýjustu gögn um valin fyrirtæki, auk helstu frétta.
+
+Titill: Margir gluggar
+Lýsing: Forritið á að geta sýnt upplýsingar í mörgum gluggum.
+
+Titill: Ábendingar
+Lýsing: Forritið á að benda á fyrirtæki, vörur og gengjum sem virðast vera að ganga vel.
+
+Titill: Vistun
+Lýsing: Hægt á að vera að vista myndir af gröfum
+
+Titill: Útprentun
+Lýsing: Hægt á að vera að prenta út gröf.
+
+Titill: Útflutningur
+Lýsing: Hægt á að vera að flytja út upplýsingar í spreadsheet formatti.
+
+Titill: Skipting eftir brönsum
+Lýsing: Hægt á að vera að skipta fyrirtækjum eftir brönsum
+
+Titill: Röðun
+Lýsing: Hægt á að vera að raða listum af fyrirtækjum eftir ýmsum stærðum.
