@@ -1,0 +1,4 @@
+Notendasögur
+
+Titill: Sækja söguleg gögn
+Lýsing: Forritið á að geta sótt söguleg gögn sjálfvirkt af netinu
