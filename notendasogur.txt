@@ -1,4 +1,14 @@
 Notendasögur
 
 Titill: Sækja söguleg gögn
-Lýsing: Forritið á að geta sótt söguleg gögn sjálfvirkt af netinu
+Lýsing: Forritið á að geta sótt söguleg gögn sjálfvirkt af netinu.
+
+Titill: Sýnt gröf
+Lýsing: Forritið á að geta sýnt ýmis gröf útfrá gögnunum
+
+Titill: Sýna fréttir tengdar fyrirtæki
+Lýsing: Forrit á að geta sýnt fréttir tengdar fyrirtækinu.
+
+ 
+Titill: Sýna fréttir 
+Lýsing: Forrit á að geta sýnt helstu fréttir af fjármálamarkaðinum.
