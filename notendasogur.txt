@@ -2,81 +2,108 @@ Notendasögur
 
 Titill: Sækja söguleg gögn um hlutabréf fyrirtækis.
 Lýsing: Forritið á að geta sótt söguleg gögn um hlutabréf fyrirtækis sjálfvirkt af netinu.
+Forgangur: 10
 
 Titill: Sýnt gröf um fyrirtæki
 Lýsing: Forritið á að geta sýnt ýmis gröf útfrá gögnunum um fyrirtækið
-
-Titill: Sýna fréttir tengdar fyrirtæki
-Lýsing: Forrit á að geta sýnt fréttir tengdar fyrirtæki.
-
-Titill: Sýna fréttir 
-Lýsing: Forrit á að geta sýnt helstu fréttir af fjármálamarkaðinum.
-
-Titill: Framkvæma tæknigreiningu
-Lýsing: Forritið á að geta framkvæmt einfalda tæknigreiningu útfrá sögulegum gögnum.
+Forgangur: 10
 
 Titill: Sækja söguleg gögn um vísitölur
 Lýsing: Forritið á að geta sótt söguleg gögn um vísitölur sjálfvirkt af netinu.
+Forgangur: 10
 
 Titill: Sýnt gröf um vísitölur
-Lýsing: Forritið á að geta sýnt ýmis gröf útfrá gögnunum um vísitölur .
-
-Titill: Sýna fréttir tengdar vísitölu 
-Lýsing: Forrit á að geta sýnt fréttir tengdar vísitölu 
-
-Titill: Sýnt tæknigreiningar gröf
-Lýsing: Forritið á að geta sýnt gröf útfrá tæknigreiningu á gögnum
-
-Titill: Aðstoð við ákvarðanatöku
-Lýsing: Forritið á að aðstoða við ákvarðanatöku með tæknigreiningunni
+Lýsing: Forritið á að geta sýnt ýmis gröf útfrá gögnunum um vísitölur.
+Forgangur: 10
 
 Titill: Sækja gögn um verslunarvörur
 Lýsing: Forritið á að geta sótt söguleg gögn um verð verslunarvara sjálfvirkt af netinu.
+Forgangur: 10
 
 Titill: Sýnt gröf um verslunarvörur
 Lýsing: Forritið á að geta sýnt ýmis gröf út frá gögnum um verð á verslunarvörum
-
-Titill: Samanburður á upplýsingum
-Lýsing: Forrit á að geta borið saman upplýsingar um mismunani fyrirtæki eða verslunarvörur.
-
-Titill: Skipting eftir löndum
-Lýsing: Forritið á að geta skipt upp fyrirtækjum eftir í hvaða landi það er skráð.
+Forgangur: 10
 
 Titill: Sækja gögn um gengi
 Lýsing: Hægt á að vera að sækja söguleg gögn um gengi milli mismunandi gjaldmiðla
+Forgangur: 10
 
 Titill: Sýna gröf um gengi
 Lýsing: Hægt á að vera að sýna gröf um þróun gengis milli mismunandi gjaldmiðla.
+Forgangur: 10
 
-Titill: Upphafssýn
-Lýsing: Við opnun forrits á að koma upp upphafssýn sem sýnir nýjustu gögn um valin fyrirtæki, auk helstu frétta.
+Titill: Sýna fréttir tengdar fyrirtæki
+Lýsing: Forrit á að geta sýnt fréttir tengdar fyrirtæki.
+Forgangur: 20
 
-Titill: Margir gluggar
-Lýsing: Forritið á að geta sýnt upplýsingar í mörgum gluggum.
+Titill: Framkvæma tæknigreiningu
+Lýsing: Forritið á að geta framkvæmt einfalda tæknigreiningu útfrá sögulegum gögnum.
+Forgangur: 20
 
-Titill: Ábendingar
-Lýsing: Forritið á að benda á fyrirtæki, vörur og gengjum sem virðast vera að ganga vel.
+Titill: Sýna fréttir tengdar vísitölu 
+Lýsing: Forrit á að geta sýnt fréttir tengdar vísitölu 
+Forgangur: 20
 
-Titill: Vistun
-Lýsing: Hægt á að vera að vista myndir af gröfum
+Titill: Sýnt tæknigreiningar gröf
+Lýsing: Forritið á að geta sýnt gröf útfrá tæknigreiningu á gögnum
+Forgangur: 20
 
-Titill: Útprentun
-Lýsing: Hægt á að vera að prenta út gröf.
-
-Titill: Útflutningur
-Lýsing: Hægt á að vera að flytja út upplýsingar í spreadsheet formatti.
-
-Titill: Skipting eftir brönsum
-Lýsing: Hægt á að vera að skipta fyrirtækjum eftir brönsum
+Titill: Aðstoð við ákvarðanatöku
+Lýsing: Forritið á að aðstoða við ákvarðanatöku með tæknigreiningunni
+Forgangur: 20
 
 Titill: Röðun
 Lýsing: Hægt á að vera að raða listum af fyrirtækjum eftir ýmsum stærðum.
+Forgangur: 20
+
+Titill: Sýna fréttir 
+Lýsing: Forrit á að geta sýnt helstu fréttir af fjármálamarkaðinum.
+Forgangur: 30
+
+Titill: Samanburður á upplýsingum
+Lýsing: Forrit á að geta borið saman upplýsingar um mismunani fyrirtæki eða verslunarvörur.
+Forgangur: 30
+
+Titill: Margir gluggar
+Lýsing: Forritið á að geta sýnt upplýsingar í mörgum gluggum.
+Forgangur: 30
+
+Titill: Skipting eftir brönsum
+Lýsing: Hægt á að vera að skipta fyrirtækjum eftir brönsum
+Forgangur: 30
 
 Titill: Aðvörun
 Lýsing: Forritið á að vera hægt að stilla þannig að það gefi frá sér aðvörun þegar stærð fer út fyrir ákveðinn ramma.
+Forgangur: 30
+
+Titill: Vistun
+Lýsing: Hægt á að vera að vista myndir af gröfum
+Forgangur: 30
+
+Titill: Útprentun
+Lýsing: Hægt á að vera að prenta út gröf.
+Forgangur: 30
+
+Titill: Ábendingar
+Lýsing: Forritið á að benda á fyrirtæki, vörur og gengjum sem virðast vera að ganga vel.
+Forgangur: 40
+
+Titill: Útflutningur
+Lýsing: Hægt á að vera að flytja út upplýsingar í spreadsheet formatti.
+Forgangur: 40
 
 Titill: Upplýsingar um fyrirtæki
 Lýsing: Hægt á að vera að sjá fáanlegar upplýsingar um fyrirtæki á einum stað.
+Forgangur: 40
 
 Titill: Borði
 Lýsing: Forritið á að geta sýnt borða með völdum upplýsingum um valdar vísitölur, verslunarvörur og fyrirtæki.
+Forgangur: 40
+
+Titill: Skipting eftir löndum
+Lýsing: Forritið á að geta skipt upp fyrirtækjum eftir í hvaða landi það er skráð.
+Forgangur: 40
+
+Titill: Upphafssýn
+Lýsing: Við opnun forrits á að koma upp upphafssýn sem sýnir nýjustu gögn um valin fyrirtæki, auk helstu frétta.
+Forgangur: 40
