@@ -1,19 +1,28 @@
 Notendasögur
 
 Titill: Sækja söguleg gögn um hlutabréf fyrirtækis.
-Lýsing: Forritið á að geta sótt söguleg gögn um hlutabréf fyrirtækist sjálfvirkt af netinu.
+Lýsing: Forritið á að geta sótt söguleg gögn um hlutabréf fyrirtækis sjálfvirkt af netinu.
 
 Titill: Sýnt gröf um fyrirtæki
 Lýsing: Forritið á að geta sýnt ýmis gröf útfrá gögnunum um fyrirtækið
 
 Titill: Sýna fréttir tengdar fyrirtæki
-Lýsing: Forrit á að geta sýnt fréttir tengdar fyrirtækinu.
+Lýsing: Forrit á að geta sýnt fréttir tengdar fyrirtæki.
 
 Titill: Sýna fréttir 
 Lýsing: Forrit á að geta sýnt helstu fréttir af fjármálamarkaðinum.
 
 Titill: Framkvæma tæknigreiningu
 Lýsing: Forritið á að geta framkvæmt einfalda tæknigreiningu útfrá sögulegum gögnum.
+
+Titill: Sækja söguleg gögn um vísitölur
+Lýsing: Forritið á að geta sótt söguleg gögn um vísitölur sjálfvirkt af netinu.
+
+Titill: Sýnt gröf um vísitölur
+Lýsing: Forritið á að geta sýnt ýmis gröf útfrá gögnunum um vísitölur .
+
+Titill: Sýna fréttir tengdar vísitölu 
+Lýsing: Forrit á að geta sýnt fréttir tengdar vísitölu 
 
 Titill: Sýnt tæknigreiningar gröf
 Lýsing: Forritið á að geta sýnt gröf útfrá tæknigreiningu á gögnum
@@ -62,3 +71,12 @@ Lýsing: Hægt á að vera að skipta fyrirtækjum eftir brönsum
 
 Titill: Röðun
 Lýsing: Hægt á að vera að raða listum af fyrirtækjum eftir ýmsum stærðum.
+
+Titill: Aðvörun
+Lýsing: Forritið á að vera hægt að stilla þannig að það gefi frá sér aðvörun þegar stærð fer út fyrir ákveðinn ramma.
+
+Titill: Upplýsingar um fyrirtæki
+Lýsing: Hægt á að vera að sjá fáanlegar upplýsingar um fyrirtæki á einum stað.
+
+Titill: Borði
+Lýsing: Forritið á að geta sýnt borða með völdum upplýsingum um valdar vísitölur, verslunarvörur og fyrirtæki.
