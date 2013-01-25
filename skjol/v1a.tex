@@ -1,0 +1,123 @@
+\documentclass[a4,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{a4,graphics,amsmath,amsfonts,amsbsy,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{enumerate}
+\usepackage{comment}
+
+\setlength{\parskip}{8pt plus 1pt minus 1pt}
+%Verdur ad vera her, sumir pakkar dependa a thetta.
+\usepackage[icelandic]{babel}
+
+%viljum ekki númeraða kafla á dæmum
+
+\newcommand{\nonums}{\setcounter{secnumdepth}{-1}}
+
+\newcommand{\benum}{\begin{enumerate}[(i)]}
+\newcommand{\aenum}{\begin{enumerate}[(a)]}
+\newcommand{\eenum}{\end{enumerate}}
+
+
+\nonums
+
+\author{
+Finnur Jónasson\\ fij2@hi.is,\\
+Matthías Páll Gissurarson\\ mpg3@hi.is,\\
+Ragnheiður Björk Halldórsdóttir\\ rbh1@hi.is,\\
+Sólrún Halla Einarsdóttir\\ she5@hi.is
+}
+\title{Hópverkefni 1: Ábatinn\\
+Fyrsti hluti}
+\begin{document}
+\maketitle
+
+\section{Notendasögur}
+
+\begin{enumerate}[]
+\item Titill: Sækja söguleg gögn um hlutabréf fyrirtækis.\\
+Lýsing: Forritið á að geta sótt söguleg gögn um hlutabréf fyrirtækis sjálfvirkt af netinu.
+
+\item Titill: Sýnt gröf um fyrirtæki\\
+Lýsing: Forritið á að geta sýnt ýmis gröf útfrá gögnunum um fyrirtækið
+
+\item Titill: Sýna fréttir tengdar fyrirtæki\\
+Lýsing: Forrit á að geta sýnt fréttir tengdar fyrirtæki.
+
+\item Titill: Sýna fréttir\\
+Lýsing: Forrit á að geta sýnt helstu fréttir af fjármálamarkaðinum.
+
+\item Titill: Framkvæma tæknigreiningu\\
+Lýsing: Forritið á að geta framkvæmt einfalda tæknigreiningu útfrá sögulegum gögnum.
+
+\item Titill: Sækja söguleg gögn um vísitölur\\
+Lýsing: Forritið á að geta sótt söguleg gögn um vísitölur sjálfvirkt af netinu.
+
+\item Titill: Sýnt gröf um vísitölur\\
+Lýsing: Forritið á að geta sýnt ýmis gröf útfrá gögnunum um vísitölur .
+
+\item Titill: Sýna fréttir tengdar vísitölu \\
+Lýsing: Forrit á að geta sýnt fréttir tengdar vísitölu 
+
+\item Titill: Sýnt tæknigreiningar gröf\\
+Lýsing: Forritið á að geta sýnt gröf útfrá tæknigreiningu á gögnum
+
+\item Titill: Aðstoð við ákvarðanatöku\\
+Lýsing: Forritið á að aðstoða við ákvarðanatöku með tæknigreiningunni
+
+\item Titill: Sækja gögn um verslunarvörur\\
+Lýsing: Forritið á að geta sótt söguleg gögn um verð verslunarvara sjálfvirkt af netinu.
+
+\item Titill: Sýnt gröf um verslunarvörur\\
+Lýsing: Forritið á að geta sýnt ýmis gröf út frá gögnum um verð á verslunarvörum
+
+\item Titill: Samanburður á upplýsingum\\
+Lýsing: Forrit á að geta borið saman upplýsingar um mismunani fyrirtæki eða verslunarvörur.
+
+\item Titill: Skipting eftir löndum\\
+Lýsing: Forritið á að geta skipt upp fyrirtækjum eftir í hvaða landi það er skráð.
+
+\item Titill: Sækja gögn um gengi\\
+Lýsing: Hægt á að vera að sækja söguleg gögn um gengi milli mismunandi gjaldmiðla
+
+\item Titill: Sýna gröf um gengi\\
+Lýsing: Hægt á að vera að sýna gröf um þróun gengis milli mismunandi gjaldmiðla.
+
+\item Titill: Upphafssýn\\
+Lýsing: Við opnun forrits á að koma upp upphafssýn sem sýnir nýjustu gögn um valin fyrirtæki, auk helstu frétta.
+
+\item Titill: Margir gluggar\\
+Lýsing: Forritið á að geta sýnt upplýsingar í mörgum gluggum.
+
+\item Titill: Ábendingar\\
+Lýsing: Forritið á að benda á fyrirtæki, vörur og gengjum sem virðast vera að ganga vel.
+
+\item Titill: Vistun\\
+Lýsing: Hægt á að vera að vista myndir af gröfum
+
+\item Titill: Útprentun\\
+Lýsing: Hægt á að vera að prenta út gröf.
+
+\item Titill: Útflutningur\\
+Lýsing: Hægt á að vera að flytja út upplýsingar í spreadsheet formatti.
+
+\item Titill: Skipting eftir brönsum\\
+Lýsing: Hægt á að vera að skipta fyrirtækjum eftir brönsum
+
+\item Titill: Röðun\\
+Lýsing: Hægt á að vera að raða listum af fyrirtækjum eftir ýmsum stærðum.
+
+\item Titill: Aðvörun\\
+Lýsing: Forritið á að vera hægt að stilla þannig að það gefi frá sér aðvörun þegar stærð fer út fyrir ákveðinn ramma.
+
+\item Titill: Upplýsingar um fyrirtæki\\
+Lýsing: Hægt á að vera að sjá fáanlegar upplýsingar um fyrirtæki á einum stað.
+
+\item Titill: Borði\\
+Lýsing: Forritið á að geta sýnt borða með völdum upplýsingum um valdar vísitölur, verslunarvörur og fyrirtæki.
+\eenum
+
+\end{document}
