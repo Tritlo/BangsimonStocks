@@ -1,4 +1,4 @@
-﻿Notendasögur
+Notendasögur
 
 Ítrun 1
 
@@ -23,8 +23,8 @@ Forgangur: 10
 Tími: 1 dagur
 
 
-	Tími alls: 8 dagar
-	Tími: 2 dagar
+	Tími alls: 4 dagar
+	Tími: 1 dagar
 
 Útskýringar: Við sjáum fram á að geta auðveldlega sett upp eitt forrit sem samanstendur af ofantöldum föllum. Öll snúast þau um að sækja ákveðin gögn og sýna ákveðnar 	upplýsingar. Virkni fallanna er öll afar svipuð og ætti því ekki að vera erfitt að vinna forritið á stuttum tíma. Hins vegar gerum við ráð fyrir örlitlum aukatíma í að koma öllum inn í forritunina. Þessir þættir völdum við í forgang 10 þar sem við teljum þá undirstöðu verkefnisins. Alls reiknum við með því að verkefnið taki átta daga en þar sem hópmeðlimir eru fjórir gefum við okkur að ítrun 1 taki einungis tvo daga í vinnu.
 
