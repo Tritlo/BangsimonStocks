@@ -1,4 +1,5 @@
 import urllib2 as urll
+from datetime import date,timedelta
 import csv
 
 class stockInfo:
@@ -9,8 +10,8 @@ class stockInfo:
     infoDict = {} #: Dictionary containing information about the given company, for ease of checking certain dates
     infoList = [] #: A List of the form ['Date', 'Open', 'High', 'Low', 'Close', 'Volume', 'Adj Close'], containing information about the given company, for ease of creating graphs
     interval = "" #: Contains the interval which the data are for. 
-    fromDate = (1,1,1970) #: The date from which the data start
-    toDate = (1,1,1970) #: The date to which the data is.
+    fromDate = date(1970,1,1) #: The date from which the data start
+    toDate = date.today() #: The date to which the data is.
     
     def __init__(self, ticker, fromDate,toDate,interval):
         """ 
@@ -20,7 +21,9 @@ class stockInfo:
         """
         self.interval = interval #: The accuracy
         fromDay, fromMonth, fromYear = fromDate
+        fromDate = date(fromYear,fromMonth, fromDay)
         toDay, toMonth, toYear = toDate
+        toDate = date(toYear,toMonth, toDay)
         self.toDate = toDate
         self.fromDate = fromDate
 
@@ -32,6 +35,9 @@ class stockInfo:
         #Throw away the start of the list, it only contains the names of the variables
         csvList.next()
         for d in csvList:
+            d[0] = self.stringToDate(d[0])
+            for i in range(1,7):
+                d[i] = float(d[i])
             self.infoDict[d[0]] = {'Open':d[1], 'High':d[2], 'Low':d[3], 'Close':d[4], 'Volume':d[5], 'Adj Close':d[6]}
             self.infoList.append(d)
         
@@ -45,7 +51,7 @@ class stockInfo:
         #Pre: date = (d,m,y) where d,m,y are integers which specify a valid  day, month, year, s is a stockinfo object
         #Post: h is a date string of yahoo api format
         """
-        day, month, year = date
+        day, month, year = date.day, date.month, date.year
         year = str(year)
         if month <10:
             month = "0"+str(month)
@@ -62,19 +68,17 @@ class stockInfo:
         """
         #Use: h = s.dateToString(date)
         #Pre: h is a valid date string of yahoo api format, s is a stockinfo object
-        #Post: date = (d,m,y) where d,m,y are integers which specify a valid  day, month, year
+        #Post: date is a datetime.date object of the specified date. 
         """
         string = string.split("-")
-        return int(string[2]),int(string[1]),int(string[0])
+        return date(int(string[0]),int(string[1]),int(string[2]))
 
     def compareDates(self, d1,d2):
         """
         #Use: i = s.compareDates(d1,d2)
-        #Pre: d1, d2 = (d,m,y) where d,m,y are integers which specify a valid  day, month, year, s is a stockinfo object
+        #Pre: d1, d2 are datetime.date objects, s is a stockinfo object
         #Post: returns -1, 0 or 1 if d1 is less than equal or greater than d2
         """
-        d1 = self.dateToString(d1) 
-        d2 = self.dateToString(d2)
         if d1 < d2:
             return -1
         if d1 == d2:
@@ -86,7 +90,7 @@ class stockInfo:
     def validDate(self, date):
         """ 
         #Use: b = s.validDate(date)
-        #Pre: date = (d,m,y) where d,m,y are integers which specify a valid  day, month, year, s is a stockinfo object
+        #Pre: date is a datetime object, s is a stockinfo object
         #Post: b is true if the date is within the objects timeframe, false otherwise
         """
         if (self.compareDates(self.fromDate,date) <= 0) and (self.compareDates(date,self.toDate) <= 0):
@@ -95,23 +99,34 @@ class stockInfo:
 
 
     def movingAverage(self, fromDate, toDate,N):
-        pass
+        result = []
+        Ndays = timedelta(N)
+        price = lambda d: (d[2] - d[3])/2
+        for d in self.listFromTo(fromDate,toDate):
+            Nprevdays = self.listFromTo(d[0]-Ndays,d[0])
+            Nprevdays = map(price, Nprevdays)
+            print len(Nprevdays)
+            result.append(sum(Nprevdays)/len(Nprevdays))
+
+        return result
+
+            
    
     def listFromTo(self, fromDate, toDate):
        """
        #Use: l = self.listFromTo(fd,td)
-       #Pre: fromDate, toDate are (d,m,y) tuples where d,m,y are integers which specify a valid  day, month, year, s is a stockinfo object
+       #Pre: fromDate, toDate are datetime.date objects, s is a stockinfo object
        #Post: A list of containing the lists containg information about the dates in the given interval
        """
-       return [ l for l in self.infoList if (self.compareDates(self.stringToDate(l[0]),fromDate) >= 0) and  (self.compareDates(self.stringToDate(l[0]),toDate) <= 0)]
+       #return [ l for l in self.infoList if (self.compareDates(self.stringToDate(l[0]),fromDate) >= 0) and  (self.compareDates(self.stringToDate(l[0]),toDate) <= 0)]
+       return [ l for l in self.infoList if (self.compareDates(l[0], fromDate) >= 0) and  (self.compareDates(l[0],toDate) <= 0)]
 
     def getDate(self,date):
         """ 
         #Use: h = s.getDate(date)
-        #Pre: date = (d,m,y) where d,m,y are integers which specify a valid  day, month, year, s is a stockinfo object
+        #Pre: date is a datetime object, s is a stockinfo object
         #Post: h is a dictionary containing information about the given date, if it exists, None otherwise.
         """
-        date = self.dateToString(date)
         if date in self.infoDict:
             return self.infoDict[date]
         else:
@@ -119,6 +134,6 @@ class stockInfo:
             
 if __name__ == "__main__":
     Google = stockInfo("GOOG",(1,1,2000),(1,1,2012),"d")
-    l = Google.listFromTo((1,1,2004),(1,1,2005))
-    for k in l:
-        print k
+    l = Google.movingAverage(date(2004,1,1),date(2005,1,1),20)
+    #for k in l:
+    #    print k
