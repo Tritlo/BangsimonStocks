@@ -1,0 +1,122 @@
+Notendasögur
+
+Ítrun 1
+
+Titill: Sækja söguleg gögn um hlutabréf fyrirtækis.
+Lýsing: Forritið á að geta sótt söguleg gögn um hlutabréf fyrirtækis sjálfvirkt af netinu.
+Forgangur: 10
+Tími: 1 dagur
+
+Titill: Sýnt gröf um fyrirtæki
+Lýsing: Forritið á að geta sýnt ýmis gröf útfrá gögnunum um fyrirtækið
+Forgangur: 10
+Tími: 1 dagur
+
+Titill: Sækja söguleg gögn um vísitölur
+Lýsing: Forritið á að geta sótt söguleg gögn um vísitölur sjálfvirkt af netinu.
+Forgangur: 10
+Tími: 1 dagur
+
+Titill: Sýnt gröf um vísitölur
+Lýsing: Forritið á að geta sýnt ýmis gröf útfrá gögnunum um vísitölur.
+Forgangur: 10
+Tími: 1 dagur
+
+
+	Tími alls: 4 dagar
+	Tími: 1 dagar
+
+Útskýringar: Við sjáum fram á að geta auðveldlega sett upp eitt forrit sem samanstendur af ofantöldum föllum. Öll snúast þau um að sækja ákveðin gögn og sýna ákveðnar 	upplýsingar. Virkni fallanna er öll afar svipuð og ætti því ekki að vera erfitt að vinna forritið á stuttum tíma. Hins vegar gerum við ráð fyrir örlitlum aukatíma í að koma öllum inn í forritunina. Þessir þættir völdum við í forgang 10 þar sem við teljum þá undirstöðu verkefnisins. Alls reiknum við með því að verkefnið taki átta daga en þar sem hópmeðlimir eru fjórir gefum við okkur að ítrun 1 taki einungis tvo daga í vinnu.
+
+
+
+Ítrun 2
+
+Titill: Sýna fréttir tengdar fyrirtæki
+Lýsing: Forrit á að geta sýnt fréttir tengdar fyrirtæki.
+Forgangur: 20
+Tími: 1/3 dagur
+
+Titill: Sýna fréttir tengdar vísitölu 
+Lýsing: Forrit á að geta sýnt fréttir tengdar vísitölu 
+Forgangur: 20
+Tími: 1/3 dagur
+
+Titill: Sýna fréttir 
+Lýsing: Forrit á að geta sýnt helstu fréttir af fjármálamarkaðinum.
+Forgangur: 20
+Tími: 1/3
+
+Titill: Framkvæma tæknigreiningu
+Lýsing: Framkvæma tæknigreinginu eins og Hlaupandi meðaltal, finna mat á beta-stuðli og birta MACD, MFI, ROC, RSI, Slow Stoch, Fast Stoch gröf
+Tími: 2 dagar
+
+Titill: Sýna tæknigreiningargröf
+Lýsing: Forritið á að geta sýnt gröf útfrá tæknigreiningu á gögnum
+Forgangur: 20
+Tími: 1 dagur
+
+Titill: Aðstoð við ákvarðanatöku
+Lýsing: Forritið á að aðstoða við ákvarðanatöku með tæknigreiningunni
+Forgangur: 20
+Tími: 2 dagar
+
+
+	Alls tími: 8 dagar
+	Tími: 2 dagar
+
+Útskýringar: Fyrstu þrjár notendasögurnar falla undir sömu aðgerð, þ.e. að ná í fréttir um ákveðna þætti og birta þær. Þetta ætti ekki að vera tímafrek aðgerð og gefum við okkur því einn dag í þá iðju. Það að framkvæma tæknigreiningu og sýna viðeigandi gröf er ákveðin þungamiðja í verkefninu og viljum við því leggja ágæta árherslu á það. Síðustu tveir þættirnir eða notendasögurnar gætu orðið dálítið snúnar og gefum við okkur því ágætan tíma til þess að vinna í þeim. Í fyrstu ítrun söfnuðum við saman undistöðugögnum og því getum við unnið frekar með gögnin. Alls reiknum við með því að verkefnið taki átta daga en þar sem hópmeðlimir eru fjórir gefum við okkur að ítrun 2 taki einungis tvo daga í vinnu.
+
+
+
+Ítrun 3
+
+Titill: Margir gluggar
+Lýsing: Forritið á að geta sýnt upplýsingar í mörgum gluggum.
+Forgangur: 30
+Tími: 1 dagur
+
+Titill: Aðvörun
+Lýsing: Forritið á að vera hægt að stilla þannig að það gefi frá sér aðvörun þegar stærð fer út fyrir ákveðinn ramma.
+Forgangur: 30
+Tími: 3 dagar
+
+Titill: Vistun
+Lýsing: Hægt á að vera að vista myndir af gröfum.
+Forgangur: 30
+Tími: 1/2 dagur
+
+	Alls tími: 8 dagar
+	Tími: 2 dagar
+
+Útskýringar: Með þær upplýsingar sem við þegar höfum aflað okkur á þessum tímapunkti ætti ekki að vera erfitt að setja upp samanburð á þeim. Hins vegar teljum við að skipting eftir mismunandi atvinnugeirum gæti orðið örlítið snúin í vinnslu. Uppsetning á gluggum er ekki mikilvægur fítus en ætti að taka stuttan tíma meðan aðvörunarkerfið gæti tekið töluvert lengri tíma í uppsetningu. Að lokum teljum við vistun og útprentun töluvert skildar aðgerðir og ættu ekki að taka langan tíma þegar svo langt er komið í ferlinu. Aðgerðir þessarar ítrunar byggja á fyrri ítrunum og því ekki hægt að vinna í þeim fyrr. Þar að auki skipta þær ekki höfuðmáli og settum þær því í forgang 30. Alls reiknum við með því að verkefnið taki átta daga en þar sem hópmeðlimir eru fjórir gefum við okkur að ítrun 3 taki einungis tvo daga í vinnu.
+
+
+
+Ítrun 4
+
+Titill: Ábendingar
+Lýsing: Forritið á að benda á fyrirtæki, vörur og gengjum sem virðast vera að ganga vel.
+Forgangur: 40
+Tími: 2 dagar
+
+Titill: Upplýsingar um fyrirtæki
+Lýsing: Hægt á að vera að sjá fáanlegar upplýsingar um fyrirtæki á einum stað.
+Forgangur: 40
+Tími: 1 dagur
+
+Titill: Borði
+Lýsing: Forritið á að geta sýnt borða með völdum upplýsingum um valdar vísitölur, verslunarvörur og fyrirtæki.
+Forgangur: 40
+Tími: 1 dagur
+
+Titill: Upphafssýn
+Lýsing: Við opnun forrits á að koma upp upphafssýn sem sýnir nýjustu gögn um valin fyrirtæki, auk helstu frétta.
+Forgangur: 40
+Tími: 3 dagar
+
+
+	Alls tími: 10 dagar
+	Tími: 3 dagar
+
+Útskýringar: Í fjórðu ítrun er að finna þætti sem okkur þykir ekki beint nauðsynlegar en þó skemmtileg viðbót. Ábendingarnar er hins vegar nauðsynlegur partur af verkefninu en þó ekki hægt að vinna nema á lokastigi. Áætlaður tími í hvern verkþátt ítrunarinnar er allt frá einum degi upp í þrjá daga, eftir því hve flóknir við teljum þá geta orðið. Alls reiknum við með því að verkefnið taki tíu daga en þar sem hópmeðlimir eru fjórir gefum við okkur að ítrun 4 taki þrjá daga í vinnu.
