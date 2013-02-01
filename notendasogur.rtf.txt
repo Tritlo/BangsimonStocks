@@ -1,4 +1,4 @@
-Notendasögur
+﻿Notendasögur
 
 Ítrun 1
 
@@ -22,25 +22,6 @@ Lýsing: Forritið á að geta sýnt ýmis gröf útfrá gögnunum um vísitölu
 Forgangur: 10
 Tími: 1 dagur
 
-Titill: Sækja gögn um verslunarvörur
-Lýsing: Forritið á að geta sótt söguleg gögn um verð verslunarvara sjálfvirkt af netinu.
-Forgangur: 10
-Tími: 1 dagur
-
-Titill: Sýnt gröf um verslunarvörur
-Lýsing: Forritið á að geta sýnt ýmis gröf út frá gögnum um verð á verslunarvörum
-Forgangur: 10
-Tími: 1 dagur
-
-Titill: Sækja gögn um gengi
-Lýsing: Hægt á að vera að sækja söguleg gögn um gengi milli mismunandi gjaldmiðla
-Forgangur: 10
-Tími: 1 dagur
-
-Titill: Sýna gröf um gengi
-Lýsing: Hægt á að vera að sýna gröf um þróun gengis milli mismunandi gjaldmiðla.
-Forgangur: 10
-Tími: 1 dagur
 
 	Tími alls: 8 dagar
 	Tími: 2 dagar
@@ -67,8 +48,7 @@ Forgangur: 20
 Tími: 1/3
 
 Titill: Framkvæma tæknigreiningu
-Lýsing: Forritið á að geta framkvæmt einfalda tæknigreiningu útfrá sögulegum gögnum.
-Forgangur: 20
+Lýsing: Framkvæma tæknigreinginu eins og Hlaupandi meðaltal, finna mat á beta-stuðli og birta MACD, MFI, ROC, RSI, Slow Stoch, Fast Stoch gröf
 Tími: 2 dagar
 
 Titill: Sýna tæknigreiningargröf
@@ -81,10 +61,6 @@ Lýsing: Forritið á að aðstoða við ákvarðanatöku með tæknigreiningunn
 Forgangur: 20
 Tími: 2 dagar
 
-Titill: Röðun
-Lýsing: Hægt á að vera að raða listum af fyrirtækjum eftir ýmsum stærðum.
-Forgangur: 20
-Tími: 2 dagar
 
 	Alls tími: 8 dagar
 	Tími: 2 dagar
@@ -94,16 +70,6 @@ Tími: 2 dagar
 
 
 Ítrun 3
-
-Titill: Samanburður á upplýsingum
-Lýsing: Forrit á að geta borið saman upplýsingar um mismunandi fyrirtæki eða verslunarvörur.
-Forgangur: 30
-Tími: 1 dagur
-
-Titill: Skipting eftir atvinnugeirum
-Lýsing: Hægt á að vera að skipta fyrirtækjum eftir brönsum.
-Forgangur: 30
-Tími: 2 dagar
 
 Titill: Margir gluggar
 Lýsing: Forritið á að geta sýnt upplýsingar í mörgum gluggum.
@@ -117,11 +83,6 @@ Tími: 3 dagar
 
 Titill: Vistun
 Lýsing: Hægt á að vera að vista myndir af gröfum.
-Forgangur: 30
-Tími: 1/2 dagur
-
-Titill: Útprentun
-Lýsing: Hægt á að vera að prenta út gröf.
 Forgangur: 30
 Tími: 1/2 dagur
 
@@ -139,11 +100,6 @@ Lýsing: Forritið á að benda á fyrirtæki, vörur og gengjum sem virðast ve
 Forgangur: 40
 Tími: 2 dagar
 
-Titill: Útflutningur
-Lýsing: Hægt á að vera að flytja út upplýsingar í spreadsheet formatti.
-Forgangur: 40
-Tími: 1 dagur
-
 Titill: Upplýsingar um fyrirtæki
 Lýsing: Hægt á að vera að sjá fáanlegar upplýsingar um fyrirtæki á einum stað.
 Forgangur: 40
@@ -153,11 +109,6 @@ Titill: Borði
 Lýsing: Forritið á að geta sýnt borða með völdum upplýsingum um valdar vísitölur, verslunarvörur og fyrirtæki.
 Forgangur: 40
 Tími: 1 dagur
-
-Titill: Skipting eftir löndum
-Lýsing: Forritið á að geta skipt upp fyrirtækjum eftir í hvaða landi það er skráð.
-Forgangur: 40
-Tími: 2 dagar
 
 Titill: Upphafssýn
 Lýsing: Við opnun forrits á að koma upp upphafssýn sem sýnir nýjustu gögn um valin fyrirtæki, auk helstu frétta.
