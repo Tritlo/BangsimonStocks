@@ -3,20 +3,20 @@ import csv
 
 class stockInfo:
     """
-    Hlutur sem inniheldur gogn um hlutabref, sott fra yahoo finance
+    An Object which contains basic infromation about stocks, via yahoo finance
     """
     
-    infoDict = {} #: Dictionary sem inniheldur upplysingar um fyrirtaekdi, hvers lyklar eru dagsetningar.
-    infoList = [] #: Listi a forminu ['Date', 'Open', 'High', 'Low', 'Close', 'Volume', 'Adj Close']
-    interval = "" #: Inniheldur hver nakvaemnin er, vikur, dagar eda manudir
-    fromDate = (1,1,1970) #: Dagsetning sem gognin byrja
-    toDate = (1,1,1970) #: Dagsetning sem gognin na til
+    infoDict = {} #: Dictionary containing information about the given company, for ease of checking certain dates
+    infoList = [] #: A List of the form ['Date', 'Open', 'High', 'Low', 'Close', 'Volume', 'Adj Close'], containing information about the given company, for ease of creating graphs
+    interval = "" #: Contains the interval which the data are for. 
+    fromDate = (1,1,1970) #: The date from which the data start
+    toDate = (1,1,1970) #: The date to which the data is.
     
     def __init__(self, ticker, fromDate,toDate,interval):
         """ 
-        #N: s = stockInfo(t,fd,td,i)
-        #F: t er ticker fyrirtaekis, fd = d,m,y er dagsetning a heiltalnaformi dagur, manudur, ar og td = d,m,y er thad einnig, i er "w", "d", eda "m" 
-        #E: s er hlutur sem inniheldur upplysingar um fyrirtaekid t, fra fd,fm,fy til td,tm,ty og med nakvaemninni vikur ef i er "w", dogum ef i er "d" og manudum ef i er "m".
+        #Use: s = stockInfo(t,fd,td,i)
+        #Pre: t is the companies ticker, fd = (d,m,y) is a triple of integers which specify day, month, year, td = (d,m,y) likewise, i is "w", "d", is "m", specifying the interval for which the data is accurate for.
+        #Post: s is an object which contains information about the company, specified with the ticker t, from fd to td, and with accuracy of weeks, days of months depenending on whether i is "w", "d" or "m".
         """
         self.interval = interval #: nakvaemnin
         fromDay, fromMonth, fromYear = fromDate
@@ -37,9 +37,9 @@ class stockInfo:
 
     def formatDate(self,date):
         """
-        #N: h = s.formatDate(d,m,y)
-        #F: d er heiltala sem taknar dag, m er heiltala sem taknar manud og y er heiltala sem taknar ar, s er stockInfo hlutur
-        #E: h er dagsetning a yahoo api. formi
+        #Use: h = s.formatDate(date)
+        #Pre: date = (d,m,y) where d,m,y are integers which specify day, month year, s is a stockInfo object
+        #Post: h is a date string of yahoo api format
         """
         day, month, year = date
         year = str(year)
@@ -56,9 +56,10 @@ class stockInfo:
 
 
     def validDate(self, date):
-        """ #N: b = s.validDate(d,m,y)
-            #F: d,m,y er a dagsetningar formi, dagur, manudur ,ar
-            #E: b er true ef dagsetningin er innan timarammans, false annars
+        """ 
+        #Use: b = s.validDate(date)
+        #Pre: date = (d,m,y) where d,m,y are integers which specify day, month year, s is a stockInfo object
+        #Post: b is true if the date is within the objects timeframe, false otherwise
         """
         if date[2] <= self.toDate[2] and date[2] >= self.fromDate[2]:
             if date[1] <= self.toDate[1] and date[1] >= self.fromDate[1]:
@@ -71,9 +72,9 @@ class stockInfo:
    
     def getDate(self,date):
         """ 
-        #N: h = s.getDate(d,m,y)
-        #F: d er heiltala sem taknar dag, m er heiltala sem taknar manud og y er heiltala sem taknar ar.
-        #E: h er dict sem inniheldur upplysingar um gefin dag, ef upplysingar eru til um hann, en None annars
+        #Use: h = s.getDate(date)
+        #Pre: date = (d,m,y) where d,m,y are integers which specify day, month year, s is a stockInfo object
+        #Post: h is a dictionary containing information about the given date, if it exists, None otherwise.
         """
         date = self.formatDate(date)
         if date in self.infoDict:
@@ -83,5 +84,6 @@ class stockInfo:
            return None
             
 if __name__ == "__main__":
-    Google = stockInfo("GOOG",1,1,2000,1,1,2012,"d")
-    print Google.getDate(1,2,2009)
+    Google = stockInfo("GOOG",(1,1,2000),(1,1,2012),"d")
+    print Google.getDate((1,2,2009))
+    help(Google)
