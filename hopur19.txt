@@ -1,0 +1,45 @@
+﻿Hópur 19  - Athugasemdir við V1a
+Yfirferð: Steinn (steinng@hi.is)
+
+
+Almennt
+=======
+Dagbækur vantar hjá Ragnheiði og Finni
+
+Flest það sem máli skiptir kemur fram í lýsingu ykkar á kerfinu en uppsetningu á skjalinu má bæta. Útskýringar eru prýðilegar en þið ættuð að huga að því að nota "velocity" stuðulinn við tímamat. Það er gagnlegt að endurmeta hann í upphafi hverrar ítrunar í ljósi reynslu úr ítruninni þar á undan.
+
+Það væri heppilegra að hafa notendasögur fremst í skjalinu. Áætlun um verktíma mætti sleppa þar en hún kæmi í staðinn inn í verkáætlun.  
+
+
+Notendasögur
+============
+
+Flestar athugasemda snúast um að skera kerfið niður...
+
+Vísa "verslunarvörur" til "commodities", þ.e. matvöru, málma og þvíumlíkt sem braskað er með á mörkuðum? Fjárfestirinn ætlar að einbeita sér að hlutabréfum og því ætti að sleppa notendasögum sem svara til annarra eigna eins og verslunarvara og gjaldmiðla.
+
+Til viðbótar gengi bréfa er gagnlegt að birta upplýsingar um fjölda bréfa sem skipta um hendur á hverjum tíma (e. volume) en þær eru yfirleitt birtar í formi súlurits.
+
+Tæknigreining: Hvaða aðferðir hafið þið í huga?
+
+Aðstoð við ákvarðanatöku: Alls ekki ljóst hvernig maður útfærir þessa sögu skynsamlega, gæti tekið meira en 2 daga.
+
+Röðun: Þessi notendasaga er óljós. Fjárfestirinn ætlar að einbæta sér að einu fyrirtæki í einu, þ.a. allar sögur sem snúa að samanburði fyrirtækja eða umsýslu með fleiri en eitt fyrirtæki og atvinnugeira, er ofaukið.
+
+Útprentun: Sleppa, nóg að geta vistað myndir. Notandinn getur t.d. prentað myndina út úr hinu ágæta Paint forriti.
+
+Útflutningur: Einföld útfærsla er að vista gögnin á CSV sniði.
+
+Athuga Borða, Skipting e. löndum og upphafssýn í ljósi athugasemda hér að ofan.
+
+
+Verkáætlun
+==========
+Verkáætlunina ætti helst að setja fram myndrænt eins og gert er í bók (handteiknuð mynd er í fínu lagi).
+
+---
+Tæknigreining (hópur 19): Þið eigið að útfæra eftirfarandi aðferðir sjálf:
+1. Hlaupandi meðaltal (talnaruna, e. simple moving average - ekki exponential moving average), notandi geti valið milli 20 og 200 daga í meðaltalinu. Niðurstöðurnar eru settar eru fram á línuriti samhliða hlutabréfaverðinu.
+2. Finna mat á  beta-stuðli (hliðstætt við það sem Yahoo Finance gefur), http://en.wikipedia.org/wiki/Beta_%28finance%29. Hér er r_a log-returns, þ.e. log(p(t) / p(t-1)) þar sem p(t) er hlutabréfaverð á tíma t, r_b er log-returns af S&P500 vísitölunni (auðkenni: ^GSPC), Gögn sem vantar (t.d. vegna þess að lokað var með viðskipti í fyrirtækinu e-a daga á tímabilinu) flækja málin örlítið. Einfaldast er að henda út tilsvarandi gagnapunktum áður en byrjað er að reikna.
+
+Öllum fyrirspurnum verður svarað á Piazza.
