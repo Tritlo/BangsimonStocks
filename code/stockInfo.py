@@ -99,13 +99,18 @@ class stockInfo:
 
 
     def movingAverage(self, fromDate, toDate,N):
+        """
+        #U: l = s.movingAverage(fd,td,N)
+        #Pre: s is a stockInfo object, fd, td are dates, N is an integer >=0
+        #Post: l is a list containing the moving average from fd to td, starting from the first availablae date of data
+        """
         result = []
-        Ndays = timedelta(N)
+        Ndays = timedelta(2*N) #: Have it 2*N, so that it definitely gives us enough days of data (the stock market is not continiously open)
         price = lambda d: (d[2] - d[3])/2
         for d in self.listFromTo(fromDate,toDate):
             Nprevdays = self.listFromTo(d[0]-Ndays,d[0])
             Nprevdays = map(price, Nprevdays)
-            print len(Nprevdays)
+            Nprevdays = Nprevdays[-20:]
             result.append(sum(Nprevdays)/len(Nprevdays))
 
         return result
