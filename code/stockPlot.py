@@ -14,7 +14,7 @@ def stockPlot(s,k,fromDate=None,toDate=None):
     # Open, High, Low, Close, Volume, Adj Close, and Avg. Price
     if fromDate==None: 
         fromDate=s.fromDate
-    if toDate=None:
+    if toDate==None:
         toDate=s.toDate
     dates=[]
     yvalues=[]
