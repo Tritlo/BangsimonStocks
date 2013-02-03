@@ -10,7 +10,8 @@ def Bhelp():
     """
     helpstring = "The following commands are available:\n\
             help: prints this message\n\
-            plot: plots information about the stocks\
+            plot: plots information about the stocks\n\
+            quit: exits program\
             "
     print helpstring
 
