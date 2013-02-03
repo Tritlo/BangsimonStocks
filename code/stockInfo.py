@@ -7,6 +7,7 @@ class stockInfo:
     An Object which contains basic information about stocks, via yahoo finance
     """
     
+    ticker = "" #: The ticker of the given company
     infoDict = {} #: Dictionary containing information about the given company, for ease of checking certain dates
     infoList = [] #: A List of the form ['Date', 'Open', 'High', 'Low', 'Close', 'Volume', 'Adj Close'], containing information about the given company, for ease of creating graphs
     fromDate = date.min #: The date from which the data start
@@ -21,6 +22,7 @@ class stockInfo:
         fromDay, fromMonth, fromYear = fromDate.day, fromDate.month, fromDate.year
         toDay, toMonth, toYear = toDate.day, toDate.month, toDate.year
         interval = "d"
+        self.ticker = ticker
 
         baseurl = "http://ichart.yahoo.com/table.csv?s="
         url = baseurl + ticker +"&a="+str((fromMonth -1))+"&b="+str(fromDay)+"&c="+str(fromYear)+"&d="+str(toMonth-1)+"&e="+str(toDay)+"&f="+str(toYear)+"&g="+str(interval)+"&ignore=.csv"
@@ -111,6 +113,10 @@ class stockInfo:
             return self.infoDict[date]
         else:
            return None
+
+    def __str__(self):
+        return "Stock information about %s, from %s to %s" % (self.ticker, self.dateToString(self.fromDate),self.dateToString(self.toDate))
+
             
 if __name__ == "__main__":
     Google = stockInfo("GOOG",date(2000,1,1),date(2013,1,1))
