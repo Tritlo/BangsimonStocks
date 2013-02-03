@@ -1,0 +1,14 @@
+beta-stuðull
+
+beta_a=Cov(r_a,r_b)/Var(r_b)
+
+r_a=log-returns f. a, þ.e. 
+log(p(t)/p(t-1))=log(p(t))-log(p(t-1)),
+
+p(t) er hlutabréfarverð á tíma t.
+
+r_b er log-returns af S&P500 vísitölunni
+
+-henda út gagnapunktum þar sem gögn vantar áður en reiknað
+
+cov og var eru innbyggð í numpy
