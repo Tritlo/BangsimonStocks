@@ -23,7 +23,7 @@ def Bplot():
     print "Enter number of attribute to plot:"
     print "Available attributes are: (1) Open, (2) High, (3) Low, (4) Close, (5) Volume, (6) Adj Close, (7) Avg. Price"
     ind = raw_input(">> ") 
-    print "Enter interval to plot in yyyy-mm-dd format"
+    print "Enter interval to plot in yyyy-mm-dd format, leave blank for minimum and maximum available date respectively" 
     fromDate = raw_input("From: ")
     if len(fromDate) != 0:
         fromDate = stockObj.stringToDate(fromDate)
