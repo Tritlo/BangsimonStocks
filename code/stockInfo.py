@@ -21,11 +21,7 @@ class stockInfo:
         """
         self.interval = interval #: The accuracy
         fromDay, fromMonth, fromYear = fromDate.day, fromDate.month, fromDate.year
-        #fromDate = date(fromYear,fromMonth, fromDay)
         toDay, toMonth, toYear = toDate.day, toDate.month, toDate.year
-        #toDate = date(toYear,toMonth, toDay)
-        self.toDate = toDate
-        self.fromDate = fromDate
 
         baseurl = "http://ichart.yahoo.com/table.csv?s="
         url = baseurl + ticker +"&a="+str((fromMonth -1))+"&b="+str(fromDay)+"&c="+str(fromYear)+"&d="+str(toMonth-1)+"&e="+str(toDay)+"&f="+str(toYear)+"&g="+str(interval)+"&ignore=.csv"
@@ -42,7 +38,9 @@ class stockInfo:
             self.infoList.append(d)
         
         #Reverse the list, so it is in order by date.
+        self.toDate = self.infoList[0][0]
         self.infoList.reverse()
+        self.fromDate = self.infoList[0][0]
 
 
     def dateToString(self,date):
@@ -85,8 +83,6 @@ class stockInfo:
             return 0
         return 1
 
-
-
     def validDate(self, date):
         """ 
         #Use: b = s.validDate(date)
@@ -102,11 +98,13 @@ class stockInfo:
         """
         #U: l = s.movingAverage(fd,td,N)
         #Pre: s is a stockInfo object, fd, td are dates, N is an integer >=0
-        #Post: l is a list containing the moving average from fd to td, starting from the first availablae date of data
+        #Post: l is a list containing the moving averages from fd to td, if data exists for that intervale, an empty list otherwise
         """
         result = []
+        if not (self.validDate(fromDate) and self.validDate(toDate)):
+            return []
         Ndays = timedelta(2*N) #: Have it 2*N, so that it definitely gives us enough days of data (the stock market is not continiously open)
-        price = lambda d: (d[2] - d[3])/2
+        price = lambda d: (d[1] + d[4])/2
         for d in self.listFromTo(fromDate,toDate):
             Nprevdays = self.listFromTo(d[0]-Ndays,d[0])
             Nprevdays = map(price, Nprevdays)
@@ -121,9 +119,8 @@ class stockInfo:
        """
        #Use: l = self.listFromTo(fd,td)
        #Pre: fromDate, toDate are datetime.date objects, s is a stockinfo object
-       #Post: A list of containing the lists containg information about the dates in the given interval
+       #Post: A list containing the lists containing information about the dates in the given interval, empty if there are no such dates.
        """
-       #return [ l for l in self.infoList if (self.compareDates(self.stringToDate(l[0]),fromDate) >= 0) and  (self.compareDates(self.stringToDate(l[0]),toDate) <= 0)]
        return [ l for l in self.infoList if (self.compareDates(l[0], fromDate) >= 0) and  (self.compareDates(l[0],toDate) <= 0)]
 
     def getDate(self,date):
@@ -139,6 +136,6 @@ class stockInfo:
             
 if __name__ == "__main__":
     Google = stockInfo("GOOG",date(2000,1,1),date(2013,1,1),"d")
-    l = Google.movingAverage(date(2004,1,1),date(2005,1,1),20)
+    l = Google.movingAverage(date(2004,10,12),date(2005,1,1),20)
     for k in l:
         print k
