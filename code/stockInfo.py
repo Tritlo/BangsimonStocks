@@ -9,19 +9,18 @@ class stockInfo:
     
     infoDict = {} #: Dictionary containing information about the given company, for ease of checking certain dates
     infoList = [] #: A List of the form ['Date', 'Open', 'High', 'Low', 'Close', 'Volume', 'Adj Close'], containing information about the given company, for ease of creating graphs
-    interval = "" #: Contains the interval which the data are for. 
-    fromDate = date(1970,1,1) #: The date from which the data start
+    fromDate = date.min #: The date from which the data start
     toDate = date.today() #: The date to which the data is.
     
-    def __init__(self, ticker, fromDate,toDate,interval):
+    def __init__(self, ticker, fromDate = date.min ,toDate = date.today()):
         """ 
-        #Use: s = stockInfo(t,fd,td,i)
-        #Pre: t is the companies ticker, fd = (d,m,y) is a triple of integers which specify a valid day, month, year, td = (d,m,y) likewise, i is "w", "d", or "m", specifying the interval for which the data is accurate for.
-        #Post: s is an object which contains information about the company, specified with the ticker t, from fd to td, and with accuracy of weeks, days of months depenending on whether i is "w", "d" or "m".
+        #Use: s = stockInfo(t,fd = date.min, td =date.today())
+        #Pre: t is the companies ticker, fd and td are date objects. All but t are optional arguments
+       #Post: s is an object which contains information about the company, specified with the ticker t, from fd to td. If fd and td are not specified, it is taken to be from as long as possible to today.
         """
-        self.interval = interval #: The accuracy
         fromDay, fromMonth, fromYear = fromDate.day, fromDate.month, fromDate.year
         toDay, toMonth, toYear = toDate.day, toDate.month, toDate.year
+        interval = "d"
 
         baseurl = "http://ichart.yahoo.com/table.csv?s="
         url = baseurl + ticker +"&a="+str((fromMonth -1))+"&b="+str(fromDay)+"&c="+str(fromYear)+"&d="+str(toMonth-1)+"&e="+str(toDay)+"&f="+str(toYear)+"&g="+str(interval)+"&ignore=.csv"
@@ -114,7 +113,7 @@ class stockInfo:
            return None
             
 if __name__ == "__main__":
-    Google = stockInfo("GOOG",date(2000,1,1),date(2013,1,1),"d")
-    l = Google.listFromTo(date(2004,10,12),date(2005,1,1),20)
+    Google = stockInfo("GOOG",date(2000,1,1),date(2013,1,1))
+    l = Google.listFromTo(date(2004,10,12),date(2005,1,1))
     for k in l:
         print k
