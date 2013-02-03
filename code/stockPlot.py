@@ -1,15 +1,15 @@
 from stockInfo import stockInfo
-from datetime import date,timedelta
-import numpy as np
 import matplotlib.pyplot as plt
-import matplotlib.mlab as mlab
 
+# The Price function computes the average of a given day's highest and lowest prices
 Price = lambda x: (x[2]+x[3])/2
 
 def stockPlot(s,k):
     # Use: stockPlot(s,k)
     # Pre: s is a stockinfo object, k is an integer, 1<=k<=7
-	# Post: We have a plot of the kth attribute of s vs time
+	# Post: We have a plot of the kth attribute of s vs time,
+    # where the possible attributes are, in order:
+    # Open, High, Low, Close, Volume, Adj Close, and Avg. Price
     dates=[]
     yvalues=[]
     ylabels=['Date', 'Open', 'High', 'Low', 'Close', 'Volume', 'Adj Close', 'Avg. Price']
