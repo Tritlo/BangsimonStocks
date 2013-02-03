@@ -20,10 +20,10 @@ class stockInfo:
         #Post: s is an object which contains information about the company, specified with the ticker t, from fd to td, and with accuracy of weeks, days of months depenending on whether i is "w", "d" or "m".
         """
         self.interval = interval #: The accuracy
-        fromDay, fromMonth, fromYear = fromDate
-        fromDate = date(fromYear,fromMonth, fromDay)
-        toDay, toMonth, toYear = toDate
-        toDate = date(toYear,toMonth, toDay)
+        fromDay, fromMonth, fromYear = fromDate.day, fromDate.month, fromDate.year
+        #fromDate = date(fromYear,fromMonth, fromDay)
+        toDay, toMonth, toYear = toDate.day, toDate.month, toDate.year
+        #toDate = date(toYear,toMonth, toDay)
         self.toDate = toDate
         self.fromDate = fromDate
 
@@ -138,7 +138,7 @@ class stockInfo:
            return None
             
 if __name__ == "__main__":
-    Google = stockInfo("GOOG",(1,1,2000),(1,1,2012),"d")
+    Google = stockInfo("GOOG",date(2000,1,1),date(2013,1,1),"d")
     l = Google.movingAverage(date(2004,1,1),date(2005,1,1),20)
-    #for k in l:
-    #    print k
+    for k in l:
+        print k
