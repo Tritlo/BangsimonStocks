@@ -1,5 +1,5 @@
 import urllib2 as urll
-from datetime import date,timedelta
+from datetime import date
 import csv
 
 class stockInfo:
@@ -92,29 +92,8 @@ class stockInfo:
         if (self.compareDates(self.fromDate,date) <= 0) and (self.compareDates(date,self.toDate) <= 0):
             return True
         return False
+    
 
-
-    def movingAverage(self, fromDate, toDate,N):
-        """
-        #U: l = s.movingAverage(fd,td,N)
-        #Pre: s is a stockInfo object, fd, td are dates, N is an integer >=0
-        #Post: l is a list containing the moving averages from fd to td, if data exists for that intervale, an empty list otherwise
-        """
-        result = []
-        if not (self.validDate(fromDate) and self.validDate(toDate)):
-            return []
-        Ndays = timedelta(2*N) #: Have it 2*N, so that it definitely gives us enough days of data (the stock market is not continiously open)
-        price = lambda d: (d[1] + d[4])/2
-        for d in self.listFromTo(fromDate,toDate):
-            Nprevdays = self.listFromTo(d[0]-Ndays,d[0])
-            Nprevdays = map(price, Nprevdays)
-            Nprevdays = Nprevdays[-20:]
-            result.append(sum(Nprevdays)/len(Nprevdays))
-
-        return result
-
-            
-   
     def listFromTo(self, fromDate, toDate):
        """
        #Use: l = self.listFromTo(fd,td)
@@ -136,6 +115,6 @@ class stockInfo:
             
 if __name__ == "__main__":
     Google = stockInfo("GOOG",date(2000,1,1),date(2013,1,1),"d")
-    l = Google.movingAverage(date(2004,10,12),date(2005,1,1),20)
+    l = Google.listFromTo(date(2004,10,12),date(2005,1,1),20)
     for k in l:
         print k
