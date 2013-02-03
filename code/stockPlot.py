@@ -12,14 +12,14 @@ def stockPlot(s,k):
     # Open, High, Low, Close, Volume, Adj Close, and Avg. Price
     dates=[]
     yvalues=[]
-    ylabels=['Date', 'Open', 'High', 'Low', 'Close', 'Volume', 'Adj Close', 'Avg. Price']
+    ylabels={'Date':0, 'Open':1, 'High':2, 'Low':3, 'Close':4, 'Volume':5, 'Adj Close':6, 'Avg. Price':7}
     for i in range(0,len(s.infoList)-1): 
         data=s.infoList[i]
         dates.append(data[0])
-        if k==7: yvalues.append(Price(data))
-        else: yvalues.append(data[k])    
+        if ylabels[k]==7: yvalues.append(Price(data))
+        else: yvalues.append(data[ylabels[k]])    
     plt.plot(dates, yvalues)
-    plt.ylabel(ylabels[k])
+    plt.ylabel(k)
     plt.xlabel('Date')
     # Find out how to add a title?
     plt.show()
