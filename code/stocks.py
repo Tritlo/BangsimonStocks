@@ -52,8 +52,13 @@ def Bquit():
 
 print "Welcome to the Bangsimon stock program!"
 print "Please enter the ticker of the company/index you wish to check."
-ticker = raw_input("Ticker: ")
-stockObj = stockInfo(ticker)
+while True:
+    ticker = raw_input("Ticker: ")
+    try:
+        stockObj = stockInfo(ticker)
+        break
+    except ValueError:
+        print "%s ticker not found. Please enter valid ticker" % (ticker)
 
 c = 'help'
 commands = {'plot': Bplot, 'help':Bhelp, 'quit':Bquit} #: Dictionary of functions

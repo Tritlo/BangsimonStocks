@@ -27,8 +27,11 @@ class stockInfo:
 
         baseurl = "http://ichart.yahoo.com/table.csv?s="
         url = baseurl + ticker +"&a="+str((fromMonth -1))+"&b="+str(fromDay)+"&c="+str(fromYear)+"&d="+str(toMonth-1)+"&e="+str(toDay)+"&f="+str(toYear)+"&g="+str(interval)+"&ignore=.csv"
-
-        csvfile = urll.urlopen(url)
+        try:
+            csvfile = urll.urlopen(url)
+        except urll.HTTPError:
+            raise ValueError("Company not found")
+            return None
         csvList = csv.reader(csvfile)
         #Throw away the start of the list, it only contains the names of the variables
         csvList.next()
