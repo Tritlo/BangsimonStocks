@@ -50,7 +50,7 @@ def Bquit():
 
 
 
-print "Welcome to the Bangsimon stock program!"
+print "Welcome to Bangsimon Stocks!"
 print "Please enter the ticker of the company/index you wish to check."
 while True:
     ticker = raw_input("Ticker: ")
