@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from datetime import date
 
 # The Price function computes the average of a given day's opening and closing prices
-Price = lambda x: (x[1]+x[4])/2
+Price = lambda x: (x[1] + x[4]) / 2
 
 def stockPlot(s,k,fromDate=None,toDate=None):
     # Use: stockPlot(s,k,fromDate,toDate)

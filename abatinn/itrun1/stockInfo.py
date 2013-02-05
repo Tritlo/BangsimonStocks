@@ -30,7 +30,7 @@ class stockInfo:
         try:
             csvfile = urll.urlopen(url)
         except urll.HTTPError:
-            raise ValueError("Company not found")
+            raise ValueError("Ticker not found")
             return None
         csvList = csv.reader(csvfile)
         #Throw away the start of the list, it only contains the names of the variables
@@ -117,13 +117,71 @@ class stockInfo:
             return self.infoDict[date]
         else:
            return None
+    
+    def getCurrentProperty(self,propert):
+        """ 
+        #Use: h = s.getCurrentProperty(p)
+        #Pre:  s is a stockinfo object, p is a string describing a property
+        #Post: h is the current value of the property p of the stock s. 
+        """
+        return self.getCurrent()[propert]
+
+    def getCurrent(self):
+        """ 
+        #Use: h = s.getCurrent()
+        #Pre:  s is a stockinfo object
+        #Post: h is a dictionary containing current information about the given stock.
+        """
+        baseurl = "http://download.finance.yahoo.com/d/quotes.csv?s="
+
+        url = baseurl + self.ticker +"&f=l1c1va2xj1b4j4dyekjm3m4rr5p5p6s7" +"&e=.csv"
+        try:
+            csvfile = urll.urlopen(url)
+        except urll.HTTPError:
+            raise ValueError("Ticker not found")
+            return None
+        csvList = csv.reader(csvfile)
+        values = csvList.next()
+        for i in range(len(values)):
+            try:
+                values[i] = float(values[i])
+            except ValueError:
+                pass
+
+        data = {
+                'price': values[0],
+                'change': values[1],
+                'volume': values[2],
+                'avg_daily_volume': values[3],
+                'stock_exchange': values[4],
+                'market_cap': values[5],
+                'book_value': values[6],
+                'ebitda': values[7],
+                'dividend_per_share': values[8],
+                'dividend_yield': values[9],
+                'earnings_per_share': values[10],
+                '52_week_high': values[11],
+                '52_week_low': values[12],
+                '50day_moving_avg': values[13],
+                '200day_moving_avg': values[14],
+                'price_earnings_ratio': values[15],
+                'price_earnings_growth_ratio': values[16],
+                'price_sales_ratio': values[17],
+                'price_book_ratio': values[18],
+                'short_ratio': values[19]
+        }
+        return data
+
 
     def __str__(self):
+        """
+        #Use: y = s.__st__
+        #Pre: s is a stockInfo object
+        #Post:y is a string representation of the object
+        """
         return "Stock information about %s, from %s to %s" % (self.ticker, self.dateToString(self.fromDate),self.dateToString(self.toDate))
 
             
 if __name__ == "__main__":
     Google = stockInfo("GOOG",date(2000,1,1),date(2013,1,1))
-    l = Google.listFromTo(date(2004,10,12),date(2005,1,1))
-    for k in l:
-        print k
+    print Google.getCurrent()

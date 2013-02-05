@@ -14,7 +14,7 @@ class stockAnalysis:
         if not (stockInfo.validDate(fromDate) and stockInfo.validDate(toDate)):
             return []
         Ndays = timedelta(2*N) #: Have it 2*N, so that it definitely gives us enough days of data (the stock market is not continiously open)
-        price = lambda d: (d[1] + d[4])/2
+        price = lambda d: d[6]
         for d in stockInfo.listFromTo(fromDate,toDate):
             Nprevdays = stockInfo.listFromTo(d[0]-Ndays,d[0])
             Nprevdays = map(price, Nprevdays)
