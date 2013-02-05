@@ -124,7 +124,7 @@ class stockInfo:
         #Pre:  s is a stockinfo object, p is a string describing a property
         #Post: h is the current value of the property p of the stock s. 
         """
-        return self.getCurrent[propert]
+        return self.getCurrent()[propert]
 
     def getCurrent(self):
         """ 
