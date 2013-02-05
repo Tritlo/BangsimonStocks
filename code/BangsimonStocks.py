@@ -144,8 +144,9 @@ Bhelp(['help'])
 while c != "quit":
     c = raw_input(">> ")
     args = c.split()
-    if args[0] not in commands:
-        print "invalid command"
-        continue
-    commands[args[0]](args)
+    if len(args) >= 1:
+        if args[0] not in commands:
+            print "invalid command"
+            continue
+        commands[args[0]](args)
 
