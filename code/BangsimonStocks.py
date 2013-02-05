@@ -19,7 +19,7 @@ def Bhelp(args):
             "
     helpdict = { 
             'help': 'help: prints this message',
-            'plot': 'plots information about the stocks, optional arguments are property to plot, date from which to plot and date to which to plot. The dates are on yyyy-mm-dd format. The following properties ar available: Open, High, Low, Close, Volume, Adj Close, Avg. Price.',
+            'plot': 'plots information about the stocks, optional arguments are number of property to plot, date from which to plot and date to which to plot. The dates are on yyyy-mm-dd format. The following properties ar available: Available attributes are: (1) Open, (2) High, (3) Low, (4) Close, (5) Volume, (6) Adj Close, (7) Avg. Price',
             'change': 'changes which stocks are being examined, optional argument is ticker of stock to change to.',
             'current': 'displays current information about the stock, optional argument is property to display. The following properties are available: price,  change, volume,  avg_daily_volume,  stock_exchange,  market_cap,  book_value,  ebitda,  dividend_per_share,  dividend_yield,  earnings_per_share,  52_week_high,  52_week_low,  50day_moving_avg,  200day_moving_avg,  price_earnings_ratio,  price_earnings_growth_ratio,  price_sales_ratio,  price_book_ratio,  short_ratio.',
                 'quit': 'exits program'
@@ -39,9 +39,9 @@ def Bplot(args):
     #Pre: args is a list of strings
     #Post: A graph has been displayed, graph of args[1] if provided, from args[2] if provided to args[3] if provided
     """
+    selection = { "1": "Open", "2": "High", "3": "Low", "4": "Close", "5": "Volume", "6": "Adj Close", "7": "Avg. Price"}
     try:
         if len(args) == 1:
-            selection = { "1": "Open", "2": "High", "3": "Low", "4": "Close", "5": "Volume", "6": "Adj Close", "7": "Avg. Price"}
             print "Enter number of attribute to plot:"
             print "Available attributes are: (1) Open, (2) High, (3) Low, (4) Close, (5) Volume, (6) Adj Close, (7) Avg. Price"
             ind = raw_input(">> ") 
@@ -56,7 +56,7 @@ def Bplot(args):
                 toDate = stockObj.stringToDate(toDate)
             else:
                 toDate = None
-            prop = selection[ind]
+            prop = ind
             
         else:
             if len(args) == 2:
@@ -72,7 +72,7 @@ def Bplot(args):
                     prop = args[1]
                     fromDate = stockObj.stringToDate(args[2])
                     toDate = stockObj.stringToDate(args[3])
-        stockPlot(stockObj,prop,fromDate,toDate)
+        stockPlot(stockObj,selection[prop],fromDate,toDate)
     except KeyError:
         print "Invalid property"
     except IndexError:
