@@ -24,6 +24,8 @@ class stockInfo:
         toDay, toMonth, toYear = toDate.day, toDate.month, toDate.year
         self.ticker = ticker
         self.interval = interval
+        self.infoList = []
+        self.infoDict = {}
 
         baseurl = "http://ichart.yahoo.com/table.csv?s="
         url = baseurl + ticker +"&a="+str((fromMonth -1))+"&b="+str(fromDay)+"&c="+str(fromYear)+"&d="+str(toMonth-1)+"&e="+str(toDay)+"&f="+str(toYear)+"&g="+str(interval)+"&ignore=.csv"

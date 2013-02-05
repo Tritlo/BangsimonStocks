@@ -117,12 +117,14 @@ def Bchange(args):
             ticker = raw_input("Ticker: ")
             try:
                 stockObj = stockInfo(ticker)
+                print stockObj
                 break
             except ValueError:
                 print "Ticker '%s'  not found. Please enter valid ticker" % (ticker)
     else:
         try:
             stockObj = stockInfo(args[1])
+            print stockObj
         except ValueError:
             print "Ticker '%s'  not found. Please enter valid ticker" % (args[1])
 
@@ -139,6 +141,7 @@ while True:
         print "%s ticker not found. Please enter valid ticker" % (ticker)
 
 c = 'help'
+print stockObj
 commands = {'plot': Bplot, 'help':Bhelp, 'quit':Bquit, 'change': Bchange, 'current':Bcurrent} #: Dictionary of functions
 Bhelp(['help'])
 while c != "quit":
