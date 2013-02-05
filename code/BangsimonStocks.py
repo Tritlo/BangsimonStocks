@@ -39,40 +39,46 @@ def Bplot(args):
     #Pre: args is a list of strings
     #Post: A graph has been displayed, graph of args[1] if provided, from args[2] if provided to args[3] if provided
     """
-    if len(args) == 1:
-        selection = { "1": "Open", "2": "High", "3": "Low", "4": "Close", "5": "Volume", "6": "Adj Close", "7": "Avg. Price"}
-        print "Enter number of attribute to plot:"
-        print "Available attributes are: (1) Open, (2) High, (3) Low, (4) Close, (5) Volume, (6) Adj Close, (7) Avg. Price"
-        ind = raw_input(">> ") 
-        print "Enter interval to plot in yyyy-mm-dd format, leave blank for minimum and maximum available date respectively" 
-        fromDate = raw_input("From: ")
-        if len(fromDate) != 0:
-            fromDate = stockObj.stringToDate(fromDate)
-        else:
-            fromDate = None
-        toDate = raw_input("To: ")
-        if len(toDate) != 0:
-            toDate = stockObj.stringToDate(toDate)
-        else:
-            toDate = None
-        prop = selection[ind]
-        
-    else:
-        if len(args) == 2:
-                prop = args[1]
-                toDate,fromDate = None,None
-
-        else:
-            if len(args) == 3:
-                prop = args[1]
-                fromDate = stockObj.stringToDate(args[2])
-                toDate = None
+    try:
+        if len(args) == 1:
+            selection = { "1": "Open", "2": "High", "3": "Low", "4": "Close", "5": "Volume", "6": "Adj Close", "7": "Avg. Price"}
+            print "Enter number of attribute to plot:"
+            print "Available attributes are: (1) Open, (2) High, (3) Low, (4) Close, (5) Volume, (6) Adj Close, (7) Avg. Price"
+            ind = raw_input(">> ") 
+            print "Enter interval to plot in yyyy-mm-dd format, leave blank for minimum and maximum available date respectively" 
+            fromDate = raw_input("From: ")
+            if len(fromDate) != 0:
+                fromDate = stockObj.stringToDate(fromDate)
             else:
-                prop = args[1]
-                fromDate = stockObj.stringToDate(args[2])
-                toDate = stockObj.stringToDate(args[3])
+                fromDate = None
+            toDate = raw_input("To: ")
+            if len(toDate) != 0:
+                toDate = stockObj.stringToDate(toDate)
+            else:
+                toDate = None
+            prop = selection[ind]
+            
+        else:
+            if len(args) == 2:
+                    prop = args[1]
+                    toDate,fromDate = None,None
 
-    stockPlot(stockObj,prop,fromDate,toDate)
+            else:
+                if len(args) == 3:
+                    prop = args[1]
+                    fromDate = stockObj.stringToDate(args[2])
+                    toDate = None
+                else:
+                    prop = args[1]
+                    fromDate = stockObj.stringToDate(args[2])
+                    toDate = stockObj.stringToDate(args[3])
+        stockPlot(stockObj,prop,fromDate,toDate)
+    except KeyError:
+        print "Invalid property"
+    except IndexError:
+        print "Invalid date. It should be a valid date on the yyyy-mm-dd format"
+    except ValueError:
+        print "Invalid date. It should be a valid date on the yyyy-mm-dd format"
 
 def Bcurrent(args):
     """
