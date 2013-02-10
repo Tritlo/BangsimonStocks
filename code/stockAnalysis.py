@@ -56,11 +56,11 @@ def Beta(s, fromDate, toDate):
     SPprices=map(price,SPlist)
     r_a=log_returns(pricelist)
     r_b=log_returns(SPprices)
-    cov_ab=cov(array(r_a),array(r_b))[0][1]   
+    cov_ab=cov(array(r_a),array(r_b))[0][1] # We extract the covariance between r_a and r_b from the covariance matrix   
     
     return cov_ab/var(array(r_b))
 
 if __name__ == "__main__":
-    Google = stockInfo("GOOG",date(2000,1,1),date(2013,1,1))
+    Google = stockInfo("GOOG",date(2000,1,1),date.today())
     
-    print Beta(Google, date(2012,6,7),date(2012,12,31))
+    print Beta(Google,Google.fromDate,Google.toDate)
