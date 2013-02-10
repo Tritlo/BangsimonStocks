@@ -53,7 +53,7 @@ class AnalystPanel(wx.Panel):
 
     def OnClickPlot(self, event):
         if self.stockObj is not None:
-            plotFrame = wx.Frame(None, title="Plot",size=(200,200))
+            plotFrame = wx.Frame(None, title="Plot",size=(300,200))
             plotp = PlotPanel(plotFrame,self.stockObj)
         
             plotFrame.Show()
@@ -107,7 +107,7 @@ class finnsi(wx.Frame):
 
     def __init__(self,parent,id):
         wx.Frame.__init__(self,parent,id,'Bangsimon',size=(800,600))
-        panel=wx.Panel(self)
+        panel=AnalystPanel(self)
 
 
         status=self.CreateStatusBar()
