@@ -123,7 +123,7 @@ class finnsi(wx.Frame):
         menubar.Append(third,"Actions")
         save.Append(wx.NewId(),"Graph","This will save the graph" )
         save.Append(wx.NewId(),"Data","This will save the data" )
-        plot.Append(wx.NewId(),"Simple Moving Average","Plots Simple Moving Average" )
+        SMA=plot.Append(wx.NewId(),"Simple Moving Average","Plots Simple Moving Average" )
         plot.Append(wx.NewId(),"Beta","Plot Beta" )
         third.Append(wx.NewId(),"News","Shows the news" )
 
@@ -131,7 +131,10 @@ class finnsi(wx.Frame):
         third.AppendMenu(wx.NewId(), 'Plot', plot)
         
         self.SetMenuBar(menubar)
-        #self.Bind(wx.EVT_MENU
+        self.Bind(wx.EVT_MENU, self.OnCloseMe, SMA)
+
+    def OnCloseMe(self, event):
+        self.Close(True)
 
 
 if __name__=='__main__':
