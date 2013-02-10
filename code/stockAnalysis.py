@@ -25,14 +25,14 @@ def movingAverage(stockInfo, fromDate, toDate,N):
             
     return result
 
-def Beta(stockInfo, fromDate, toDate):
+def Beta(s, fromDate, toDate):
     """
     # U: b=Beta(s,fd,td)
     # Pre: s is stockInfo object, fd, td are dates
     # Post: b is a number describing our stock's Beta value for the time period from fromDate to toDate
     """
-    result=0
-    if not (stockInfo.validDate(fromDate) and stockInfo.validDate(toDate)):
+    
+    if not (s.validDate(fromDate) and s.validDate(toDate)):
         return 0
     
     price = lambda d: d[6]
@@ -49,15 +49,18 @@ def Beta(stockInfo, fromDate, toDate):
             l_r.append(r)
         return l_r
         
-    datelist=stockInfo.listFromto(fromDate,toDate)
+    datelist=s.listFromTo(fromDate,toDate)
     pricelist=map(price, datelist)
     SP=stockInfo("^GSPC",fromDate,toDate)
-    SPprices=map(price,SP)
+    SPlist=SP.listFromTo(fromDate,toDate)
+    SPprices=map(price,SPlist)
     r_a=log_returns(pricelist)
     r_b=log_returns(SPprices)
-        
-    return cov(r_a,r_b)/var(r_b)
+    cov_ab=cov(array(r_a),array(r_b))[0][1]   
+    
+    return cov_ab/var(array(r_b))
 
 if __name__ == "__main__":
     Google = stockInfo("GOOG",date(2000,1,1),date(2013,1,1))
-    print Beta(Google, date(2010,1,1),date(2013,1,1))
+    
+    print Beta(Google, date(2012,6,7),date(2012,12,31))
