@@ -103,13 +103,13 @@ class PlotPanel(wx.Panel):
     def WxDateTimeToDate(self,datetime):
         pass
 
-class finnsi(wx.Frame):
+class rammi(wx.Frame):
 
     def __init__(self,parent,id):
         wx.Frame.__init__(self,parent,id,'Bangsimon',size=(800,600))
         panel=AnalystPanel(self)
 
-
+        #Menubar
         status=self.CreateStatusBar()
         menubar=wx.MenuBar()
         first=wx.Menu()
@@ -118,29 +118,36 @@ class finnsi(wx.Frame):
         plot=wx.Menu()
         first.Append(wx.NewId(),"New Window","This opens a new window" )
         first.Append(wx.NewId(),"Open","Opens saved graphs and data" )
-        
-        menubar.Append(first,"File")
-        menubar.Append(third,"Actions")
         save.Append(wx.NewId(),"Graph","This will save the graph" )
         save.Append(wx.NewId(),"Data","This will save the data" )
-        SMA=plot.Append(wx.NewId(),"Simple Moving Average","Plots Simple Moving Average" )
+        plot.Append(wx.NewId(),"Simple Moving Average","Plots Simple Moving Average" )
         plot.Append(wx.NewId(),"Beta","Plot Beta" )
         third.Append(wx.NewId(),"News","Shows the news" )
 
+        menubar.Append(first,"File")
+        menubar.Append(third,"Actions")
+
+        #Submenus
         first.AppendMenu(wx.NewId(), 'Save', save)
         third.AppendMenu(wx.NewId(), 'Plot', plot)
+
+        close=first.Append(wx.NewId()," Quit","Exits the program" )
         
         self.SetMenuBar(menubar)
-        self.Bind(wx.EVT_MENU, self.OnCloseMe, SMA)
+        self.Bind(wx.EVT_MENU, self.OnCloseMe, close)
+        
 
+
+    #Close the program
     def OnCloseMe(self, event):
         self.Close(True)
 
 
 if __name__=='__main__':
     app=wx.PySimpleApp()
-    frame=finnsi(parent=None,id=-1)
+    frame=rammi(parent=None,id=-1)
     panel=AnalystPanel(frame)              
     frame.Show()
     app.MainLoop()
+    
         
