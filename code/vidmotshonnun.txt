@@ -4,18 +4,18 @@ Upphafsgluggi:
 
 
    +---------------------------------------------------------------------------------+
-   | File      	       	       	               	  	     	                     |
+   | File  Plot        	       	               	  	     	                     |
    +---------------------------------------------------------------------------------+
    |                                                       +-----------------------+ |
-   |                        +------------------------+     |    Current data       | |
-   |                        |Company ticker          |     |                       | |
-   |                        +------------------------+     |                       | |
+   |   +------------+       +------------------------+     |    Current data       | |
+   |   | Get Data   |       |Company ticker          |     |                       | |
+   |   +------------+       +------------------------+     |                       | |
    |                                                 	   |                       | |
-   |                   	      	               	  	   +-----------------------+ |
-   |                   	      	               	  	                             |
-   |  +------------+      +------------+     +-----------+   +---------------+       |
-   |  | Get Data   |      | Plot       |     | Export	 |   |Compare        |       |
-   |  +------------+      +------------+     +-----------+   +---------------+       |
+   |                          	               	  	   +-----------------------+ |
+   |                          	               	  	                             |
+   |                                                                                 |
+   |                                                                                 |
+   |                                                                                 |
    |                                         +---------------------------------------+
    |                                         |         	      	                     |
    |                                         |         	      	                     |
@@ -26,7 +26,7 @@ Upphafsgluggi:
    |   |                                 |   |                	                     |
    |   |                                 |   |                                       |
    |   |			         |   |                                       |
-   |   |                                 |   |         -                             |
+   |   |                                 |   |                                       |
    |   |                                 |   |                                       |
    |   |                                 |   |                                       |
    |   |                                 |   |                                       |
@@ -39,10 +39,89 @@ Upphafsgluggi:
 
 
 
+Inni í File er New og Save.
+
+Ef ýtt er á New, þá kemur New gluggin.
+Ef ýtt er á save, þá kemur upp save glugginn.
 
 
+Inni í Plot er hægt að velja eiginleika, og ef eiginleiki
+er valinn, þá er hann plottaður eins langt og hægt er.
+Einnig er "Custom", og þá kemur upp plot glugginn.
+
+Inni í technical analysis má velja:
+Simple moving average
+Beta
+Custom
+
+en S.M.A og Beta möguleikarnir plotta upp þá eiginleika frá byrjun,
+en ef ýtt er á custom opnast TechA glugginn.
+
+New glugginn:
+
+   +-----------------------------------+
+   |  Enter ticker of company/indice   |
+   |      you wish to examine:         |
+   |                                   |
+   |                                   |
+   |    +--------------------------+   |
+   |    | Ticker                   |   |
+   |    +--------------------------+   |
+   |                                   |
+   |   +-----+               +------+  |
+   |   | OK  |               |Cancel|  |
+   |   +-----+               +------+  |
+   +-----------------------------------+
 
 
+Save gluggin:
+ 
+  +-----------------------------------+
+  |     Choose location for .csv      |
+  |             file:                 |
+  |                                   |
+  |                                   |
+  |    +--------------------------+   |
+  |    |    File to save in       |   |
+  |    +--------------------------+   |
+  |                                   |
+  |   +-----+               +------+  |
+  |   | Save|               |Cancel|  |
+  |   +-----+               +------+  |
+  +-----------------------------------+
+
+Plot glugginn: 
+   
+
+  +----------------------------------------+
+  |                          +-------+--+  |
+  |      Attribute to plot:  |       |V |  |
+  |                          +-------+--+  |
+  |                                        |
+  |                                        |
+  |                         +---------+--+ |
+  |                         |         |V | |
+  |    Date to plot from:   +---------+--+ |
+  |    Date to plot to:     +---------+--+ |
+  |   +-------+             |         |V | |
+  |   |Plot   |             +---------+--+ |
+  |   +-------+                            |
+  +----------------------------------------+
 
 
+TechA glugginn:
 
+ +----------------------------------------+
+ |     Technical analysis   +-------+--+  |
+ |       to plot:      	    |       |V |  |
+ |                          +-------+--+  |
+ |                                        |
+ |                                        |
+ |                         +---------+--+ |
+ |                         |         |V | |
+ |    Date to plot from:   +---------+--+ |
+ |    Date to plot to:     +---------+--+ |
+ |   +-------+             |         |V | |
+ |   |Plot   |             +---------+--+ |
+ |   +-------+                            |
+ +----------------------------------------+
