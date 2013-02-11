@@ -50,11 +50,11 @@ class testStockInfo(unittest.TestCase):
         adjCloses = []
         for i in self.testobj.infoList:
             adjCloses.append(i[6])
-        self.assertListEqual(movingAverage(self.testobj,self.testobj.fromDate,self.testobj.toDate,1),adjCloses)
+        self.assertListEqual(movingAverage(self.testobj, 1),adjCloses)
 
     #Check if it returns something for valid dates
     def test_Beta(self):
-        self.assertIsNotNone(Beta(self.testobj,self.testobj.fromDate,self.testobj.toDate))
+        self.assertIsNotNone(Beta(self.testobj))
 
     #Check as much as we can of RSS
     def test_Rss(self):
