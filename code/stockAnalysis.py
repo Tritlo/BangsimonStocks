@@ -33,7 +33,8 @@ def Beta(s, fromDate=None, toDate=None):
     """
     # U: b=Beta(s,fd,td)
     # Pre: s is stockInfo object, fd, td are optional date objects
-    # Post: b is a number describing our stock's Beta value for the time period from fromDate to toDate if data exists for those dates
+    # Post: b is a number describing our stock's Beta value for the time period from fromDate to toDate if data exists for those dates,
+    # otherwise raises exception
     """
     if fromDate==None: 
         fromDate=s.fromDate
