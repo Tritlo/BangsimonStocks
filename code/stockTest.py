@@ -8,22 +8,22 @@ class testStockInfo(unittest.TestCase):
     
     def setUp(self):
         self.testobj = stockInfo("GOOG")
-        
-    #Gaum hvort thad verdi til
+
+    #Test whether it is a correct object
     def test_creation(self):
         self.assertEqual(self.testobj.ticker, "GOOG")
         
-    #Gaum hvort thad gefi ekki villu vid vitlausan hlut
+    #Make sure it returns an error on an invalid object
     def test_invalidcreation(self):
         with self.assertRaises(ValueError):
             otherobj = stockInfo("ThingThatDoesNotExist")
 
-    #Athugum hvort dagsetningar seu ekki rettar
+    #Test that dates are within a valid range and not haywire
     def test_dates(self):
         self.assertGreaterEqual(self.testobj.fromDate,date.min)
         self.assertLessEqual(self.testobj.toDate,date.today())
 
-    #Athugum hvort ad vid seum ekki med einhverjar upplysingar
+    #Test whether we have any information
     def test_inform(self):
         self.assertIsNot(self.testobj.infoList, [])
 
@@ -52,8 +52,21 @@ class testStockInfo(unittest.TestCase):
             adjCloses.append(i[6])
         self.assertListEqual(movingAverage(self.testobj,self.testobj.fromDate,self.testobj.toDate,1),adjCloses)
 
+    #Check if it returns something for valid dates
     def test_Beta(self):
-        self.assertIsNotNone(Beta(self.testobj,self.testobj.fromDate,self.testobj.self.testobjDate))
+        self.assertIsNotNone(Beta(self.testobj,self.testobj.fromDate,self.testobj.toDate))
+
+    #Check as much as we can of RSS
+    def test_Rss(self):
+        self.assertIsInstance(self.testobj.getRSS(),list)
+
+    #Check as we can of getCurrent
+    def test_current(self):
+        self.assertIsInstance(self.testobj.getCurrent(),dict)
+        
+    #Test  getDate
+    def test_getDate(self):
+        self.assertEqual(self.testobj.getDate(self.testobj.fromDate)["Open"],self.testobj.infoList[0][1])
                          
 if __name__== '__main__':
     unittest.main(verbosity=2, exit=False)
