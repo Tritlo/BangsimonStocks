@@ -1,6 +1,7 @@
 from datetime import date, timedelta
 from stockInfo import stockInfo
 from stockAnalysis import *
+from stockUtil import *
 import unittest
 
 class testStockInfo(unittest.TestCase):
@@ -36,5 +37,20 @@ class testStockInfo(unittest.TestCase):
     def test_listfromTo(self):
         self.assertListEqual(self.testobj.infoList,self.testobj.listFromTo(self.testobj.fromDate,self.testobj.toDate))
 
+    #Check if stringToDate in stockUtil works correctly
+    def test_stringToDate(self):
+        self.assertEqual(stringToDate("2004-04-01"),date(2004,04,01))
+
+    #Check if dateToString in stockUtil works correctly
+    def test_dateToString(self):
+        self.assertEqual("2004-04-01",dateToString(date(2004,04,01)))
+
+    #Check if movingAverage works correctly in base case
+    def test_movingAvg(self):
+        adjCloses = []
+        for i in self.testobj.infoList:
+            adjCloses.append(i[6])
+        self.assertListEqual(movingAverage(self.testobj,self.testobj.fromDate,self.testobj.toDate,1),adjCloses)
+                         
 if __name__== '__main__':
     unittest.main(verbosity=2, exit=False)

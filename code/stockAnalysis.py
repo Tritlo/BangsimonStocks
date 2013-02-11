@@ -17,7 +17,7 @@ def movingAverage(stockInfo, fromDate, toDate,N):
     for d in stockInfo.listFromTo(fromDate,toDate):
         Nprevdays = stockInfo.listFromTo(d[0]-Ndays,d[0])
         Nprevdays = map(price, Nprevdays)
-        Nprevdays = Nprevdays[-20:]
+        Nprevdays = Nprevdays[-N:]
         result.append(sum(Nprevdays)/len(Nprevdays)) 
         # Note that len(Nprevdays) cannot be equal to zero because if fromDate and toDate are not valid dates for the ticker
         # movingAverage would have returned an empty list above, and if fromDate didn't occur before toDate 
