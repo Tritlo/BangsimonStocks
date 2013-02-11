@@ -71,4 +71,4 @@ def Beta(s, fromDate=None, toDate=None):
 if __name__ == "__main__":
     Google = stockInfo("GOOG",date(2000,1,1),date.today())
     
-    print Beta(Google,Google.fromDate,Google.toDate)
+    smaPlot(Google)

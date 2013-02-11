@@ -37,18 +37,22 @@ def stockPlot(s,k,fromDate=None,toDate=None):
     # Find out how to add a title?
     plt.show()
 
-def smaPlot(s,N,fromDate,toDate):
+def smaPlot(s,N=20,fromDate=None,toDate=None):
     """
     #U: smaPlot(s,fd,td,N)
     #Pre: s is a stockInfo object, fd, td are dates, N is an integer >=0
     #Post: We have a plot of the moving average vs the date from fd to td
     """
+    if fromDate==None: 
+        fromDate=s.fromDate
+    if toDate==None:
+        toDate=s.toDate
     date=lambda d: d[0]
     price=lambda d: d[6]
     infoList=s.listFromTo(fromDate,toDate)
     dateList=map(date,infoList)
     priceList=map(price,infoList)
-    l=movingAverage(s, fromDate, toDate,N)
+    l=movingAverage(s, N, fromDate, toDate)
     plt.plot(dateList,l,'r',dateList,priceList,'b--')
     plt.ylabel('Moving Average (red) and Adj. Closing Price (blue)')
     plt.xlabel('Date')
@@ -56,4 +60,4 @@ def smaPlot(s,N,fromDate,toDate):
     
 if __name__ == "__main__":
     Google = stockInfo("GOOG",date(2000,1,1),date.today())
-    smaPlot(Google, date(2006,2,2),date(2012,2,2),200)
+    smaPlot(Google)
