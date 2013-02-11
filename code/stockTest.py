@@ -54,7 +54,8 @@ class testStockInfo(unittest.TestCase):
 
     #Check if it returns something for valid dates
     def test_Beta(self):
-        self.assertIsNotNone(Beta(self.testobj))
+        with self.assertRaises(ValueError):
+            Beta(self.testobj,date.min)
 
     #Check as much as we can of RSS
     def test_Rss(self):
