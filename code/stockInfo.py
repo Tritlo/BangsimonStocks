@@ -165,7 +165,7 @@ class stockInfo:
         for i in range(4,len(string)):
             if ">" not in string[i]:
                 title = string[i].rstrip("/<")
-                
+                title=title.replace("&apos;","'")
                 link = string[i+1].split("link>")[1].rstrip("</")
                 pair = title,link
                 out.append(pair)

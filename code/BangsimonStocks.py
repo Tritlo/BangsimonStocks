@@ -19,6 +19,7 @@ def Bhelp(args):
             current: displays current information about the stock\n\
             beta: displays the beta-value of the stock\n\
             ma: displays a plot of the stock's moving average\n\
+            news: displays news headlines concerning the stock\n\
             quit: exits program\
             "
     helpdict = { 
@@ -26,7 +27,7 @@ def Bhelp(args):
             'plot': 'plots information about the stocks, optional arguments are number of property to plot, date from which to plot and date to which to plot. The dates are on yyyy-mm-dd format. The following properties ar available: Available attributes are: (1) Open, (2) High, (3) Low, (4) Close, (5) Volume, (6) Adj Close, (7) Avg. Price',
             'change': 'changes which stocks are being examined, optional argument is ticker of stock to change to.',
             'current': 'displays current information about the stock, optional argument is property to display. The following properties are available: price,  change, volume,  avg_daily_volume,  stock_exchange,  market_cap,  book_value,  ebitda,  dividend_per_share,  dividend_yield,  earnings_per_share,  52_week_high,  52_week_low,  50day_moving_avg,  200day_moving_avg,  price_earnings_ratio,  price_earnings_growth_ratio,  price_sales_ratio,  price_book_ratio,  short_ratio.',
-'beta': 'displays the beta-value of the stock, optional arguments are the dates from which to calculate and the date to which to calculate', 'ma': 'displays a plot of the moving average of the stock, optional arguments are the date from which to calculate/plot and the date to which to calculate/plot and the number of days over which the moving average is calculated for each day.',
+'beta': 'displays the beta-value of the stock, optional arguments are the dates from which to calculate and the date to which to calculate', 'ma': 'displays a plot of the moving average of the stock, optional arguments are the date from which to calculate/plot and the date to which to calculate/plot and the number of days over which the moving average is calculated for each day.', 'news':'displays news headlines concerning the stock',
                 'quit': 'exits program'
             }
 
@@ -103,7 +104,7 @@ def Bcurrent(args):
 def Bbeta(args):
     """
     # Use: Bbeta(args)
-    # Pre: 
+    # Pre: args is a list of strings
     # Post: the beta value of the stock for the time period from fromDate to toDate has been displayed if data exists for that interval.
     """
     try:
@@ -128,8 +129,9 @@ def Bbeta(args):
 def Bma(args):
     """
     # Use: Bma(args)
-    # Pre: 
-    # Post: 
+    # Pre: args is a list of strings
+    # Post: A plot of the stock's moving average for a given time period and a given number of days to calculate over has been displayed
+    # if data is available for the given interval
     """
     try:
             print "Enter interval to calculate the moving average for in yyyy-mm-dd format. Leave blank for minimum and maximum available date respectively" 
@@ -155,6 +157,17 @@ def Bma(args):
         print "Invalid date. It should be a valid date on the yyyy-mm-dd format."
     except ValueError:
         print "Invalid date. Either the format was not yyyy-mm-dd, or not within the available range."
+
+def Bnews(args):
+    """
+    # Use: Bnews(args)
+    # Pre: args is a list of strings
+    # Post: News headlines concerning the stock have been displayed
+    """
+    global stockObj
+    h=stockObj.getRSS()
+    for pair in h:
+        print pair[0]
   
 
 def Bquit(args):
@@ -204,7 +217,7 @@ while True:
 
 c = 'help'
 print stockObj
-commands = {'plot': Bplot, 'help':Bhelp, 'quit':Bquit, 'change': Bchange, 'current':Bcurrent, 'beta':Bbeta, 'ma':Bma} #: Dictionary of functions
+commands = {'plot': Bplot, 'help':Bhelp, 'quit':Bquit, 'change': Bchange, 'current':Bcurrent, 'beta':Bbeta, 'ma':Bma, 'news':Bnews} #: Dictionary of functions
 Bhelp(['help'])
 while c != "quit":
     c = raw_input(">> ")
