@@ -1,7 +1,6 @@
 import urllib2 as urll
 from datetime import date
 import csv
-from stockUtil import *
 
 class stockInfo:
     """
@@ -39,7 +38,7 @@ class stockInfo:
         #Throw away the start of the list, it only contains the names of the variables
         csvList.next()
         for d in csvList:
-            d[0] = stringToDate(d[0])
+            d[0] = self.stringToDate(d[0])
             for i in range(1,7):
                 d[i] = float(d[i])
             self.infoDict[d[0]] = {'Open':d[1], 'High':d[2], 'Low':d[3], 'Close':d[4], 'Volume':d[5], 'Adj Close':d[6]}
@@ -51,6 +50,45 @@ class stockInfo:
         self.fromDate = self.infoList[0][0]
 
 
+    def dateToString(self,date):
+        """
+        #Use: h = s.dateToString(date)
+        #Pre: date = (d,m,y) where d,m,y are integers which specify a valid  day, month, year, s is a stockinfo object
+        #Post: h is a date string of yahoo api format
+        """
+        day, month, year = date.day, date.month, date.year
+        year = str(year)
+        if month <10:
+            month = "0"+str(month)
+        else:
+            month = str(month)
+        if day <10:
+            day = "0"+str(day)
+        else:
+            day = str(day)
+        date = year+"-"+month+"-"+day
+        return date
+   
+    def stringToDate(self,string):
+        """
+        #Use: h = s.dateToString(date)
+        #Pre: h is a valid date string of yahoo api format, s is a stockinfo object
+        #Post: date is a datetime.date object of the specified date. 
+        """
+        string = string.split("-")
+        return date(int(string[0]),int(string[1]),int(string[2]))
+
+    def compareDates(self, d1,d2):
+        """
+        #Use: i = s.compareDates(d1,d2)
+        #Pre: d1, d2 are datetime.date objects, s is a stockinfo object
+        #Post: returns -1, 0 or 1 if d1 is less than equal or greater than d2
+        """
+        if d1 < d2:
+            return -1
+        if d1 == d2:
+            return 0
+        return 1
 
     def validDate(self, date):
         """ 
@@ -58,7 +96,7 @@ class stockInfo:
         #Pre: date is a datetime object, s is a stockinfo object
         #Post: b is true if the date is within the objects timeframe, false otherwise
         """
-        if (compareDates(self.fromDate,date) <= 0) and (compareDates(date,self.toDate) <= 0):
+        if (self.compareDates(self.fromDate,date) <= 0) and (self.compareDates(date,self.toDate) <= 0):
             return True
         return False
     
@@ -69,7 +107,7 @@ class stockInfo:
        #Pre: fromDate, toDate are datetime.date objects, s is a stockinfo object
        #Post: A list containing the lists containing information about the dates in the given interval, empty if there are no such dates.
        """
-       return [ l for l in self.infoList if (compareDates(l[0], fromDate) >= 0) and  (compareDates(l[0],toDate) <= 0)]
+       return [ l for l in self.infoList if (self.compareDates(l[0], fromDate) >= 0) and  (self.compareDates(l[0],toDate) <= 0)]
 
     def getDate(self,date):
         """ 
@@ -140,11 +178,11 @@ class stockInfo:
         """ 
         #Use: h = s.getRSS()
         #Pre:  s is a news feed
-        #Post: h is a dictionary containing list of news headlines
+        #Post: h is a list of pairs with headlines and links
         """
         baseurl = "http://feeds.finance.yahoo.com/rss/2.0/headline?s="
 
-        url = baseurl + self.ticker
+        url = baseurl + self.ticker + "&region=US"+"&lang=en-US"
         
         try:
             news = urll.urlopen(url)
@@ -157,13 +195,20 @@ class stockInfo:
         news.close()
         #Get data from news
 
-        string = s.split("title>")
+        string = data.split("title>")
+        #Split data
 
-        print string
-
-
-        
-        
+        out = []
+        for i in range(4,len(string)):
+            if ">" not in string[i]:
+                title = string[i].rstrip("/<")
+                
+                link = string[i+1].split("link>")[1].rstrip("</")
+                pair = title,link
+                out.append(pair)
+        return out
+        #Sorts out and cuts headlines
+       
 
     def __str__(self):
         """
@@ -171,7 +216,7 @@ class stockInfo:
         #Pre: s is a stockInfo object
         #Post:y is a string representation of the object
         """
-        return "Stock information about %s, from %s to %s" % (self.ticker, dateToString(self.fromDate),dateToString(self.toDate))
+        return "Stock information about %s, from %s to %s" % (self.ticker, self.dateToString(self.fromDate),self.dateToString(self.toDate))
 
             
 if __name__ == "__main__":
