@@ -136,6 +136,34 @@ class stockInfo:
         }
         return data
 
+    def getRSS(self):
+        """ 
+        #Use: h = s.getRSS()
+        #Pre:  s is a news feed
+        #Post: h is a dictionary containing list of news headlines
+        """
+        baseurl = "http://feeds.finance.yahoo.com/rss/2.0/headline?s="
+
+        url = baseurl + self.ticker
+        
+        try:
+            news = urll.urlopen(url)
+        except urll.HTTPError:
+            raise ValueError("Ticker not found")
+            return None
+        #Get news
+    
+        data = news.read()
+        news.close()
+        #Get data from news
+
+        string = s.split("title>")
+
+        print string
+
+
+        
+        
 
     def __str__(self):
         """
@@ -148,4 +176,4 @@ class stockInfo:
             
 if __name__ == "__main__":
     Google = stockInfo("GOOG",date(2000,1,1),date(2013,1,1))
-    print Google.getCurrent()
+    print Google.getRSS()
