@@ -64,7 +64,7 @@ class testStockInfo(unittest.TestCase):
     def test_current(self):
         self.assertIsInstance(self.testobj.getCurrent(),dict)
         
-    #Test  getDate
+    #Test  getDate by comparing to easily retrievable value
     def test_getDate(self):
         self.assertEqual(self.testobj.getDate(self.testobj.fromDate)["Open"],self.testobj.infoList[0][1])
                          
