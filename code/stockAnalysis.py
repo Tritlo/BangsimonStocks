@@ -3,7 +3,7 @@ from datetime import date
 from numpy import *
 from stockInfo import stockInfo
 
-def movingAverage(stockInfo, fromDate, toDate,N):
+def movingAverage(stockInfo, N=20, fromDate=None, toDate=None):
     """
     #U: l = movingAverage(s,fd,td,N)
     #Pre: s is a stockInfo object, fd, td are dates, N is an integer >=0
@@ -25,15 +25,18 @@ def movingAverage(stockInfo, fromDate, toDate,N):
             
     return result
 
-def Beta(s, fromDate, toDate):
+def Beta(s, fromDate=None, toDate=None):
     """
     # U: b=Beta(s,fd,td)
     # Pre: s is stockInfo object, fd, td are dates
     # Post: b is a number describing our stock's Beta value for the time period from fromDate to toDate if data exists for those dates
     """
-    
+    if fromDate==None: 
+        fromDate=s.fromDate
+    if toDate==None:
+        toDate=s.toDate
     if not (s.validDate(fromDate) and s.validDate(toDate)):
-        return None
+        raise ValueError("Invalid dates")
     
     price = lambda d: d[6]
     def log_returns(l):

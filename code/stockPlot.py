@@ -37,7 +37,7 @@ def stockPlot(s,k,fromDate=None,toDate=None):
     # Find out how to add a title?
     plt.show()
 
-def smaPlot(s,fromDate,toDate,N):
+def smaPlot(s,N,fromDate,toDate):
     """
     #U: smaPlot(s,fd,td,N)
     #Pre: s is a stockInfo object, fd, td are dates, N is an integer >=0
