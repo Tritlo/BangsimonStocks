@@ -1,0 +1,61 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{a4,graphics,amsmath,amsfonts,amsbsy,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{enumerate}
+\usepackage{comment}
+\usepackage{accents}
+
+
+\setlength{\parskip}{8pt plus 1pt minus 1pt}
+%Verdur ad vera her, sumir pakkar dependa a thetta.
+\usepackage[icelandic]{babel}
+
+%viljum ekki númeraða kafla á dæmum
+
+\setcounter{secnumdepth}{-1}
+
+\usepackage[a0paper,margin=1in]{geometry}
+\usepackage{fancyvrb}
+%\usepackage{beramono} % or whatever monospaced font you wish to employ
+\begin{document}
+\pagestyle{empty} % don't need to display page numbers, right?
+
+\title{Viðmótshönnu} \author{Finnur Jónasson \and Matthías Páll
+  Gissurarson \and Ragnheiður Björk Halldórsdóttir \and Sólrún Halla
+  Einarsdóttir}
+
+\section{Upphafsgluggi}
+\VerbatimInput{upphafsgluggi.asc}
+
+\noindent
+Inni í File er New og Exit.  Forritið opnar með upplýsingar um Google
+
+\noindent
+Ef ýtt er á New, þá kemur New gluggin.  Ef ýtt er á Exit, þá slökknar
+á forritinu
+
+\noindent
+Inni í Plot er hægt að velja eiginleika sem sýndur er á grafinu, með
+radio box.\\  Einnig er check box, sem hægt er að haka við og heitir
+Moving Average,\\ og segir til um hvort maður eigi að taka moving
+average eða ekki.
+
+\noindent
+Einnig er Customize, en þá kemur upp Plot gluggin.
+
+\section{New gluggi}
+
+
+\VerbatimInput{newgluggi.asc}
+
+\section{Plot glugginn}
+
+\VerbatimInput{plotgluggi.asc}
+
+\end{document}
