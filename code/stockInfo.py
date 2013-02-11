@@ -136,7 +136,7 @@ class stockInfo:
         }
         return data
 
-   def getRSS(self):
+    def getRSS(self):
         """ 
         #Use: h = s.getRSS()
         #Pre:  s is a news feed
