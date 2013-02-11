@@ -21,7 +21,7 @@ def movingAverage(stockInfo, fromDate, toDate,N):
         result.append(sum(Nprevdays)/len(Nprevdays)) 
         # Note that len(Nprevdays) cannot be equal to zero because if fromDate and toDate are not valid dates for the ticker
         # movingAverage would have returned an empty list above, and if fromDate didn't occur before toDate 
-        # listFromto(fromDate,toDate) would be emoty so the for loop would never loop. 
+        # listFromto(fromDate,toDate) would be empty so the for loop would never loop. 
             
     return result
 
@@ -29,11 +29,11 @@ def Beta(s, fromDate, toDate):
     """
     # U: b=Beta(s,fd,td)
     # Pre: s is stockInfo object, fd, td are dates
-    # Post: b is a number describing our stock's Beta value for the time period from fromDate to toDate
+    # Post: b is a number describing our stock's Beta value for the time period from fromDate to toDate if data exists for those dates
     """
     
     if not (s.validDate(fromDate) and s.validDate(toDate)):
-        return 0
+        return None
     
     price = lambda d: d[6]
     def log_returns(l):
