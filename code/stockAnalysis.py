@@ -6,18 +6,16 @@ from stockInfo import stockInfo
 def movingAverage(stockInfo, N=20, fromDate=None, toDate=None):
     """
     #U: l = movingAverage(s,fd,td,N)
-    #Pre: s is a stockInfo object, fd, td are dates, N is an integer >=0
-    #Post: l is a list containing the moving averages from fd to td, if data exists for that interval, an empty list otherwise
+    #Pre: s is a stockInfo object, fd, td are optional date objects, N is an optional integer >=0, the default value of N is 20.
+    #Post: l is a list containing the moving averages from fd to td, if data exists for that interval, otherwise raises exception
     """
     if fromDate==None: 
-        fromDate=s.fromDate
+        fromDate=stockInfo.fromDate
     if toDate==None:
-        toDate=s.toDate
-    if not (s.validDate(fromDate) and s.validDate(toDate)):
+        toDate=stockInfo.toDate
+    if not (stockInfo.validDate(fromDate) and stockInfo.validDate(toDate)):
         raise ValueError("Invalid dates")
     result = []
-    if not (stockInfo.validDate(fromDate) and stockInfo.validDate(toDate)):
-        return []
     Ndays = timedelta(2*N) #: Have it 2*N, so that it definitely gives us enough days of data (the stock market is not continiously open)
     price = lambda d: d[6]
     for d in stockInfo.listFromTo(fromDate,toDate):
