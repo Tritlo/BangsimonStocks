@@ -1,0 +1,23 @@
+﻿
+Hópur 19  - Athugasemdir við V1b
+Yfirferð: Steinn (steinng@hi.is)
+
+
+Almennt
+=======
+Þið verðið að skipa forritun jafnt milli hópmeðlima. Matthías verður í fríi frá forritun í næstu ítrun.
+
+
+Verkáætlun
+==========
+Útprentun í PDF skjal hefur mistekist en annars er verkáætlunin ágætlega skýr.
+
+Gerið þið ráð fyrir velocity 0.7? Er það raunhæft í ljósi þess hve forritun er misskipt?
+
+
+
+Forritun
+========
+Forritið er mjög læsilegt og skýrt ("global" stingur þó alltaf í augu)
+
+Passa að deila ekki með núlli (t.d. Nprevdays í stockAnalysis)
