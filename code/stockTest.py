@@ -1,9 +1,10 @@
-from datetime import date
+from datetime import date, timedelta
 from stockInfo import stockInfo
 from stockAnalysis import *
 import unittest
 
 class testStockInfo(unittest.TestCase):
+    
     def setUp(self):
         self.testobj = stockInfo("GOOG")
         
@@ -24,6 +25,16 @@ class testStockInfo(unittest.TestCase):
     #Athugum hvort ad vid seum ekki med einhverjar upplysingar
     def test_inform(self):
         self.assertIsNot(self.testobj.infoList, [])
+
+    #Check if validdates works
+    def test_validdate(self):
+        days = timedelta(10)
+        self.assertFalse(self.testobj.validDate(self.testobj.toDate+days))
+        self.assertTrue(self.testobj.validDate(self.testobj.toDate-days))
+
+    #Check if listFromTo works correctly
+    def test_listfromTo(self):
+        self.assertListEqual(self.testobj.infoList,self.testobj.listFromTo(self.testobj.fromDate,self.testobj.toDate))
 
 if __name__== '__main__':
     unittest.main(verbosity=2, exit=False)
