@@ -51,6 +51,9 @@ class testStockInfo(unittest.TestCase):
         for i in self.testobj.infoList:
             adjCloses.append(i[6])
         self.assertListEqual(movingAverage(self.testobj,self.testobj.fromDate,self.testobj.toDate,1),adjCloses)
+
+    def test_Beta(self):
+        self.assertIsNotNone(Beta(self.testobj,self.testobj.fromDate,self.testobj.self.testobjDate))
                          
 if __name__== '__main__':
     unittest.main(verbosity=2, exit=False)
