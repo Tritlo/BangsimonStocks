@@ -41,7 +41,7 @@ def smaPlot(s,N=20,fromDate=None,toDate=None):
     """
     #U: smaPlot(s,fd,td,N)
     #Pre: s is a stockInfo object, fd, td are dates, N is an integer >=0
-    #Post: We have a plot of the moving average vs the date from fd to td
+    #Post: We have a plot of the moving average along with the adj. closing price vs the date from fd to td
     """
     if fromDate==None: 
         fromDate=s.fromDate
