@@ -9,6 +9,12 @@ def movingAverage(stockInfo, N=20, fromDate=None, toDate=None):
     #Pre: s is a stockInfo object, fd, td are dates, N is an integer >=0
     #Post: l is a list containing the moving averages from fd to td, if data exists for that interval, an empty list otherwise
     """
+    if fromDate==None: 
+        fromDate=s.fromDate
+    if toDate==None:
+        toDate=s.toDate
+    if not (s.validDate(fromDate) and s.validDate(toDate)):
+        raise ValueError("Invalid dates")
     result = []
     if not (stockInfo.validDate(fromDate) and stockInfo.validDate(toDate)):
         return []
@@ -28,7 +34,7 @@ def movingAverage(stockInfo, N=20, fromDate=None, toDate=None):
 def Beta(s, fromDate=None, toDate=None):
     """
     # U: b=Beta(s,fd,td)
-    # Pre: s is stockInfo object, fd, td are dates
+    # Pre: s is stockInfo object, fd, td are optional date objects
     # Post: b is a number describing our stock's Beta value for the time period from fromDate to toDate if data exists for those dates
     """
     if fromDate==None: 
