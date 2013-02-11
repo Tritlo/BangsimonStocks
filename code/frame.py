@@ -113,29 +113,38 @@ class rammi(wx.Frame):
         status=self.CreateStatusBar()
         menubar=wx.MenuBar()
         first=wx.Menu()
-        save=wx.Menu()
         third=wx.Menu()
         plot=wx.Menu()
         first.Append(wx.NewId(),"New Window","This opens a new window" )
-        first.Append(wx.NewId(),"Open","Opens saved graphs and data" )
-        save.Append(wx.NewId(),"Graph","This will save the graph" )
-        save.Append(wx.NewId(),"Data","This will save the data" )
-        plot.Append(wx.NewId(),"Simple Moving Average","Plots Simple Moving Average" )
-        plot.Append(wx.NewId(),"Beta","Plot Beta" )
+        plot.Append(wx.NewId(),"sumthing1","Plots Simple Moving Average" )
+        plot.Append(wx.NewId(),"sumthing2","Plot Beta" )
         third.Append(wx.NewId(),"News","Shows the news" )
 
         menubar.Append(first,"File")
-        menubar.Append(third,"Actions")
+        menubar.Append(third,"Sumthing")
 
         #Submenus
-        first.AppendMenu(wx.NewId(), 'Save', save)
         third.AppendMenu(wx.NewId(), 'Plot', plot)
 
         close=first.Append(wx.NewId()," Quit","Exits the program" )
         
         self.SetMenuBar(menubar)
         self.Bind(wx.EVT_MENU, self.OnCloseMe, close)
+
+        menu = wx.Menu()
+        menu.AppendCheckItem(-1, "Adj close")
+        menu.AppendCheckItem(-1, "Open")
+        menu.AppendCheckItem(-1, "High")
+        menu.AppendRadioItem(-1, "Low")
+        menu.AppendRadioItem(-1, "Close")
+        menu.AppendRadioItem(-1, "Volume")
+        menu.AppendRadioItem(-1, "Avg.Price")
+        menu.AppendSeparator()
+        menu.AppendRadioItem(-1, "Simple Moving Average")
+        menu.AppendRadioItem(-1, "None")
+        menubar.Append(menu, "Plot")
         
+        self.SetMenuBar(menubar)
 
 
     #Close the program
