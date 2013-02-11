@@ -45,18 +45,21 @@ class testStockInfo(unittest.TestCase):
     def test_dateToString(self):
         self.assertEqual("2004-04-01",dateToString(date(2004,04,01)))
 
-    #Check if movingAverage works correctly in base case
+    #Check if movingAverage works correctly in base case, and is invalid for invalid dates
     def test_movingAvg(self):
         adjCloses = []
         for i in self.testobj.infoList:
             adjCloses.append(i[6])
         self.assertListEqual(movingAverage(self.testobj, 1),adjCloses)
+        with self.assertRaises(ValueError):
+            movingAverage(self.testobj,2,date.min)
 
-    #Check if it returns something for valid dates
+    #Check if it fails for invalid dates, and works for valid
     def test_Beta(self):
         with self.assertRaises(ValueError):
             Beta(self.testobj,date.min)
-
+        self.assertIsInstance(Beta(self.testobj),float)
+        
     #Check as much as we can of RSS
     def test_Rss(self):
         self.assertIsInstance(self.testobj.getRSS(),list)
