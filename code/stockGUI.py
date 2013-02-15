@@ -42,7 +42,7 @@ class initialFrame(wx.Frame):
         plot = wx.Menu()
         options = ['Open', 'High', 'Low', 'Close', 'Volume', 'Adj Close','Avg. Price']
         #Nennum ekki ad handlsa inn.
-        M = map( (lambda x: self.Bind(wx.EVT_MENUITEM,self.plot_handler,plot.AppendRadioItem(-1,x))),options)
+        M = map( (lambda x: self.Bind(wx.EVT_MENU,self.plot_handler,plot.AppendRadioItem(-1,x))),options)
         plot.AppendSeparator()
         m_sma = plot.AppendCheckItem(-1, "Simple Moving Average")
         
@@ -51,9 +51,12 @@ class initialFrame(wx.Frame):
         self.SetMenuBar(self.menubar)
                                   
     def plot_handler(self,event):
-        #label = event.GetEventObject().GetItemLabel()
-        #print label
-        pass
+        mIs = event.GetEventObject().GetMenuItems()
+        for mI in mIs:
+            if mI.GetKind() is 2:
+                if mI.IsChecked():
+                    stockPlot(self.panel.stockObj,mI.GetItemLabelText())
+                    break
              
 
     def create_main_panel(self):
@@ -63,6 +66,7 @@ class initialFrame(wx.Frame):
              * Control panel for interaction
         """
         self.panel = wx.Panel(self)
+        self.panel.stockObj = stockInfo("GOOG")
         
         # Create the mpl Figure and FigCanvas objects. 
         # 5x4 inches, 100 dots-per-inch
