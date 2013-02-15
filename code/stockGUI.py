@@ -1,4 +1,5 @@
 import wx
+import os
 from stockInfo import stockInfo
 from stockPlot import stockPlot
 
@@ -44,21 +45,24 @@ class initialFrame(wx.Frame):
         #Nennum ekki ad handlsa inn.
         M = map( (lambda x: self.Bind(wx.EVT_MENU,self.plot_handler,plot.AppendRadioItem(-1,x))),options)
         plot.AppendSeparator()
-        m_sma = plot.AppendCheckItem(-1, "Simple Moving Average")
+        self.Bind(wx.EVT_MENU,self.plot_handler,plot.AppendCheckItem(-1, "Simple Moving Average"))
         
         self.menubar.Append(menu_file, "&File")
         self.menubar.Append(plot, "&Plot")
         self.SetMenuBar(self.menubar)
                                   
     def plot_handler(self,event):
+        """Handles the changing of the plot"""
         mIs = event.GetEventObject().GetMenuItems()
         for mI in mIs:
+            #find what is selected
             if mI.GetKind() is 2:
                 if mI.IsChecked():
-                    label = mI.GetItemLabelText()
+                    self.panel.currentAttr = mI.GetItemLabelText()
+            # find whether sMA is on.
             if mI.GetKind() is 1:
-                Ma = mI.IsChecked()
-        stockPlot(self.panel.stockObj,label,MovingAvg = Ma)
+                self.panel.MovingAvg = mI.IsChecked()
+        self.draw_figure()
              
 
     def create_main_panel(self):
@@ -69,12 +73,19 @@ class initialFrame(wx.Frame):
         """
         self.panel = wx.Panel(self)
         self.panel.stockObj = stockInfo("GOOG")
+
+        self.panel.currentAttr = "Adj Close"
+        self.panel.fromDate = self.panel.stockObj.fromDate
+        self.panel.toDate = self.panel.stockObj.toDate
+        self.panel.MovingAvg = False
+        self.panel.MovingAvgN = 20
         
         # Create the mpl Figure and FigCanvas objects. 
         # 5x4 inches, 100 dots-per-inch
         #
         self.dpi = 100
-        self.fig = Figure((5.0, 4.0), dpi=self.dpi)
+        #self.fig = Figure((5.0, 4.0), dpi=self.dpi)
+        self.fig = stockPlot(self.panel.stockObj,"Adj Close",MovingAvg = True)
         self.canvas = FigCanvas(self.panel, -1, self.fig)
         
         # Since we have only one plot, we can use add_axes 
@@ -82,7 +93,7 @@ class initialFrame(wx.Frame):
         # configuration tool in the navigation toolbar wouldn't
         # work.
         #
-        self.axes = self.fig.add_subplot(111)
+        
         
         # Bind the 'pick' event for clicking on one of the bars
         #
@@ -143,26 +154,10 @@ class initialFrame(wx.Frame):
         self.statusbar = self.CreateStatusBar()
 
     def draw_figure(self):
-        """ Redraws the figure
-        """
-        str = self.textbox.GetValue()
-        self.data = map(int, str.split())
-        x = range(len(self.data))
-
-        # clear the axes and redraw the plot anew
-        #
-        self.axes.clear()        
-        self.axes.grid(self.cb_grid.IsChecked())
-        
-        self.axes.bar(
-            left=x, 
-            height=self.data, 
-            width=self.slider_width.GetValue() / 100.0, 
-            align='center', 
-            alpha=0.44,
-            picker=5)
-        
+        self.fig.clear()
+        self.fig = stockPlot(self.panel.stockObj,self.panel.currentAttr,self.panel.fromDate, self.panel.toDate, self.panel.MovingAvg, self.panel.MovingAvgN)
         self.canvas.draw()
+        pass
     
     def on_cb_grid(self, event):
         self.draw_figure()

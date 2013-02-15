@@ -37,7 +37,6 @@ def stockPlot(s,k,fromDate=None,toDate=None, MovingAvg = False, N = 20):
         getData =lambda d: d[a]
 
     dataList=map(getData,infoList)
-    
     if MovingAvg:
         l=movingAverage(s, N, fromDate, toDate)
         if a==5:
@@ -52,11 +51,11 @@ def stockPlot(s,k,fromDate=None,toDate=None, MovingAvg = False, N = 20):
         else:
             plt.plot(dateList, dataList)   
     
-            plt.ylabel(k)
-            
-    plt.xlabel('Date')
-    plt.show()
-    return plt
+        plt.ylabel(k)
+
+    plt.xlabel("Dates")
+    #plt.show()
+    return plt.gcf()
 
 def smaPlot(s,N=20,fromDate=None,toDate=None):
     return stockPlot(s,"Adj Close",fromDate,toDate,True,N)

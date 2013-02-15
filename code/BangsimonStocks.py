@@ -78,7 +78,7 @@ def Bplot(args):
                     prop = args[1]
                     fromDate = stringToDate(args[2])
                     toDate = stringToDate(args[3])
-        stockPlot(stockObj,selection[prop],fromDate,toDate)
+        stockPlot(stockObj,selection[prop],fromDate,toDate).show()
     except KeyError:
         print "Invalid property"
     except IndexError:
@@ -151,7 +151,7 @@ def Bma(args):
                 N=int(N)
             else:
                 N=None
-            smaPlot(stockObj,N,fromDate,toDate)
+            smaPlot(stockObj,N,fromDate,toDate).show()
               
     except IndexError:
         print "Invalid date. It should be a valid date on the yyyy-mm-dd format."
