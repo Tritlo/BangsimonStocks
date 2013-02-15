@@ -70,7 +70,22 @@ class stockInfo:
        #Pre: fromDate, toDate are datetime.date objects, s is a stockinfo object
        #Post: A list containing the lists containing information about the dates in the given interval, empty if there are no such dates.
        """
-       return [ l for l in self.infoList if (compareDates(l[0], fromDate) >= 0) and  (compareDates(l[0],toDate) <= 0)]
+       firstDateIndex = 1
+       lastDateIndex = 0
+       
+       #Find first and last index of list we want.
+       h = list(enumerate(self.infoList))
+       for i, d in h:
+           if compareDates(d[0],fromDate) >=0:
+               firstDateIndex = i
+               break
+           
+       for i, d in reversed(h):
+           if compareDates(d[0],toDate) <=0:
+               lastDateIndex = i
+               break
+               
+       return self.infoList[firstDateIndex:lastDateIndex]
 
     def getDate(self,date):
         """ 

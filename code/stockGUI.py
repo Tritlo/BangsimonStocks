@@ -45,7 +45,8 @@ class initialFrame(wx.Frame):
         plot = wx.Menu()
         options = ['Adj Close','Open' ,'High', 'Low', 'Close', 'Volume','Avg. Price']
         #Nennum ekki ad handlsa inn.
-        M = map( (lambda x: self.Bind(wx.EVT_MENU,self.plot_handler,plot.AppendRadioItem(-1,x))),options)
+        M = map( (lambda x: self.Bind(wx.EVT_MENU,self.plot_handler,
+                                      plot.AppendRadioItem(-1,x))),options)
         plot.AppendSeparator()
         self.Bind(wx.EVT_MENU,self.plot_handler,plot.AppendCheckItem(-1, "Simple Moving Average"))
         
@@ -126,9 +127,9 @@ class initialFrame(wx.Frame):
         flags = wx.ALIGN_LEFT | wx.ALL | wx.ALIGN_CENTER_VERTICAL
         self.hbox.AddSpacer(30)
         self.hbox.Add(self.slider_label, 0, flag=flags)
-        self.hbox.Add(self.slider_width, 0, border=3, flag=flags)
+        self.hbox.Add(self.slider_width, 1, border=3, flag=flags |wx.EXPAND)
         
-        self.vbox.Add(self.hbox, 0, flag = wx.ALIGN_LEFT | wx.TOP)
+        self.vbox.Add(self.hbox, 0, flag = wx.ALIGN_LEFT | wx.TOP| wx.EXPAND)
         
         self.panel.SetSizer(self.vbox)
         self.vbox.Fit(self)
@@ -138,7 +139,9 @@ class initialFrame(wx.Frame):
 
     def draw_figure(self):
         self.fig.clear()
-        self.fig = stockPlot(self.panel.stockObj,self.panel.currentAttr,self.panel.fromDate, self.panel.toDate, self.panel.MovingAvg, self.panel.MovingAvgN)
+        self.fig = stockPlot(self.panel.stockObj,self.panel.currentAttr,
+                                 self.panel.fromDate, self.panel.toDate,
+                                 self.panel.MovingAvg, self.panel.MovingAvgN)
         self.canvas.draw()
         pass
     
