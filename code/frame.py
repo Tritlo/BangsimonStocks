@@ -1,6 +1,7 @@
 import wx
 from stockInfo import stockInfo
 from stockPlot import stockPlot
+import webbrowser
 
 LABEL_MIN = "Min value: "
 LABEL_MAX = "Max value: "
@@ -107,8 +108,8 @@ class rammi(wx.Frame):
 
     def __init__(self,parent,id):
         wx.Frame.__init__(self,parent,id,'Bangsimon',size=(800,600))
-        panel=AnalystPanel(self)
-
+        self.panel=AnalystPanel(self)
+        panel = self.panel
         #Menubar
         status=self.CreateStatusBar()
         menubar=wx.MenuBar()
@@ -118,9 +119,9 @@ class rammi(wx.Frame):
         comp=wx.Menu()
         first.Append(wx.NewId(),"New Window","This opens a new window" )
         third.Append(wx.NewId(),"News","Shows new about the company" )
-        comp.Append(wx.NewId(),"Profile","Links to company's profile" )
-        comp.Append(wx.NewId(),"Key Statistics","Links to company's key statistics" )
-        comp.Append(wx.NewId(),"Components","Links to company's components" )
+        L1=comp.Append(wx.NewId(),"Profile","Links to company's profile" )
+        L2=comp.Append(wx.NewId(),"Key Statistics","Links to company's key statistics" )
+        L3=comp.Append(wx.NewId(),"Components","Links to company's components" )
 
         menubar.Append(first,"File")
 
@@ -131,6 +132,9 @@ class rammi(wx.Frame):
         
         self.SetMenuBar(menubar)
         self.Bind(wx.EVT_MENU, self.OnCloseMe, close)
+        self.Bind(wx.EVT_MENU, self.Link1, L1)
+        self.Bind(wx.EVT_MENU, self.Link2, L2)
+        self.Bind(wx.EVT_MENU, self.Link3, L3)
 
         menu = wx.Menu()
         menu.AppendCheckItem(-1, "Adj close")
@@ -157,6 +161,13 @@ class rammi(wx.Frame):
     #Close the program
     def OnCloseMe(self, event):
         self.Close(True)
+
+    def Link1(self, event):
+        webbrowser.open("http://finance.yahoo.com/q/pr?s="+self.panel.stockObj.ticker+"+Profile")
+    def Link2(self, event):
+        webbrowser.open("http://finance.yahoo.com/q/ks?s="+self.panel.stockObj.ticker+"+Key+Statistics")
+    def Link3(self, event):
+        webbrowser.open("http://finance.yahoo.com/q/ct?s="+self.panel.stockObj.ticker+"+Components")
 
 
 if __name__=='__main__':
