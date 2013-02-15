@@ -96,7 +96,7 @@ class initialFrame(wx.Frame):
         self.panel.MovingAvgN = 110
 
         #Plottum i byrjun.
-        self.fig = stockPlot(self.panel.stockObj,"Adj Close",MovingAvg = True)
+        self.fig = stockPlot(self.panel.stockObj,"Adj Close")
         self.canvas = FigCanvas(self.panel, -1, self.fig)
         
 

@@ -39,6 +39,8 @@ def stockPlot(s,k,fromDate=None,toDate=None, MovingAvg = False, N = 20):
     dataList=map(getData,infoList)
     if MovingAvg:
         l=movingAverage(s, N, fromDate, toDate)
+        print len(l)
+        print len(dateList)
         if a==5:
             plt.bar(dateList, dataList, align="center")
             plt.ylabel(k)
@@ -61,8 +63,6 @@ def smaPlot(s,N=20,fromDate=None,toDate=None):
     return stockPlot(s,"Adj Close",fromDate,toDate,True,N)
     
 if __name__ == "__main__":
-    try:
-        Google = stockInfo("GOOG",date(2000,1,1),date.today())
-        smaPlot(Google).show()
-    except:
-        print "something failed"
+    Google = stockInfo("GOOG",date(2000,1,1),date.today())
+    s = smaPlot(Google)
+    s.show()

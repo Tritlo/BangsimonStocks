@@ -2,11 +2,13 @@ from datetime import timedelta
 from datetime import date
 from numpy import *
 from stockInfo import stockInfo
+from stockUtil import *
+
 
 def movingAverage(stockInfo, N=20, fromDate=None, toDate=None):
     """
     #U: l = movingAverage(s,fd,td,N)
-    #Pre: s is a stockInfo object, fd, td are optional date objects, N is an optional integer >=0, the default value of N is 20.
+    #Pre: s is a stockInfo object, fd, td are optional date objects, N is an optional integer >=1, the default value of N is 20.
     #Post: l is a list containing the moving averages from fd to td, if data exists for that interval, otherwise raises exception
     """
     if fromDate==None: 
@@ -15,19 +17,42 @@ def movingAverage(stockInfo, N=20, fromDate=None, toDate=None):
         toDate=stockInfo.toDate
     if not (stockInfo.validDate(fromDate) and stockInfo.validDate(toDate)):
         raise ValueError("Invalid dates")
+    
     result = []
     Ndays = timedelta(2*N) #: Have it 2*N, so that it definitely gives us enough days of data (the stock market is not continiously open)
-    price = lambda d: d[6]
-    for d in stockInfo.listFromTo(fromDate,toDate):
-        Nprevdays = stockInfo.listFromTo(d[0]-Ndays,d[0])
-        Nprevdays = map(price, Nprevdays)
-        Nprevdays = Nprevdays[-N:]
-        result.append(sum(Nprevdays)/len(Nprevdays)) 
-        # Note that len(Nprevdays) cannot be equal to zero because if fromDate and toDate are not valid dates for the ticker
-        # movingAverage would have returned an empty list above, and if fromDate didn't occur before toDate 
-        # listFromto(fromDate,toDate) would be empty so the for loop would never loop. 
-            
-    return result
+
+    price = lambda d: d[1]
+    
+    dataList = stockInfo.listFromTo(fromDate-Ndays,toDate)
+    dataList = map( (lambda l: [l[0],l[6]]), dataList)
+
+    dateList = map((lambda l: l[0]), dataList)
+    priceList = map((lambda l: l[1]), dataList)
+    
+    fromDateIndex = 0
+    for i, d in list(enumerate(dateList)):
+        if compareDates(d,fromDate) >=0:
+            fromDateIndex = i
+            break
+
+        
+    if fromDateIndex >= 2*N:
+        pl = priceList[fromDateIndex-2*N: fromDateIndex]
+        for i in range(N,2*N):
+            result.append(sum(pl[i-N:i])/N)
+    else:
+        pl = priceList[:N+fromDateIndex]
+        for p in range(1,N+1):
+            result.append(sum(pl[0:p-1])/p)
+        priceList =result + priceList
+        k = len(result)-1
+        
+    for i in range(N,len(priceList)-fromDateIndex):
+        result.append(result[i-1] + (priceList[i+fromDateIndex] -priceList[i-N+fromDateIndex])/N)
+        
+    return result[fromDateIndex:]
+        
+    
 
 def Beta(s, fromDate=None, toDate=None):
     """
