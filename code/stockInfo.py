@@ -85,7 +85,7 @@ class stockInfo:
                lastDateIndex = i
                break
                
-       return self.infoList[firstDateIndex:lastDateIndex]
+       return self.infoList[firstDateIndex:lastDateIndex+1]
 
     def getDate(self,date):
         """ 

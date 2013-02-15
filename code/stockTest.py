@@ -54,6 +54,17 @@ class testStockInfo(unittest.TestCase):
         with self.assertRaises(ValueError):
             movingAverage(self.testobj,2,date.min)
 
+        h = self.testobj.listFromTo(date(2009,2,2),date(2009,3,2))
+        l= map( (lambda l: l[6]), self.testobj.listFromTo(date(2008,1,2),date(2009,3,2)))
+        r = []
+        for i in range(len(l)-20):
+            r.append(sum(l[i:i+20])/20)
+        k = movingAverage(self.testobj,20,date(2009,2,2),date(2009,3,2))
+        r = r[-len(k):] 
+        self.assertEqual(len(h),len(k))
+        self.assertListEqual(r,k)
+
+
     #Check if it fails for invalid dates, and works for valid
     def test_Beta(self):
         with self.assertRaises(ValueError):

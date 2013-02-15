@@ -3,7 +3,6 @@ from datetime import date
 from numpy import *
 from stockInfo import stockInfo
 from stockUtil import *
-from stockPlot import *
 
 def movingAverage(stockInfo, N=20, fromDate=None, toDate=None):
     """
@@ -19,13 +18,12 @@ def movingAverage(stockInfo, N=20, fromDate=None, toDate=None):
         raise ValueError("Invalid dates")
     
     result = []
-    Ndays = timedelta(2*N) #: Have it 2*N, so that it definitely gives us enough days of data (the stock market is not continiously open)
+    Ndays = timedelta(4*N) #: Have it 4*N, so that it definitely gives us enough days of data (the stock market is not continiously open)
 
     price = lambda d: d[1]
     
     dataList = stockInfo.listFromTo(fromDate-Ndays,toDate)
     dataList = map( (lambda l: [l[0],l[6]]), dataList)
-
     dateList = map((lambda l: l[0]), dataList)
     priceList = map((lambda l: l[1]), dataList)
 
@@ -37,13 +35,13 @@ def movingAverage(stockInfo, N=20, fromDate=None, toDate=None):
 
         
     if fromDateIndex >= 2*N:
-        pl = priceList[fromDateIndex-2*N: fromDateIndex]
-        for i in range(N,2*N):
-            result.append(sum(pl[i-N:i])/N)
+        pl = priceList[1+fromDateIndex-2*N: 1+fromDateIndex]
+        for i in range(fromDateIndex-N,fromDateIndex):
+            result.append(sum(priceList[i:i+N])/N)
     else:
         pl = priceList[0:fromDateIndex+N]
         for p in range(fromDateIndex+1,fromDateIndex+N+1):
-            result.append(sum(pl[0:p-1])/p)
+            result.append(sum(pl[0:p])/p)
         
     for i in range(N,len(priceList)-fromDateIndex):
         result.append(result[i-1] + (priceList[i+fromDateIndex] -priceList[i-N+fromDateIndex])/N)
@@ -92,5 +90,7 @@ def Beta(s, fromDate=None, toDate=None):
     return cov_ab/var(array(r_b))
 
 if __name__ == "__main__":
-    Google = stockInfo("GOOG",date(2000,1,1),date.today())
-    smaPlot(Google,fromDate = date(2010,1,2), toDate = date(2011,1,2)).show()
+    pass
+    #Google = stockInfo("GOOG",date(2000,1,1),date.today())
+    #virkar ekki, getum ekki importad i hring.
+    #smaPlot(Google,fromDate = date(2010,1,2), toDate = date(2011,1,2)).show()

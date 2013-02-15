@@ -54,7 +54,7 @@ def stockPlot(s,k,fromDate=None,toDate=None, MovingAvg = False, N = 20):
         plt.ylabel(k)
 
     plt.xlabel("Dates")
-    #plt.show()
+   # plt.show()
     return plt.gcf()
 
 def smaPlot(s,N=20,fromDate=None,toDate=None):
