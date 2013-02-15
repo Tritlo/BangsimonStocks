@@ -172,15 +172,15 @@ class stockInfo:
         return out
         #Sorts out and cuts headlines
 
-    def getURL(self):
+    def openURL(self):
         """
-        #Use: h = s.getURL()
+        #Use: h = s.openURL()
         #Pre: s is a stockinfo object
-        #Post: h is a link to the company's website
+        #Post: h is a link to the company's information's website
         """
-        profile = webbrowser.open('http://finance.yahoo.com/q/pr?s=GOOG+Profile')
-        keystat = webbrowser.open('http://finance.yahoo.com/q/ks?s=GOOG+Key+Statistics')
-        comp = webbrowser.open('http://finance.yahoo.com/q/co?s=GOOG+Competitors')
+        profile = webbrowser.open('http://finance.yahoo.com/q/pr?s='+self.ticker+'+Profile')
+        keystat = webbrowser.open('http://finance.yahoo.com/q/ks?s='+self.ticker+'+Key+Statistics')
+        comp = webbrowser.open('http://finance.yahoo.com/q/co?s='+self.ticker+'+Competitors')
                                   
 
     def __str__(self):
@@ -194,4 +194,4 @@ class stockInfo:
             
 if __name__ == "__main__":
     Google = stockInfo("GOOG",date(2000,1,1),date(2013,1,1))
-    print Google.getRSS()
+    print Google.getURL()
