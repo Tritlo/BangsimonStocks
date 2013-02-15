@@ -28,7 +28,7 @@ E1.pack()
 def close_window(): 
   top.destroy()
   
-B = Tkinter.Button(top, text ="Open", command = close_window)
+B = Tkinter.Button(top, text ="Open", command = close_window,width=5)
 
 C = Tkinter.Button(top, text ="Cancel", command = close_window)
 
