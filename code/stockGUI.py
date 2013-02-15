@@ -27,7 +27,6 @@ class initialFrame(wx.Frame):
         self.create_status_bar()
         self.create_main_panel()
         
-        self.textbox.SetValue(' '.join(map(str, self.data)))
         self.draw_figure()
 
     def create_menu(self):
@@ -55,7 +54,15 @@ class initialFrame(wx.Frame):
         self.SetMenuBar(self.menubar)
 
     def on_new(self, event):
-        pass
+        prompt = wx.TextEntryDialog(self, "Enter new ticker", "New ticker",self.panel.stockObj.ticker)
+        prompt.ShowModal() 
+        try:
+            self.panel.stockObj = stockInfo(prompt.GetValue())
+            self.draw_figure()
+        except ValueError:
+            msg = wx.MessageDialog(self, "Invalid Ticker", "Error", wx.OK|wx.ICON_ERROR)
+            msg.ShowModal()
+            self.on_new(None)
                                   
     def plot_handler(self,event):
         """Handles the changing of the plot"""
@@ -91,20 +98,6 @@ class initialFrame(wx.Frame):
         self.fig = stockPlot(self.panel.stockObj,"Adj Close",MovingAvg = True)
         self.canvas = FigCanvas(self.panel, -1, self.fig)
         
-        
-        self.textbox = wx.TextCtrl(
-            self.panel, 
-            size=(200,-1),
-            style=wx.TE_PROCESS_ENTER)
-        self.Bind(wx.EVT_TEXT_ENTER, self.on_text_enter, self.textbox)
-        
-        self.drawbutton = wx.Button(self.panel, -1, "Get Data")
-        self.Bind(wx.EVT_BUTTON, self.on_draw_button, self.drawbutton)
-
-        self.cb_grid = wx.CheckBox(self.panel, -1, 
-            "Show Grid",
-            style=wx.ALIGN_RIGHT)
-        self.Bind(wx.EVT_CHECKBOX, self.on_cb_grid, self.cb_grid)
 
         self.slider_label = wx.StaticText(self.panel, -1, 
             "Bar width (%): ")
@@ -131,9 +124,6 @@ class initialFrame(wx.Frame):
         
         self.hbox = wx.BoxSizer(wx.HORIZONTAL)
         flags = wx.ALIGN_LEFT | wx.ALL | wx.ALIGN_CENTER_VERTICAL
-        self.hbox.Add(self.textbox, 0, border=3, flag=flags)
-        self.hbox.Add(self.drawbutton, 0, border=3, flag=flags)
-        self.hbox.Add(self.cb_grid, 0, border=3, flag=flags)
         self.hbox.AddSpacer(30)
         self.hbox.Add(self.slider_label, 0, flag=flags)
         self.hbox.Add(self.slider_width, 0, border=3, flag=flags)
