@@ -1,4 +1,4 @@
-
+import webbrowser
 import urllib2 as urll
 from datetime import date
 import csv
@@ -140,7 +140,7 @@ class stockInfo:
     def getRSS(self):
         """ 
         #Use: h = s.getRSS()
-        #Pre:  s is a news feed
+        #Pre:  s is a stockinfo object
         #Post: h is a list of pairs with headlines and links
         """
         baseurl = "http://feeds.finance.yahoo.com/rss/2.0/headline?s="
@@ -171,6 +171,17 @@ class stockInfo:
                 out.append(pair)
         return out
         #Sorts out and cuts headlines
+
+    def getURL(self):
+        """
+        #Use: h = s.getURL()
+        #Pre: s is a stockinfo object
+        #Post: h is a link to the company's website
+        """
+        profile = webbrowser.open('http://finance.yahoo.com/q/pr?s=GOOG+Profile')
+        keystat = webbrowser.open('http://finance.yahoo.com/q/ks?s=GOOG+Key+Statistics')
+        comp = webbrowser.open('http://finance.yahoo.com/q/co?s=GOOG+Competitors')
+                                  
 
     def __str__(self):
         """
