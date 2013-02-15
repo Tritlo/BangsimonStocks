@@ -44,12 +44,12 @@ F = Tkinter.Button(top, text ="Cancel", command = close_window,)
 D.pack()
 F.pack()
 
+myList=[1,2,3,4,5]
 #Comboboxes
-countryvar = StringVar()
-box1 = ttk.Combobox(top, textvariable=countryvar,width=15)
+box1 = ttk.Combobox(top,width=15)
 box1.pack()
-
-box2 = ttk.Combobox(top, textvariable=countryvar,width=15)
+#values til ad baeta moguleikum i boxid
+box2 = ttk.Combobox(top,width=15)
 box2.pack()
 
 #Til ad binda vid
@@ -63,4 +63,3 @@ box1.place(x=135, y=70)
 box2.place(x=135, y=115)
 
 top.mainloop()
-
