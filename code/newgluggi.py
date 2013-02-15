@@ -17,7 +17,7 @@ frame.pack()
 #Entry
 L1 = Label(top)
 L1.pack( side = LEFT)
-E1 = Entry(top, bd =5)
+E1 = Entry(top,justify=RIGHT)
 
 E1.pack()
 
