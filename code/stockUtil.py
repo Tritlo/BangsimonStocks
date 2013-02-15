@@ -48,7 +48,7 @@ def dateSearch(d,l,i,j):
     # Post: di is the first date in l which is greater than or equal to d, d[0,...,i-1]<d<=d[0,...,j]
     """
     m = i+ (j-i)/2
-    if i>=j):
+    if i>=j:
         return i
     if compareDates(l[m],d) < 0:
         return dateSearch(d,l,m+1,j)

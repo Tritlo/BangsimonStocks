@@ -23,7 +23,11 @@ def movingAverage(stockInfo, N=20, fromDate=None, toDate=None):
 
     price = lambda d: d[1]
     
-    dateList,priceList = map( (lambda l: l[0],l[6]), dataList)
+    dataList = stockInfo.listFromTo(fromDate-Ndays,toDate)
+    dataList = map( (lambda l: [l[0],l[6]]), dataList)
+
+    dateList = map((lambda l: l[0]), dataList)
+    priceList = map((lambda l: l[1]), dataList)
 
     fromDateIndex = 0
     for i, d in list(enumerate(dateList)):
@@ -37,11 +41,10 @@ def movingAverage(stockInfo, N=20, fromDate=None, toDate=None):
         for i in range(N,2*N):
             result.append(sum(pl[i-N:i])/N)
     else:
-        pl = priceList[:N+fromDateIndex]
-        for p in range(1,N+1):
+        pl = priceList[0:fromDateIndex+N]
+        for p in range(fromDateIndex+1,fromDateIndex+N+1):
             result.append(sum(pl[0:p-1])/p)
-        priceList =result + priceList
-        k = len(result)-1
+        
         
     for i in range(N,len(priceList)-fromDateIndex):
         result.append(result[i-1] + (priceList[i+fromDateIndex] -priceList[i-N+fromDateIndex])/N)

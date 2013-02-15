@@ -39,8 +39,6 @@ def stockPlot(s,k,fromDate=None,toDate=None, MovingAvg = False, N = 20):
     dataList=map(getData,infoList)
     if MovingAvg:
         l=movingAverage(s, N, fromDate, toDate)
-        print len(l)
-        print len(dateList)
         if a==5:
             plt.bar(dateList, dataList, align="center")
             plt.ylabel(k)
