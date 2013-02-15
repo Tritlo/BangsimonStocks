@@ -23,12 +23,8 @@ def movingAverage(stockInfo, N=20, fromDate=None, toDate=None):
 
     price = lambda d: d[1]
     
-    dataList = stockInfo.listFromTo(fromDate-Ndays,toDate)
-    dataList = map( (lambda l: [l[0],l[6]]), dataList)
+    dateList,priceList = map( (lambda l: l[0],l[6]), dataList)
 
-    dateList = map((lambda l: l[0]), dataList)
-    priceList = map((lambda l: l[1]), dataList)
-    
     fromDateIndex = 0
     for i, d in list(enumerate(dateList)):
         if compareDates(d,fromDate) >=0:

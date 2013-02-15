@@ -40,21 +40,20 @@ def compareDates(d1,d2):
         return 0
     return 1
 
-def dateSearch(d,l):
+def dateSearch(d,l,i,j):
     """
     # Use: di=dateSearch(d,l)
     # Pre: d is a datetime.date object, l is an ordered list of datetime.date objects,
     # l=[d1,d2,...,dn]
-    # Post: di is the first date in l which is greater than or equal to d, d{i-1}<d<=di
+    # Post: di is the first date in l which is greater than or equal to d, d[0,...,i-1]<d<=d[0,...,j]
     """
-    n=len(l)
-    if compareDates(l[0],l[n])==0:
-        return l[0]
-    m=n/2
-    if compareDates(l[m],d)<0:
-        return dateSearch(d,l[m:])
-    else: 
-        return dateSearch(d,l[:m])
+    m = i+ (j-i)/2
+    if i>=j):
+        return i
+    if compareDates(l[m],d) < 0:
+        return dateSearch(d,l,m+1,j)
+    else:
+        return dateSearch(d,l,i,m)
 
 
 
