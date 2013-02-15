@@ -61,5 +61,8 @@ def smaPlot(s,N=20,fromDate=None,toDate=None):
     return stockPlot(s,"Adj Close",fromDate,toDate,True,N)
     
 if __name__ == "__main__":
-    Google = stockInfo("GOOG",date(2000,1,1),date.today())
-    smaPlot(Google)
+    try:
+        Google = stockInfo("GOOG",date(2000,1,1),date.today())
+        smaPlot(Google).show()
+    except:
+        print "something failed"

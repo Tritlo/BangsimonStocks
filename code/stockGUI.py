@@ -31,9 +31,12 @@ class initialFrame(wx.Frame):
         self.draw_figure()
 
     def create_menu(self):
+        """Creates the menubar"""
         self.menubar = wx.MenuBar()
         
         menu_file = wx.Menu()
+        m_new = menu_file.Append(-1, "&New ticker\tCtrl-N", "Choose new ticker to track")
+        self.Bind(wx.EVT_MENU, self.on_new, m_new)
         m_expt = menu_file.Append(-1, "&Save plot\tCtrl-S", "Save plot to file")
         self.Bind(wx.EVT_MENU, self.on_save_plot, m_expt)
         menu_file.AppendSeparator()
@@ -41,7 +44,7 @@ class initialFrame(wx.Frame):
         self.Bind(wx.EVT_MENU, self.on_exit, m_exit)
         
         plot = wx.Menu()
-        options = ['Open', 'High', 'Low', 'Close', 'Volume', 'Adj Close','Avg. Price']
+        options = ['Adj Close','Open' ,'High', 'Low', 'Close', 'Volume','Avg. Price']
         #Nennum ekki ad handlsa inn.
         M = map( (lambda x: self.Bind(wx.EVT_MENU,self.plot_handler,plot.AppendRadioItem(-1,x))),options)
         plot.AppendSeparator()
@@ -50,6 +53,9 @@ class initialFrame(wx.Frame):
         self.menubar.Append(menu_file, "&File")
         self.menubar.Append(plot, "&Plot")
         self.SetMenuBar(self.menubar)
+
+    def on_new(self, event):
+        pass
                                   
     def plot_handler(self,event):
         """Handles the changing of the plot"""
@@ -72,32 +78,19 @@ class initialFrame(wx.Frame):
              * Control panel for interaction
         """
         self.panel = wx.Panel(self)
-        self.panel.stockObj = stockInfo("GOOG")
+        self.panel.stockObj = stockInfo(DEFAULT_TICKER)
 
+        #Setjum default value-in
         self.panel.currentAttr = "Adj Close"
         self.panel.fromDate = self.panel.stockObj.fromDate
         self.panel.toDate = self.panel.stockObj.toDate
         self.panel.MovingAvg = False
         self.panel.MovingAvgN = 20
-        
-        # Create the mpl Figure and FigCanvas objects. 
-        # 5x4 inches, 100 dots-per-inch
-        #
-        self.dpi = 100
-        #self.fig = Figure((5.0, 4.0), dpi=self.dpi)
+
+        #Plottum i byrjun.
         self.fig = stockPlot(self.panel.stockObj,"Adj Close",MovingAvg = True)
         self.canvas = FigCanvas(self.panel, -1, self.fig)
         
-        # Since we have only one plot, we can use add_axes 
-        # instead of add_subplot, but then the subplot
-        # configuration tool in the navigation toolbar wouldn't
-        # work.
-        #
-        
-        
-        # Bind the 'pick' event for clicking on one of the bars
-        #
-        self.canvas.mpl_connect('pick_event', self.on_pick)
         
         self.textbox = wx.TextCtrl(
             self.panel, 
@@ -105,7 +98,7 @@ class initialFrame(wx.Frame):
             style=wx.TE_PROCESS_ENTER)
         self.Bind(wx.EVT_TEXT_ENTER, self.on_text_enter, self.textbox)
         
-        self.drawbutton = wx.Button(self.panel, -1, "Draw!")
+        self.drawbutton = wx.Button(self.panel, -1, "Get Data")
         self.Bind(wx.EVT_BUTTON, self.on_draw_button, self.drawbutton)
 
         self.cb_grid = wx.CheckBox(self.panel, -1, 
@@ -166,7 +159,12 @@ class initialFrame(wx.Frame):
         self.draw_figure()
     
     def on_draw_button(self, event):
-        self.draw_figure()
+        self.textbox.GetValue()
+        try:
+            self.panel.stockObj = stockInfo(self.textbox.GetValue())
+            self.draw_figure()
+        except ValueError:
+            print "Invalid Ticker"
     
     def on_pick(self, event):
         # The event received here is of the type
@@ -188,7 +186,7 @@ class initialFrame(wx.Frame):
         dlg.Destroy()        
     
     def on_text_enter(self, event):
-        self.draw_figure()
+        pass
 
     def on_save_plot(self, event):
         file_choices = "PNG (*.png)|*.png"
