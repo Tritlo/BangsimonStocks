@@ -115,18 +115,19 @@ class rammi(wx.Frame):
         first=wx.Menu()
         third=wx.Menu()
         plot=wx.Menu()
+        comp=wx.Menu()
         first.Append(wx.NewId(),"New Window","This opens a new window" )
-        plot.Append(wx.NewId(),"sumthing1","Plots Simple Moving Average" )
-        plot.Append(wx.NewId(),"sumthing2","Plot Beta" )
-        third.Append(wx.NewId(),"News","Shows the news" )
+        third.Append(wx.NewId(),"News","Shows new about the company" )
+        comp.Append(wx.NewId(),"Profile","Links to company's profile" )
+        comp.Append(wx.NewId(),"Key Statistics","Links to company's key statistics" )
+        comp.Append(wx.NewId(),"Components","Links to company's components" )
 
         menubar.Append(first,"File")
-        menubar.Append(third,"Sumthing")
 
         #Submenus
-        third.AppendMenu(wx.NewId(), 'Plot', plot)
-
+        third.AppendMenu(wx.NewId(), 'Companys info', comp)
         close=first.Append(wx.NewId()," Quit","Exits the program" )
+        
         
         self.SetMenuBar(menubar)
         self.Bind(wx.EVT_MENU, self.OnCloseMe, close)
@@ -146,6 +147,12 @@ class rammi(wx.Frame):
         
         self.SetMenuBar(menubar)
 
+        #Company
+        menubar.Append(third,"Company")
+
+        
+        self.SetMenuBar(menubar)
+        self.Bind(wx.EVT_MENU, self.OnCloseMe, close)
 
     #Close the program
     def OnCloseMe(self, event):
@@ -159,4 +166,3 @@ if __name__=='__main__':
     frame.Show()
     app.MainLoop()
     
-        
