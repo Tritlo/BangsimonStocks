@@ -92,7 +92,7 @@ class initialFrame(wx.Frame):
         self.panel.fromDate = self.panel.stockObj.fromDate
         self.panel.toDate = self.panel.stockObj.toDate
         self.panel.MovingAvg = False
-        self.panel.MovingAvgN = 20
+        self.panel.MovingAvgN = 110
 
         #Plottum i byrjun.
         self.fig = stockPlot(self.panel.stockObj,"Adj Close",MovingAvg = True)
@@ -100,11 +100,11 @@ class initialFrame(wx.Frame):
         
 
         self.slider_label = wx.StaticText(self.panel, -1, 
-            "Bar width (%): ")
+            "Moving Average N: ")
         self.slider_width = wx.Slider(self.panel, -1, 
-            value=20, 
-            minValue=1,
-            maxValue=100,
+            value=110, 
+            minValue=20,
+            maxValue=200,
             style=wx.SL_AUTOTICKS | wx.SL_LABELS)
         self.slider_width.SetTickFreq(10, 1)
         self.Bind(wx.EVT_COMMAND_SCROLL_THUMBTRACK, self.on_slider_width, self.slider_width)
@@ -146,6 +146,7 @@ class initialFrame(wx.Frame):
         self.draw_figure()
     
     def on_slider_width(self, event):
+        self.panel.MovingAvgN = self.slider_width.GetValue()
         self.draw_figure()
     
     def on_draw_button(self, event):
