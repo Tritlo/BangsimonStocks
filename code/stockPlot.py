@@ -31,7 +31,7 @@ def stockPlot(s,k,fromDate=None,toDate=None, MovingAvg = False, N = 20):
     dateList=map(date,infoList)
 
     a = attrs[k]
-    if k == 7:
+    if a == 7:
         getData =lambda d: (d[1] + d[4])/2
     else:
         getData =lambda d: d[a]
@@ -56,9 +56,10 @@ def stockPlot(s,k,fromDate=None,toDate=None, MovingAvg = False, N = 20):
             
     plt.xlabel('Date')
     plt.show()
+    return plt
 
 def smaPlot(s,N=20,fromDate=None,toDate=None):
-    stockPlot(s,"Adj Close",fromDate,toDate,True,N)
+    return stockPlot(s,"Adj Close",fromDate,toDate,True,N)
     
 if __name__ == "__main__":
     Google = stockInfo("GOOG",date(2000,1,1),date.today())

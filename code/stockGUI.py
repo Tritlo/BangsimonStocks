@@ -55,8 +55,10 @@ class initialFrame(wx.Frame):
         for mI in mIs:
             if mI.GetKind() is 2:
                 if mI.IsChecked():
-                    stockPlot(self.panel.stockObj,mI.GetItemLabelText())
-                    break
+                    label = mI.GetItemLabelText()
+            if mI.GetKind() is 1:
+                Ma = mI.IsChecked()
+        stockPlot(self.panel.stockObj,label,MovingAvg = Ma)
              
 
     def create_main_panel(self):
