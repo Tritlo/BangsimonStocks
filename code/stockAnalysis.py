@@ -3,7 +3,7 @@ from datetime import date
 from numpy import *
 from stockInfo import stockInfo
 from stockUtil import *
-
+from stockPlot import *
 
 def movingAverage(stockInfo, N=20, fromDate=None, toDate=None):
     """
@@ -45,11 +45,10 @@ def movingAverage(stockInfo, N=20, fromDate=None, toDate=None):
         for p in range(fromDateIndex+1,fromDateIndex+N+1):
             result.append(sum(pl[0:p-1])/p)
         
-        
     for i in range(N,len(priceList)-fromDateIndex):
         result.append(result[i-1] + (priceList[i+fromDateIndex] -priceList[i-N+fromDateIndex])/N)
         
-    return result[fromDateIndex:]
+    return result
         
     
 
@@ -94,5 +93,4 @@ def Beta(s, fromDate=None, toDate=None):
 
 if __name__ == "__main__":
     Google = stockInfo("GOOG",date(2000,1,1),date.today())
-    
-    smaPlot(Google)
+    smaPlot(Google,fromDate = date(2010,1,2), toDate = date(2011,1,2)).show()
