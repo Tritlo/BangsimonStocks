@@ -137,20 +137,23 @@ class initialFrame(wx.Frame):
         self.canvas.draw()
 
     def plotInformation(self):
+        self.updateCurrentData()
         self.fig.suptitle(self.panel.currentData['name'])
-        self.fig.text(1.0, 1.0,"Beta: " + str(self.panel.Beta),
-                  horizontalalignment='right',
-                  verticalalignment='bottom',
-                  transform = self.fig.axes[0].transAxes)
-
-        self.fig.text(0.0, 0.0,"Beta: " + str(self.panel.Beta),
+        self.fig.text(0.13, 0.89,"Beta: " + str(self.panel.Beta),
                   horizontalalignment='left',
                   verticalalignment='top',
                   transform = self.fig.axes[0].transAxes)
         
-        
-        
-        
+        Cd = lambda c : str(self.panel.currentData[c])
+        currentDataString = "Price: %s, Market Cap %s\n\
+52 week high/low: %s/%s,\n\
+Short ratio:%s, 50 MAvg: %s\n\
+Earnings per share: %s" % (Cd('price'), Cd('market_cap'), Cd('52_week_high'), Cd('52_week_low'), Cd('short_ratio'), Cd('50day_moving_avg'), Cd('earnings_per_share'))
+        self.fig.text(0.98, 1,"Current data:\n" + currentDataString,
+                  horizontalalignment='right',
+                  verticalalignment='top',
+                  multialignment='center',
+                  transform = self.fig.axes[0].transAxes)
         
         
         
@@ -168,7 +171,7 @@ class initialFrame(wx.Frame):
             self.panel.stockObj = stockInfo(prompt.GetValue())
             self.panel.fromDate = self.panel.stockObj.fromDate
             self.panel.toDate = self.panel.stockObj.toDate
-            self.panel.Beta = Beta(self.panel.stockObj.self.panel.fromDate, self.panel.toDate)
+            self.panel.Beta = Beta(self.panel.stockObj,self.panel.fromDate, self.panel.toDate)
             self.updateCurrentData()
             self.draw_figure()
         except ValueError:
@@ -207,7 +210,7 @@ class initialFrame(wx.Frame):
             self.flash_status_message("Saved to %s" % path)
         
     def on_exit(self, event):
-        self.panel.datatimer.Stop()
+#        self.panel.datatimer.Stop()
         self.Destroy()
         
     def flash_status_message(self, msg, flash_len_ms=1500):
@@ -222,102 +225,6 @@ class initialFrame(wx.Frame):
     def on_flash_status_off(self, event):
         self.statusbar.SetStatusText('')
   
-class AnalystPanel(wx.Panel):
-
-    stockObj = None
-    
-    def __init__(self, parent):
-        wx.Panel.__init__(self, parent, -1,style=wx.NO_FULL_REPAINT_ON_RESIZE)
-        
-        # First button
-        b = wx.Button(self, -1, "Get data", pos=(20, 20))
-        self.Bind(wx.EVT_BUTTON, self.OnClickGetData, b)
-        
-        b.SetDefault()
-        b.SetSize(b.GetBestSize())
-        b.SetToolTipString("Retrieves stock data.")
-        
-        # Second button
-        b = wx.Button(self, -1, "Plot", pos=(20, 80))
-        
-        self.Bind(wx.EVT_BUTTON, self.OnClickPlot, b)
-        b.SetToolTipString("Plots stock data.")
-
-        self.static_text1 = wx.StaticText(self, -1,"Data is from date: ",pos=(20, 120))
-        self.static_text2 = wx.StaticText(self, -1,"Data is to date: ",pos=(20, 140))
-        self.static_text3 = wx.StaticText(self, -1,"Company Ticker",pos=(120,20))
-
-        # Text control
-        self.text_ctrl1 = wx.TextCtrl(self, -1, DEFAULT_TICKER, pos=(250,20), size=(125,-1))
-
-        self.text_ctrl1.SetToolTipString("Ticker of company")
-        
-    def OnClickGetData(self, event):
-        # Stock info is kept as stockInfo object
-        try:
-            self.stockObj = stockInfo(self.text_ctrl1.GetValue())
-            self.static_text1.SetLabel("Data is from date: " + str(self.stockObj.fromDate))
-            self.static_text2.SetLabel("Data is to date: " + str(self.stockObj.toDate))
-        except:
-            self.stockObj = stockInfo(DEFAULT_TICKER)
-            # Reset text control
-            self.text_ctrl1.SetValue(DEFAULT_TICKER)
-            self.static_text1.SetLabel("Data is from date: ")
-            self.static_text2.SetLabel("Data is to date: ")
-
-        # Create artificial stock data
-
-    def OnClickPlot(self, event):
-        if self.stockObj is not None:
-            plotFrame = wx.Frame(None, title="Plot",size=(200,200))
-            plotp = PlotPanel(plotFrame,self.stockObj)
-        
-            plotFrame.Show()
-
-        
-
-class PlotPanel(wx.Panel):
-    stockObj = None
-    ATTR= "Adj Close"
-    fromDate = None
-    toDate = None
-    
-    def __init__(self, parent, stockObj):
-        wx.Panel.__init__(self, parent, -1,style=wx.NO_FULL_REPAINT_ON_RESIZE)
-        self.stockObj = stockObj
-
-        
-        # select Attribute
-        attr = ['Adj Close', 'Open', 'High', 'Low', 'Close', 'Volume', 'Avg. Price']
-        self.combo= wx.ComboBox(self,choices=attr, value="Adj Close",pos=(120,20))
-        self.Bind(wx.EVT_COMBOBOX, self.OnCombo, self.combo)
-
-        """#Virkar ekki 
-        self.fromDatePicker = wx.DatePickerCtrl(self,dt = self.dateToWxDateTime(stockObj.fromDate),pos = ( 20,120))
-        self.toDatePicker = wx.DatePickerCtrl(self,dt = self.dateToWxDateTime(stockObj.toDate), pos = (20, 140))
-        
-        self.Bind(wx.EVT_BUTTON, self.OnClickPlot, self.fromDatePicker)
-        self.Bind(wx.EVT_BUTTON, self.OnClickPlot, self.toDatePicker)
-        """ 
-        # Plot button
-        b = wx.Button(self, -1, "Plot", pos=(20, 20))
-
-        self.Bind(wx.EVT_BUTTON, self.OnClickPlot, b)
-        b.SetToolTipString("Plots stock data.")
-        
-
-    def OnCombo(self, event):
-        self.ATTR = self.combo.GetValue()
-
-    def OnClickPlot(self, event):
-        stockPlot(self.stockObj,self.ATTR, self.fromDate, self.toDate)
-
-
-    def dateToWxDateTime(self,date):
-        pass
-        
-    def WxDateTimeToDate(self,datetime):
-        pass
 
     
 if __name__ == "__main__":
