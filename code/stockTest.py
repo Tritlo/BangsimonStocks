@@ -7,11 +7,11 @@ import unittest
 class testStockInfo(unittest.TestCase):
     
     def setUp(self):
-        self.testobj = stockInfo("GOOG")
+        self.testobj = stockInfo("MSFT")
 
     #Test whether it is a correct object
     def test_creation(self):
-        self.assertEqual(self.testobj.ticker, "GOOG")
+        self.assertEqual(self.testobj.ticker, "MSFT")
         
     #Make sure it returns an error on an invalid object
     def test_invalidcreation(self):
