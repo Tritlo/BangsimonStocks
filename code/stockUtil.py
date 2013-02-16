@@ -18,7 +18,12 @@ def dateToString(date):
         day = str(day)
     date = year+"-"+month+"-"+day
     return date
-   
+
+
+def maxPrice(s):
+    return max(map( (lambda l: l[6]), s.infoList))
+
+
 def stringToDate(string):
     """
     #Use: d = stringToDate(h)

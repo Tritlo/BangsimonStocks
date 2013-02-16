@@ -114,7 +114,7 @@ class stockInfo:
         """
         baseurl = "http://download.finance.yahoo.com/d/quotes.csv?s="
 
-        url = baseurl + self.ticker +"&f=l1c1va2xj1b4j4dyekjm3m4rr5p5p6s7" +"&e=.csv"
+        url = baseurl + self.ticker +"&f=l1c1va2xj1b4j4dyekjm3m4rr5p5p6s7n0" +"&e=.csv"
         try:
             csvfile = urll.urlopen(url)
         except urll.HTTPError:
@@ -148,7 +148,8 @@ class stockInfo:
                 'price_earnings_growth_ratio': values[16],
                 'price_sales_ratio': values[17],
                 'price_book_ratio': values[18],
-                'short_ratio': values[19]
+                'short_ratio': values[19],
+                'name': values[20]
         }
         return data
 
@@ -209,4 +210,6 @@ class stockInfo:
             
 if __name__ == "__main__":
     Google = stockInfo("GOOG",date(2000,1,1),date(2013,1,1))
-    print Google.getURL()
+    Msft = stockInfo("MSFT") 
+    print Msft.fromDate
+    print Msft.toDate
