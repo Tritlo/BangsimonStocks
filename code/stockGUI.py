@@ -138,10 +138,20 @@ class initialFrame(wx.Frame):
 
     def plotInformation(self):
         self.fig.suptitle(self.panel.currentData['name'])
-        self.fig.text(0.3, 0.8,"Beta: " + str(self.panel.Beta),
-                  horizontalalignment='center',
-                  verticalalignment='center',
+        self.fig.text(1.0, 1.0,"Beta: " + str(self.panel.Beta),
+                  horizontalalignment='right',
+                  verticalalignment='bottom',
                   transform = self.fig.axes[0].transAxes)
+
+        self.fig.text(0.0, 0.0,"Beta: " + str(self.panel.Beta),
+                  horizontalalignment='left',
+                  verticalalignment='top',
+                  transform = self.fig.axes[0].transAxes)
+        
+        
+        
+        
+        
         
         
     def updateCurrentData(self):
