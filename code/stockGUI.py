@@ -2,6 +2,7 @@ import wx
 import os
 import matplotlib
 import wx.lib.hyperlink as hl
+import wx.lib.scrolledpanel
 matplotlib.use('WXAgg')
 
 from stockInfo import stockInfo
@@ -118,9 +119,18 @@ class initialFrame(wx.Frame):
 
         self.vbox.AddSpacer(10)
         self.RssBox = wx.BoxSizer(wx.VERTICAL)
+        
+        self.RssPanel = wx.lib.scrolledpanel.ScrolledPanel(self.panel,size = wx.Size(-1, 150))
+        
+        self.RssPanel.SetSizer(self.RssBox)
         self.updateRSS()
-        self.vbox.Add(self.RssBox,0, flag= wx.ALIGN_CENTER_VERTICAL)
+        self.RssBox.Fit(self.RssPanel)
+        self.RssPanel.SetupScrolling()
+        
+        self.vbox.Add(self.RssPanel,0, flag= wx.EXPAND)
+        
         self.panel.SetSizer(self.vbox)
+        
         self.vbox.Fit(self)
         
         self.updateCurrentData()
@@ -128,9 +138,9 @@ class initialFrame(wx.Frame):
     def updateRSS(self):
         rss = self.panel.stockObj.getRSS()
         self.RssBox.Clear()
-        self.hyperlinks = map( (lambda p:hl.HyperLinkCtrl(self.panel,wx.ID_ANY,label=str(p[0]),URL = str(p[1]))),rss)
+        self.hyperlinks = map( (lambda p:hl.HyperLinkCtrl(self.RssPanel,wx.ID_ANY,label=str(p[0]),URL = str(p[1]))),rss)
         for i in self.hyperlinks:
-            self.RssBox.Add(i,0)
+            self.RssBox.Add(i,0,flag= wx.EXPAND)
             
     
     def create_status_bar(self):
