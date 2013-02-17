@@ -48,7 +48,7 @@ class initialFrame(wx.Frame):
         self.Bind(wx.EVT_MENU, self.on_exit, m_exit)
         
         plot = wx.Menu()
-        options = ['Adj Close','Open' ,'High', 'Low', 'Close', 'Volume','Avg. Price']
+        options = ['Adj Close','Open' ,'High', 'Low', 'Close', 'Avg. Price']
         #Nennum ekki ad handsla inn.
         M = map( (lambda x: self.Bind(wx.EVT_MENU,self.plot_handler,
                                       plot.AppendRadioItem(-1,x))),options)
@@ -120,14 +120,15 @@ class initialFrame(wx.Frame):
         self.vbox.AddSpacer(10)
         self.RssBox = wx.BoxSizer(wx.VERTICAL)
         
-        self.RssPanel = wx.lib.scrolledpanel.ScrolledPanel(self.panel,size = wx.Size(-1, 150))
-        
+        self.RssPanel = wx.lib.scrolledpanel.ScrolledPanel(self.panel)
+        self.RssPanel.SetMinSize((-1,100))
         self.RssPanel.SetSizer(self.RssBox)
         self.updateRSS()
         self.RssBox.Fit(self.RssPanel)
         self.RssPanel.SetupScrolling()
         
-        self.vbox.Add(self.RssPanel,0, flag= wx.EXPAND)
+        self.vbox.Add(self.RssPanel,1, flag= wx.EXPAND)
+        
         
         self.panel.SetSizer(self.vbox)
         
