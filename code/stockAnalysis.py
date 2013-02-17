@@ -68,6 +68,7 @@ def BuyOrSell(s,date=None):
     if shortma==longma:
         t=timedelta(days=1)
         return -BuyorSell(s,date-t)
+        # if the moving averages are equal we check which one is crossing above the other
 
 def Beta(s, fromDate=None, toDate=None):
     """
