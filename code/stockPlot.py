@@ -80,7 +80,7 @@ def stockPlot(s,k,fromDate=None,toDate=None, MovingAvg = False, N = 20):
     ax2.yaxis.set_label_position("right")
     ax2.set_ylabel('Volume')
 #    plt.show()
-    return plt.gcf()
+    return fig
 
 
 def smaPlot(s,N=20,fromDate=None,toDate=None):
