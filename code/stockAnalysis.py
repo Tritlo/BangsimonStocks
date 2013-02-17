@@ -47,8 +47,27 @@ def movingAverage(stockInfo, N=20, fromDate=None, toDate=None):
         result.append(result[i-1] + (priceList[i+fromDateIndex] -priceList[i-N+fromDateIndex])/N)
         
     return result
-        
-    
+
+def BuyOrSell(s,date=None):
+    """
+    # U: b=BuyOrSell(s,d)
+    # Pre: s is a stockInfo object, d is an optional date object, the default value of d is the most recent date we have data for.
+    # Post: b is equal to 1 if buying is recommended (the 50 day moving average is above the 200 day moving average) and -1 if 
+    # selling is recommended (the 50 day moving average is below the 200 day moving average) on date d.
+    """       
+    if date==None:
+        date=s.toDate
+    if not (s.validDate(date)):
+        raise ValueError("Invalid date")
+    shortma=movingAverage(s,50,date,date)
+    longma=movingAverage(s,200,date,date)
+    if shortma>longma:
+        return 1
+    if shortma<longma:
+        return -1
+    if shortma==longma:
+        t=timedelta(days=1)
+        return -BuyorSell(s,date-t)
 
 def Beta(s, fromDate=None, toDate=None):
     """
