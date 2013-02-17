@@ -1,6 +1,7 @@
 import wx
 import os
 import matplotlib
+import wx.lib.hyperlink as hl
 matplotlib.use('WXAgg')
 
 from stockInfo import stockInfo
@@ -21,6 +22,7 @@ class initialFrame(wx.Frame):
     title = "Bangsimon Stocks"
     def __init__(self):
         wx.Frame.__init__(self, None, -1, self.title)
+        self.Bind(wx.EVT_CLOSE, self.on_exit)
         
         self.create_menu()
         self.create_status_bar()
@@ -28,6 +30,7 @@ class initialFrame(wx.Frame):
         
         self.draw_figure()
 
+        
     def create_menu(self):
         """Creates the menubar"""
         self.menubar = wx.MenuBar()
@@ -35,22 +38,25 @@ class initialFrame(wx.Frame):
         menu_file = wx.Menu()
         m_new = menu_file.Append(-1, "&New ticker\tCtrl-N", "Choose new ticker to track")
         self.Bind(wx.EVT_MENU, self.on_new, m_new)
+        
         m_expt = menu_file.Append(-1, "&Save plot\tCtrl-S", "Save plot to file")
         self.Bind(wx.EVT_MENU, self.on_save_plot, m_expt)
+        
         menu_file.AppendSeparator()
         m_exit = menu_file.Append(-1, "E&xit\tCtrl-X", "Exit")
         self.Bind(wx.EVT_MENU, self.on_exit, m_exit)
         
         plot = wx.Menu()
         options = ['Adj Close','Open' ,'High', 'Low', 'Close', 'Volume','Avg. Price']
-        #Nennum ekki ad handlsa inn.
+        #Nennum ekki ad handsla inn.
         M = map( (lambda x: self.Bind(wx.EVT_MENU,self.plot_handler,
                                       plot.AppendRadioItem(-1,x))),options)
         plot.AppendSeparator()
         self.Bind(wx.EVT_MENU,self.plot_handler,plot.AppendCheckItem(-1, "Simple Moving Average"))
-        
-        self.menubar.Append(menu_file, "&File")
-        self.menubar.Append(plot, "&Plot")
+
+        self.menubar.SetMenus([(menu_file,"&File"),(plot, "&Plot")])
+        #self.menubar.Append(menu_file, )
+        #self.menubar.Append
         self.SetMenuBar(self.menubar)
 
              
@@ -93,15 +99,14 @@ class initialFrame(wx.Frame):
         # Create the navigation toolbar, tied to the canvas
         #
         self.toolbar = NavigationToolbar(self.canvas)
+        self.SetToolBar(self.toolbar)
         
         #
         # Layout with box sizers
         #
         
         self.vbox = wx.BoxSizer(wx.VERTICAL)
-        self.vbox.Add(self.canvas, 1, wx.LEFT | wx.TOP | wx.GROW)
-        self.vbox.Add(self.toolbar, 0, wx.EXPAND)
-        self.vbox.AddSpacer(10)
+        self.vbox.Add(self.canvas, 0, wx.LEFT | wx.TOP | wx.EXPAND)
         
         self.hbox = wx.BoxSizer(wx.HORIZONTAL)
         flags = wx.ALIGN_LEFT | wx.ALL | wx.ALIGN_CENTER_VERTICAL
@@ -110,18 +115,23 @@ class initialFrame(wx.Frame):
         self.hbox.Add(self.slider_width, 1, border=3, flag=flags |wx.EXPAND)
         
         self.vbox.Add(self.hbox, 0, flag = wx.ALIGN_LEFT | wx.TOP| wx.EXPAND)
-        
+
+        self.vbox.AddSpacer(10)
+        self.RssBox = wx.BoxSizer(wx.VERTICAL)
+        self.updateRSS()
+        self.vbox.Add(self.RssBox,0, flag= wx.ALIGN_CENTER_VERTICAL)
         self.panel.SetSizer(self.vbox)
         self.vbox.Fit(self)
         
         self.updateCurrentData()
-        
-        #self.panel.datatimer = wx.Timer(self)
-        #self.Bind(
-        #    wx.EVT_TIMER, 
-        #    self.updateCurrentData(), 
-        #    self.panel.datatimer)
-        #self.panel.datatimer.Start(300000, oneShot=False)
+
+    def updateRSS(self):
+        rss = self.panel.stockObj.getRSS()
+        self.RssBox.Clear()
+        self.hyperlinks = map( (lambda p:hl.HyperLinkCtrl(self.panel,wx.ID_ANY,label=str(p[0]),URL = str(p[1]))),rss)
+        for i in self.hyperlinks:
+            self.RssBox.Add(i,0)
+            
     
     def create_status_bar(self):
         self.statusbar = self.CreateStatusBar()
@@ -210,8 +220,10 @@ Earnings per share: %s" % (Cd('price'), Cd('market_cap'), Cd('52_week_high'), Cd
             self.flash_status_message("Saved to %s" % path)
         
     def on_exit(self, event):
-#        self.panel.datatimer.Stop()
+        self.timeroff.Stop()
+        #self.Close()
         self.Destroy()
+        quit()
         
     def flash_status_message(self, msg, flash_len_ms=1500):
         self.statusbar.SetStatusText(msg)
