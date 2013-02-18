@@ -179,7 +179,6 @@ class initialFrame(wx.Frame):
         """Prints additional data on graph"""
         self.updateCurrentData()
         self.fig.suptitle(self.panel.currentData['name'],fontsize="16",fontweight="bold",url='http://finance.yahoo.com/q/pr?s='+self.panel.stockObj.ticker+'+Key+Statistics',picker=True,color="b")
-        self.fig.canvas.mpl_connect('pick_event',self.onPick)
         
         Cd = lambda c : str(self.panel.currentData[c])
         
@@ -203,10 +202,6 @@ Data indicates you should %s" % (Cd('short_ratio'), Cd('50day_moving_avg'), Cd('
                   multialignment='center',
                   transform = self.fig.axes[0].transAxes)
 
-        
-    def onPick(self,event):
-        artist = event.artist
-        webbrowser.open(artist.get_url())
         
     def tiKeys(self,event):
         webbrowser.open('http://finance.yahoo.com/q/ks?s='+self.panel.stockObj.ticker+'+Key+Statistics')
