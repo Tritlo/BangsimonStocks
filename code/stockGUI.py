@@ -272,12 +272,12 @@ Data indicates you should %s" % (Cd('short_ratio'), Cd('50day_moving_avg'), Cd('
 
     def on_save_plot(self, event):
         """Handles the saving of the plot"""
-        file_choices = "PNG (*.png)|*.png|PS (*.ps)|*.ps|JPG (*.jpg)|*.jpg"
+        file_choices = "PNG (*.png)|*.png"
         dlg = wx.FileDialog(
             self, 
             message="Save plot as...",
             defaultDir=os.getcwd(),
-            defaultFile= self.panel.stockObj.ticker+"plot.png",
+            defaultFile= self.panel.stockObj.ticker+"plot",
             wildcard=file_choices,
             style=wx.SAVE)
         
