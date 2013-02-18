@@ -9,6 +9,7 @@ from stockInfo import stockInfo
 from stockPlot import stockPlot
 from stockUtil import *
 from stockAnalysis import Beta
+from datetime import timedelta
 
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_wxagg import \
@@ -24,11 +25,12 @@ class initialFrame(wx.Frame):
     def __init__(self):
         wx.Frame.__init__(self, None, -1, self.title)
         self.Bind(wx.EVT_CLOSE, self.on_exit)
-        
         self.create_menu()
         self.create_status_bar()
+        print "Fetching initial data"
         self.create_main_panel()
         
+        print "Plotting initial data"
         self.draw_figure()
 
         
@@ -54,37 +56,35 @@ class initialFrame(wx.Frame):
                                       plot.AppendRadioItem(-1,x))),options)
         plot.AppendSeparator()
         self.Bind(wx.EVT_MENU,self.plot_handler,plot.AppendCheckItem(-1, "Simple Moving Average"))
+        self.Bind(wx.EVT_MENU,self.plot_handler,plot.AppendCheckItem(-1, "Volume"))
 
         self.menubar.SetMenus([(menu_file,"&File"),(plot, "&Plot")])
-        #self.menubar.Append(menu_file, )
-        #self.menubar.Append
         self.SetMenuBar(self.menubar)
 
              
 
     def create_main_panel(self):
         """ Creates the main panel with all the controls on it:
-             * mpl canvas 
-             * mpl navigation toolbar
-             * Control panel for interaction
         """
         self.panel = wx.Panel(self)
         self.panel.stockObj = stockInfo(DEFAULT_TICKER)
 
         
-        #Plottum i byrjun.
-        self.fig = stockPlot(self.panel.stockObj,"Adj Close")
-        self.canvas = FigCanvas(self.panel, -1, self.fig)
 
         
         #Setjum default value-in
         self.panel.currentAttr = "Adj Close"
         self.panel.fromDate = self.panel.stockObj.fromDate
-        self.panel.toDate = self.panel.stockObj.toDate
+        self.panel.toDate = self.panel.stockObj.toDate - timedelta(weeks=52)
         self.panel.MovingAvg = False
+        self.panel.Volume = False
         self.panel.MovingAvgN = 110
         self.panel.Beta = Beta(self.panel.stockObj,self.panel.fromDate, self.panel.toDate)
         
+        #Plottum i byrjun.
+        #self.fig =  stockPlot(self.panel.stockObj,self.panel.currentAttr,self.panel.fromDate, self.panel.toDate,self.panel.MovingAvg, self.panel.MovingAvgN, self.panel.Volume)
+        self.fig = matplotlib.figure()
+        self.canvas = FigCanvas(self.panel, -1, self.fig)
 
         self.slider_label = wx.StaticText(self.panel, -1, 
             "Moving Average N: ")
@@ -152,7 +152,7 @@ class initialFrame(wx.Frame):
         self.fig.clear()
         self.fig = stockPlot(self.panel.stockObj,self.panel.currentAttr,
                                  self.panel.fromDate, self.panel.toDate,
-                                 self.panel.MovingAvg, self.panel.MovingAvgN)
+                                 self.panel.MovingAvg, self.panel.MovingAvgN, self.panel.Volume)
         self.plotInformation()
         self.flash_status_message("Plotting...Done")
         self.canvas.draw()
@@ -198,7 +198,7 @@ Earnings per share: %s" % (Cd('price'), Cd('market_cap'), Cd('52_week_high'), Cd
         except ValueError:
             msg = wx.MessageDialog(self, "Invalid Ticker", "Error", wx.OK|wx.ICON_ERROR)
             msg.ShowModal()
-            self.on_new(None)
+            self.on_new()
                                   
     def plot_handler(self,event):
         """Handles the changing of the plot"""
@@ -210,8 +210,11 @@ Earnings per share: %s" % (Cd('price'), Cd('market_cap'), Cd('52_week_high'), Cd
                     self.panel.currentAttr = mI.GetItemLabelText()
             # find whether sMA is on.
             if mI.GetKind() is 1:
-                self.panel.MovingAvg = mI.IsChecked()
-                
+                if mI.GetItemLabelText() == "Simple Moving Average":
+                    self.panel.MovingAvg = mI.IsChecked()
+                if mI.GetItemLabelText() == "Volume":
+                    self.panel.Volume = mI.IsChecked()
+                    
         self.updateCurrentData()
         self.draw_figure()
 
