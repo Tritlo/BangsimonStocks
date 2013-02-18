@@ -34,19 +34,18 @@ def movingAverage(stockInfo, N=20, fromDate=None, toDate=None):
             break
 
         
-    if fromDateIndex >= 2*N:
-        pl = priceList[1+fromDateIndex-2*N: 1+fromDateIndex]
+    if fromDateIndex >= N:
         for i in range(fromDateIndex-N,fromDateIndex):
             result.append(sum(priceList[i:i+N])/N)
     else:
         pl = priceList[0:fromDateIndex+N]
         for p in range(fromDateIndex+1,fromDateIndex+N+1):
             result.append(sum(pl[0:p])/p)
-        
+
     for i in range(N,len(priceList)-fromDateIndex):
         result.append(result[i-1] + (priceList[i+fromDateIndex] -priceList[i-N+fromDateIndex])/N)
         
-    return result
+    return result[-len(stockInfo.listFromTo(fromDate,toDate)):]
 
 def BuyOrSell(s,date=None):
     """

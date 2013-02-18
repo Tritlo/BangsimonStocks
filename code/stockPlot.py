@@ -43,7 +43,6 @@ def stockPlot(s,k,fromDate=None,toDate=None, MovingAvg = False, N = 20, Volume=F
             getData=lambda d:d[a]
 
     dataList=map(getData,infoList)
-
     if MovingAvg:
         l=movingAverage(s, N, fromDate, toDate)
         ax.plot(dateList,l,'r--',dateList,dataList,'b')
