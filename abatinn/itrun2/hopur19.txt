@@ -1,0 +1,44 @@
+﻿Hópur 19  - Athugasemdir við V1c
+Yfirferð: Steinn (steinng@hi.is)
+
+
+Almennt
+=======
+
+Verkið er virðist skammt á veg komið þ.s. grafísku notendaskilin vantar alfarið. Hreyfið meðaltal ætti að teikna á sama graf og hlutabréfaverðið (það ætti að gera skv. kóðanum, sjá samt aths. hér að neðan). Magntölur (e. volume) vantar, ráðleggingar um kaup og sölu einnig.
+
+
+Verkáætlun
+==========
+Burn-Down graf sýnir ekki framvinduna, það eru einungis tveir punktar á grafinu.
+
+Velocity >> 1 (bls. 2 í aetlun.pdf) ???
+
+
+Notendaskil
+===========
+
+Það mætti birta e-ð af tölulegum upplýsingum inn á grafið (með text() stefinu í matplotlib), þ.á.m. beta stuðulinn sem þið reiknið.
+
+
+Abatinn
+=======
+
+moving-average krassar forritinu, lína 37 í compareDates (can't compare datetime.date to NoneType) - nota try/except.
+
+
+Prófanir
+========
+Prófa hvort hreyfið meðaltal og beta  séu rétt reiknuð.
+
+
+Forritun
+========
+Mjög læstilegur kóði.
+
+Vera með try/except utan um Google = ... í main forriti.
+
+
+Einkunn
+=======
+Einkunn liggur líkast til á bilinu [6, 9], neðri mörkin m.v. að lítið sé gert í næstu ítrun.
