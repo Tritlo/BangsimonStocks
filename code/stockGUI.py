@@ -30,7 +30,7 @@ class initialFrame(wx.Frame):
     """
     title = "Bangsimon Stocks"
     def __init__(self):
-        wx.Frame.__init__(self, None, -1, self.title,)
+        super(initialFrame,self).__init__( None, -1, self.title,)
         self.Bind(wx.EVT_CLOSE, self.on_exit)
         self.create_menu()
         self.create_status_bar()
