@@ -248,11 +248,13 @@ Data indicates you should %s" % (Cd('short_ratio'), Cd('50day_moving_avg'), Cd('
         except ValueError:
             msg = wx.MessageDialog(self, "Invalid Ticker", "Error", wx.OK|wx.ICON_ERROR)
             msg.ShowModal()
-            self.on_new()
+            self.on_new(None)
                                   
     def plot_handler(self,event):
         """Handles the changing of the plot"""
-        mIs = event.GetEventObject().GetMenuItems()
+        menus = self.GetMenuBar().GetMenus()
+        plotmenu = filter( (lambda f:  True if "Plot" in f[1] else False ), menus)
+        mIs = plotmenu[0][0].GetMenuItems()
         for mI in mIs:
             label = mI.GetItemLabelText()
             if mI.GetKind() is 2:
