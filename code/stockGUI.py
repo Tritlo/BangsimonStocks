@@ -18,7 +18,8 @@ import webbrowser
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_wxagg import \
     FigureCanvasWxAgg as FigCanvas, \
-    NavigationToolbar2WxAgg as NavigationToolbar
+    NavigationToolbar2Wx as NavigationToolbar
+    #NavigationToolbar2WxAgg as NavigationToolbar
 
 DEFAULT_TICKER = "GOOG"
 DEFAULT_PERIOD = 52
