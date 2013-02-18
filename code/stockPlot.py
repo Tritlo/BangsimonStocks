@@ -80,6 +80,7 @@ def stockPlot(s,k,fromDate=None,toDate=None, MovingAvg = False, N = 20, Volume=F
 
         ax2.yaxis.set_label_position("right")
         ax2.set_ylabel('Volume')
+    
     return fig
 
 
@@ -88,4 +89,4 @@ def smaPlot(s,N=20,fromDate=None,toDate=None):
     
 if __name__ == "__main__":
     Google = stockInfo("GOOG",date(2012,1,1),date.today())
-    s = stockPlot(Google,'Adj Close')
+    s = stockPlot(Google,'Adj Close',None,None,False,100,None,True)
