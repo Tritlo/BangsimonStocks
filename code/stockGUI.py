@@ -23,14 +23,14 @@ import webbrowser
 
 
 DEFAULT_TICKER = "GOOG"
-DEFAULT_PERIOD = 52
+DEFAULT_PERIOD = 26
 
 class initialFrame(wx.Frame):
     """ The main frame of the application
     """
     title = "Bangsimon Stocks"
     def __init__(self):
-        wx.Frame.__init__(self, None, -1, self.title)
+        wx.Frame.__init__(self, None, -1, self.title,)
         self.Bind(wx.EVT_CLOSE, self.on_exit)
         self.create_menu()
         self.create_status_bar()
