@@ -82,8 +82,7 @@ class initialFrame(wx.Frame):
         self.panel.Beta = Beta(self.panel.stockObj,self.panel.fromDate, self.panel.toDate)
         
         #Plottum i byrjun.
-        #self.fig =  stockPlot(self.panel.stockObj,self.panel.currentAttr,self.panel.fromDate, self.panel.toDate,self.panel.MovingAvg, self.panel.MovingAvgN, self.panel.Volume)
-        self.fig = matplotlib.figure()
+        self.fig = matplotlib.pyplot.gcf()
         self.canvas = FigCanvas(self.panel, -1, self.fig)
 
         self.slider_label = wx.StaticText(self.panel, -1, 
@@ -152,10 +151,11 @@ class initialFrame(wx.Frame):
         self.fig.clear()
         self.fig = stockPlot(self.panel.stockObj,self.panel.currentAttr,
                                  self.panel.fromDate, self.panel.toDate,
-                                 self.panel.MovingAvg, self.panel.MovingAvgN, self.panel.Volume)
+                                 self.panel.MovingAvg, self.panel.MovingAvgN,
+                                 self.panel.Volume)
         self.plotInformation()
-        self.flash_status_message("Plotting...Done")
         self.canvas.draw()
+        self.flash_status_message("Plotting...Done")
 
     def plotInformation(self):
         self.updateCurrentData()
@@ -204,15 +204,15 @@ Earnings per share: %s" % (Cd('price'), Cd('market_cap'), Cd('52_week_high'), Cd
         """Handles the changing of the plot"""
         mIs = event.GetEventObject().GetMenuItems()
         for mI in mIs:
-            #find what is selected
+            label = mI.GetItemLabelText()
             if mI.GetKind() is 2:
                 if mI.IsChecked():
-                    self.panel.currentAttr = mI.GetItemLabelText()
+                    self.panel.currentAttr = label 
             # find whether sMA is on.
             if mI.GetKind() is 1:
-                if mI.GetItemLabelText() == "Simple Moving Average":
+                if label == "Simple Moving Average":
                     self.panel.MovingAvg = mI.IsChecked()
-                if mI.GetItemLabelText() == "Volume":
+                if label == "Volume":
                     self.panel.Volume = mI.IsChecked()
                     
         self.updateCurrentData()

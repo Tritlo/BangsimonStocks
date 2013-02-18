@@ -4,7 +4,7 @@ from datetime import date
 from stockAnalysis import movingAverage
 import matplotlib
 
-def stockPlot(s,k,fromDate=None,toDate=None, MovingAvg = False, N = 20, currentFigure = None, Volume=False):
+def stockPlot(s,k,fromDate=None,toDate=None, MovingAvg = False, N = 20, Volume=False):
     """
     # Use: stockPlot(s,k,fromDate,toDate)
     # Pre: s is a stockinfo object, k is a string which describes an attribute of s
