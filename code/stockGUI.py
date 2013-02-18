@@ -3,13 +3,14 @@ import os
 import matplotlib
 import wx.lib.hyperlink as hl
 import wx.lib.scrolledpanel
+import wx.lib.calendar as cal
 matplotlib.use('WXAgg')
 
 from stockInfo import stockInfo
 from stockPlot import stockPlot
 from stockUtil import *
 from stockAnalysis import Beta
-from datetime import timedelta
+from datetime import timedelta,date,datetime
 
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_wxagg import \
@@ -58,10 +59,59 @@ class initialFrame(wx.Frame):
         self.Bind(wx.EVT_MENU,self.plot_handler,plot.AppendCheckItem(-1, "Simple Moving Average"))
         self.Bind(wx.EVT_MENU,self.plot_handler,plot.AppendCheckItem(-1, "Volume"))
 
-        self.menubar.SetMenus([(menu_file,"&File"),(plot, "&Plot")])
+
+        dates = wx.Menu()
+        self.Bind(wx.EVT_MENU,self.changeFromDate,dates.Append(-1, "Change From Date"))
+        self.Bind(wx.EVT_MENU,self.changeToDate,dates.Append(-1, "Change To Date"))
+
+        self.menubar.SetMenus([(menu_file,"&File"),(plot, "&Plot"),(dates,"&Dates")])
         self.SetMenuBar(self.menubar)
 
+    def changeFromDate(self,event):
+        day,month,year = self.panel.fromDate.day,self.panel.fromDate.month,self.panel.fromDate.year
+        dlg = cal.CalenDlg(self.panel,month,day,year)
+        dlg.y_spin.SetRange(self.panel.stockObj.fromDate.year,self.panel.stockObj.toDate.year)
+        dlg.Centre()
+
+        if dlg.ShowModal() == wx.ID_OK:
+            r = dlg.result
+            r = r[3] + " " + r[2] + " " + r[1]
+            resDate = datetime.strptime(r,"%Y %B %d").date()
+        else:
+            return
+
+        
+        if self.panel.stockObj.validDate(resDate):
+            self.panel.fromDate = resDate
+            self.panel.Beta = Beta(self.panel.stockObj,self.panel.fromDate, self.panel.toDate)
+            self.draw_figure()
+        else:
+            msg = wx.MessageDialog(self, "Invalid Date, date must be within range %s to %s" % (self.panel.stockObj.fromDate,self.panel.stockObj.toDate), "Error", wx.OK|wx.ICON_ERROR)
+            msg.ShowModal()
+            self.changeFromDate(None)
              
+    def changeToDate(self,event):
+        day,month,year = self.panel.toDate.day,self.panel.toDate.month,self.panel.toDate.year
+        dlg = cal.CalenDlg(self.panel,month,day,year)
+        dlg.y_spin.SetRange(self.panel.stockObj.fromDate.year,self.panel.stockObj.toDate.year)
+        dlg.Centre()
+
+        if dlg.ShowModal() == wx.ID_OK:
+            r = dlg.result
+            r = r[3] + " " + r[2] + " " + r[1]
+            resDate = datetime.strptime(r,"%Y %B %d").date()
+        else:
+            return
+            
+        if self.panel.stockObj.validDate(resDate):
+            self.panel.toDate = resDate
+            self.panel.Beta = Beta(self.panel.stockObj,self.panel.fromDate, self.panel.toDate)
+            self.draw_figure()
+        else:
+            msg = wx.MessageDialog(self, "Invalid Date, date must be within range %s to %s" % (self.panel.stockObj.fromDate,self.panel.stockObj.toDate), "Error", wx.OK|wx.ICON_ERROR)
+            msg.ShowModal()
+            self.changeToDate(None)
+            
 
     def create_main_panel(self):
         """ Creates the main panel with all the controls on it:
@@ -74,8 +124,8 @@ class initialFrame(wx.Frame):
         
         #Setjum default value-in
         self.panel.currentAttr = "Adj Close"
-        self.panel.fromDate = self.panel.stockObj.fromDate
-        self.panel.toDate = self.panel.stockObj.toDate - timedelta(weeks=52)
+        self.panel.fromDate = self.panel.stockObj.toDate - timedelta(weeks=104)
+        self.panel.toDate = self.panel.stockObj.toDate
         self.panel.MovingAvg = False
         self.panel.Volume = False
         self.panel.MovingAvgN = 110
