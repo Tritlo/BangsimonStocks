@@ -12,6 +12,8 @@ from stockPlot import stockPlot
 from stockUtil import *
 from stockAnalysis import Beta, BuyOrSell
 from datetime import timedelta,date,datetime
+import webbrowser
+
 
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_wxagg import \
@@ -66,9 +68,14 @@ class initialFrame(wx.Frame):
         self.Bind(wx.EVT_MENU,self.changeFromDate,dates.Append(-1, "Change From Date"))
         self.Bind(wx.EVT_MENU,self.changeToDate,dates.Append(-1, "Change To Date"))
 
-        self.menubar.SetMenus([(menu_file,"&File"),(plot, "&Plot"),(dates,"&Dates")])
-        self.SetMenuBar(self.menubar)
+        comp = wx.Menu()
         
+        self.Bind(wx.EVT_MENU,self.tiProfile,comp.Append(-1, "Profile"))
+        self.Bind(wx.EVT_MENU,self.tiKeys,comp.Append(-1, "Key Statistics"))
+        
+        self.menubar.SetMenus([(menu_file,"&File"),(plot, "&Plot"),(dates,"&Dates"),(comp, "&Company")])
+        
+        self.SetMenuBar(self.menubar)
 
             
 
@@ -169,15 +176,16 @@ class initialFrame(wx.Frame):
     def plotInformation(self):
         """Prints additional data on graph"""
         self.updateCurrentData()
-        self.fig.suptitle(self.panel.currentData['name'],fontsize="16",fontweight="bold",url='http://finance.yahoo.com/q/pr?s='+self.panel.stockObj.ticker+'+Profile')
+        self.fig.suptitle(self.panel.currentData['name'],fontsize="16",fontweight="bold",url='http://finance.yahoo.com/q/pr?s='+self.panel.stockObj.ticker+'+Key+Statistics',picker=True,color="b")
+        self.fig.canvas.mpl_connect('pick_event',self.onPick)
         
         Cd = lambda c : str(self.panel.currentData[c])
         
-        currentDataString1 = "Price: %s, Market Cap %s\n\
+        currentDataString1 = "Price: %s, Market Cap: %s\n\
 52 week high/low: %s/%s,\n\
 Beta of period: %s" % (Cd('price'), Cd('market_cap'), Cd('52_week_high'), Cd('52_week_low'), str(self.panel.Beta))
         
-        currentDataString2 = "Short ratio:%s, 50 MAvg: %s\n\
+        currentDataString2 = "Short ratio: %s, 50 MAvg: %s\n\
 Earnings per share: %s\n\
 Data indicates you should %s" % (Cd('short_ratio'), Cd('50day_moving_avg'), Cd('earnings_per_share'), self.panel.BuyOrSell)
         
@@ -192,6 +200,17 @@ Data indicates you should %s" % (Cd('short_ratio'), Cd('50day_moving_avg'), Cd('
                   verticalalignment='top',
                   multialignment='center',
                   transform = self.fig.axes[0].transAxes)
+
+        
+    def onPick(self,event):
+        artist = event.artist
+        webbrowser.open(artist.get_url())
+        
+    def tiKeys(self,event):
+        webbrowser.open('http://finance.yahoo.com/q/ks?s='+self.panel.stockObj.ticker+'+Key+Statistics')
+
+    def tiProfile(self,event):
+        webbrowser.open('http://finance.yahoo.com/q/pr?s='+self.panel.stockObj.ticker+'+Profile')
         
     def updateCurrentData(self):
         """Fetches current data from yahoo"""
