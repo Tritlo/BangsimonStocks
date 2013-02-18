@@ -5,7 +5,15 @@ import matplotlib
 import wx.lib.hyperlink as hl
 import wx.lib.scrolledpanel
 import wx.lib.calendar as cal
-matplotlib.use('WXAgg')
+
+#matplotlib.use('WXAgg')
+matplotlib.use("WX")
+
+from matplotlib.figure import Figure
+
+#from matplotlib.backends.backend_wxagg import FigureCanvasWxAgg as FigCanvas, NavigationToolbar2WxAgg as NavigationToolbar
+
+from matplotlib.backends.backend_wx import FigureCanvasWx as FigCanvas, NavigationToolbar2Wx as NavigationToolbar
 
 from stockInfo import stockInfo
 from stockPlot import stockPlot
@@ -15,11 +23,6 @@ from datetime import timedelta,date,datetime
 import webbrowser
 
 
-from matplotlib.figure import Figure
-from matplotlib.backends.backend_wxagg import \
-    FigureCanvasWxAgg as FigCanvas, \
-    NavigationToolbar2Wx as NavigationToolbar
-    #NavigationToolbar2WxAgg as NavigationToolbar
 
 DEFAULT_TICKER = "GOOG"
 DEFAULT_PERIOD = 52
