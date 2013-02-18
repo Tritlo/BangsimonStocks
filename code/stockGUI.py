@@ -169,7 +169,7 @@ class initialFrame(wx.Frame):
     def plotInformation(self):
         """Prints additional data on graph"""
         self.updateCurrentData()
-        self.fig.suptitle(self.panel.currentData['name'],fontsize="16",fontweight="bold")
+        self.fig.suptitle(self.panel.currentData['name'],fontsize="16",fontweight="bold",url='http://finance.yahoo.com/q/pr?s='+self.panel.stockObj.ticker+'+Profile')
         
         Cd = lambda c : str(self.panel.currentData[c])
         
