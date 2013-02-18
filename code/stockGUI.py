@@ -117,6 +117,8 @@ class initialFrame(wx.Frame):
 
         #Toolbar of chart
         self.toolbar = NavigationToolbar(self.canvas)
+        
+        self.toolbar.Realize()#: Windows fix
         self.SetToolBar(self.toolbar)
         
         # Layout
