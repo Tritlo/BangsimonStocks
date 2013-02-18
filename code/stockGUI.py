@@ -6,14 +6,12 @@ import wx.lib.hyperlink as hl
 import wx.lib.scrolledpanel
 import wx.lib.calendar as cal
 
-#matplotlib.use('WXAgg')
-matplotlib.use("WX")
+matplotlib.use('WXAgg')
 
 from matplotlib.figure import Figure
 
-#from matplotlib.backends.backend_wxagg import FigureCanvasWxAgg as FigCanvas, NavigationToolbar2WxAgg as NavigationToolbar
+from matplotlib.backends.backend_wxagg import FigureCanvasWxAgg as FigCanvas, NavigationToolbar2WxAgg as NavigationToolbar
 
-from matplotlib.backends.backend_wx import FigureCanvasWx as FigCanvas, NavigationToolbar2Wx as NavigationToolbar
 
 from stockInfo import stockInfo
 from stockPlot import stockPlot
