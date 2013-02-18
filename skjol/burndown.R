@@ -1,11 +1,3 @@
-#Ítrun 1: Ráðstafaður tími:	0	5,38
-#Lengd ítrunar:	4,3	0
-#Ítrun 2:
-#Ráðstafaður tími:	0	7,14
-#Lengd ítrunar:	5	0
-#Ítrun 3:
-#Ráðstafaður tími:	0	12
-#Lengd ítrunar:	9	0
 pdf={
 pdf('Burndown1.pdf')
 x1<-c(6,5,4,3,2,1,0)
