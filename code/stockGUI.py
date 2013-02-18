@@ -117,10 +117,8 @@ class initialFrame(wx.Frame):
 
         #Toolbar of chart
         self.toolbar = NavigationToolbar(self.canvas)
-        
-        self.toolbar.Realize()#: Windows fix
         self.SetToolBar(self.toolbar)
-        
+        self.toolbar.Realize()#: Windows fix
         # Layout
         
         self.vbox = wx.BoxSizer(wx.VERTICAL)
@@ -144,7 +142,7 @@ class initialFrame(wx.Frame):
         
         self.RssBox.Fit(self.RssPanel)
         self.RssPanel.SetupScrolling()
-        self.vbox.Add(self.RssPanel,1, flag= wx.EXPAND)
+        self.vbox.Add(self.RssPanel,1, flag= wx.EXPAND | wx.ALIGN_CENTER)
         self.panel.SetSizer(self.vbox)
         
         self.vbox.Fit(self)
@@ -157,7 +155,7 @@ class initialFrame(wx.Frame):
         rss = self.panel.stockObj.getRSS()
         self.hyperlinks = map( (lambda p:hl.HyperLinkCtrl(self.RssPanel,wx.ID_ANY,label=str(p[0]),URL = str(p[1]))),rss)
         for i in self.hyperlinks:
-            self.RssBox.Add(i,0,flag= wx.EXPAND)
+            self.RssBox.Add(i,0,flag= wx.EXPAND |wx.ALIGN_CENTER)
         self.RssBox.Layout()
         
     def create_status_bar(self):
