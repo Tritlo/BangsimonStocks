@@ -286,7 +286,7 @@ Data indicates you should %s" % (Cd('short_ratio'), Cd('50day_moving_avg'), Cd('
             return
 
         
-        if self.panel.stockObj.validDate(resDate):
+        if self.panel.stockObj.validDate(resDate) and (compareDates(resDate,self.panel.stockObj.toDate) <=0 ):
             self.panel.fromDate = resDate
             self.panel.Beta = Beta(self.panel.stockObj,self.panel.fromDate, self.panel.toDate)
             self.draw_figure()
@@ -309,7 +309,7 @@ Data indicates you should %s" % (Cd('short_ratio'), Cd('50day_moving_avg'), Cd('
         else:
             return
             
-        if self.panel.stockObj.validDate(resDate):
+        if self.panel.stockObj.validDate(resDate) and (compareDates(resDate,self.panel.stockObj.fromDate) >=0 ):
             self.panel.toDate = resDate
             self.panel.Beta = Beta(self.panel.stockObj,self.panel.fromDate, self.panel.toDate)
             self.draw_figure()
