@@ -4,7 +4,7 @@ from datetime import date
 from stockAnalysis import movingAverage
 import matplotlib
 
-def stockPlot(s,k,fromDate=None,toDate=None, MovingAvg = False, N = 20):
+def stockPlot(s,k,fromDate=None,toDate=None, MovingAvg = False, N = 20, currentFigure = None):
     """
     # Use: stockPlot(s,k,fromDate,toDate)
     # Pre: s is a stockinfo object, k is a string which describes an attribute of s
@@ -30,7 +30,7 @@ def stockPlot(s,k,fromDate=None,toDate=None, MovingAvg = False, N = 20):
     date=lambda d: d[0]
     dateList=map(date,infoList)
 
-    fig = plt.figure()
+    fig = plt.gcf()
     ax = fig.add_subplot(1,1,1)
 
     a = attrs[k]
@@ -79,7 +79,6 @@ def stockPlot(s,k,fromDate=None,toDate=None, MovingAvg = False, N = 20):
 
     ax2.yaxis.set_label_position("right")
     ax2.set_ylabel('Volume')
-#    plt.show()
     return fig
 
 
@@ -89,4 +88,3 @@ def smaPlot(s,N=20,fromDate=None,toDate=None):
 if __name__ == "__main__":
     Google = stockInfo("GOOG",date(2012,1,1),date.today())
     s = stockPlot(Google,'Adj Close')
-    s.show()
