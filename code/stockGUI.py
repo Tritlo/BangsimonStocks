@@ -21,7 +21,7 @@ from datetime import timedelta,date,datetime
 import webbrowser
 
 
-
+#: Default values used on start an when fetching new data
 DEFAULT_TICKER = "GOOG"
 DEFAULT_PERIOD = 26
 
@@ -30,6 +30,7 @@ class initialFrame(wx.Frame):
     """
     title = "Bangsimon Stocks"
     def __init__(self):
+        #Create everything
         super(initialFrame,self).__init__( None, -1, self.title,)
         self.Bind(wx.EVT_CLOSE, self.on_exit)
         self.create_menu()
@@ -58,10 +59,12 @@ class initialFrame(wx.Frame):
         
         plot = wx.Menu()
         options = ['Adj Close','Open' ,'High', 'Low', 'Close', 'Avg. Price']
-        #Nennum ekki ad handsla inn.
+        #Use map instead of multible copy paste
         M = map( (lambda x: self.Bind(wx.EVT_MENU,self.plot_handler,
                                       plot.AppendRadioItem(-1,x))),options)
         plot.AppendSeparator()
+
+        #We want these to be on the same graph, option to turn on or off
         self.Bind(wx.EVT_MENU,self.plot_handler,plot.AppendCheckItem(-1, "Simple Moving Average"))
         self.Bind(wx.EVT_MENU,self.plot_handler,plot.AppendCheckItem(-1, "Volume"))
 
@@ -83,10 +86,11 @@ class initialFrame(wx.Frame):
 
     def create_main_panel(self):
         """ Creates the main panel and everything"""
+
         self.panel = wx.Panel(self)
         self.panel.stockObj = stockInfo(DEFAULT_TICKER)
         
-        #Setjum default value-in
+        #Put up some default values that are used in plot
         self.panel.currentAttr = "Adj Close"
         td = self.panel.stockObj.toDate - timedelta(weeks=DEFAULT_PERIOD)
         if self.panel.stockObj.validDate(td):
@@ -99,11 +103,12 @@ class initialFrame(wx.Frame):
         self.panel.Volume = False
         self.panel.MovingAvgN = 20
         self.panel.Beta = Beta(self.panel.stockObj,self.panel.fromDate, self.panel.toDate)
-        
-        #Plottum i byrjun.
+       
+        #adding the pllot
         self.fig = matplotlib.pyplot.gcf()
         self.canvas = FigCanvas(self.panel, -1, self.fig)
-
+        
+        #Add slider to change n of moving average
         self.slider_label = wx.StaticText(self.panel, -1, 
             "Moving Average N: ")
         self.slider_width = wx.Slider(self.panel, -1, 
@@ -118,9 +123,9 @@ class initialFrame(wx.Frame):
         #Toolbar of chart
         self.toolbar = NavigationToolbar(self.canvas)
         self.SetToolBar(self.toolbar)
-        self.toolbar.Realize()#: Windows fix
-        # Layout
-        
+        self.toolbar.Realize()#: Windows fix, does not work
+       
+        #We use boxes to get a dynamic layout
         self.vbox = wx.BoxSizer(wx.VERTICAL)
         self.vbox.Add(self.canvas, 0, wx.LEFT | wx.TOP | wx.EXPAND)
         
@@ -134,6 +139,7 @@ class initialFrame(wx.Frame):
 
         self.vbox.AddSpacer(10)
         
+        #Add NewsFeed
         self.RssBox = wx.BoxSizer(wx.VERTICAL)
         self.RssPanel = wx.lib.scrolledpanel.ScrolledPanel(self.panel)
         self.RssPanel.SetMinSize((-1,100))
@@ -178,10 +184,12 @@ class initialFrame(wx.Frame):
     def plotInformation(self):
         """Prints additional data on graph"""
         self.updateCurrentData()
+        #Put title on graph
         self.fig.suptitle(self.panel.currentData['name'],fontsize="16",fontweight="bold",url='http://finance.yahoo.com/q/pr?s='+self.panel.stockObj.ticker+'+Key+Statistics',picker=True,color="b")
         
         Cd = lambda c : str(self.panel.currentData[c])
-        
+           
+        #Current information on graph
         currentDataString1 = "Price: %s, Market Cap: %s\n\
 52 week high/low: %s/%s,\n\
 Beta of period: %s" % (Cd('price'), Cd('market_cap'), Cd('52_week_high'), Cd('52_week_low'), str(self.panel.Beta))
@@ -202,7 +210,7 @@ Data indicates you should %s" % (Cd('short_ratio'), Cd('50day_moving_avg'), Cd('
                   multialignment='center',
                   transform = self.fig.axes[0].transAxes)
 
-        
+    #These two functions are used to open the information pages 
     def tiKeys(self,event):
         webbrowser.open('http://finance.yahoo.com/q/ks?s='+self.panel.stockObj.ticker+'+Key+Statistics')
 
@@ -218,7 +226,7 @@ Data indicates you should %s" % (Cd('short_ratio'), Cd('50day_moving_avg'), Cd('
             self.panel.BuyOrSell = "sell"
         
     def on_slider_width(self, event):
-        """Handles the changing of the slider"""
+        """Handles the changing of the slider, updates the value used"""
         self.panel.MovingAvgN = self.slider_width.GetValue()
         self.draw_figure()
     
@@ -226,6 +234,7 @@ Data indicates you should %s" % (Cd('short_ratio'), Cd('50day_moving_avg'), Cd('
         """Handles creating new tickers"""
         prompt = wx.TextEntryDialog(self, "Enter new ticker", "New ticker",self.panel.stockObj.ticker)
         prompt.ShowModal() 
+        #Use this loop and recursion to ensure we get a legal value
         try:
             self.flash_status_message("Fetching data...")
             self.panel.stockObj = stockInfo(prompt.GetValue())
@@ -248,10 +257,12 @@ Data indicates you should %s" % (Cd('short_ratio'), Cd('50day_moving_avg'), Cd('
             self.on_new(None)
                                   
     def plot_handler(self,event):
-        """Handles the changing of the plot"""
+        """Handles the changing of the plot."""
         menus = self.GetMenuBar().GetMenus()
+        #Grab plot menu from the menubar
         plotmenu = filter( (lambda f:  True if "Plot" in f[1] else False ), menus)
         mIs = plotmenu[0][0].GetMenuItems()
+        #Check what happened
         for mI in mIs:
             label = mI.GetItemLabelText()
             if mI.GetKind() is 2:
@@ -269,6 +280,7 @@ Data indicates you should %s" % (Cd('short_ratio'), Cd('50day_moving_avg'), Cd('
 
     def on_save_plot(self, event):
         """Handles the saving of the plot"""
+        #We use the saving function in the toolbar
         self.toolbar.save(None)
         
     def on_exit(self, event):
@@ -291,7 +303,7 @@ Data indicates you should %s" % (Cd('short_ratio'), Cd('50day_moving_avg'), Cd('
         else:
             return
 
-               
+              #Ensure we get a valid date 
         if self.panel.stockObj.validDate(resDate) and (compareDates(resDate,self.panel.toDate) < 0 ):
             self.panel.fromDate = resDate
             self.panel.Beta = Beta(self.panel.stockObj,self.panel.fromDate, self.panel.toDate)
@@ -315,6 +327,7 @@ Data indicates you should %s" % (Cd('short_ratio'), Cd('50day_moving_avg'), Cd('
         else:
             return
 
+              #Ensure we get a valid date 
         if self.panel.stockObj.validDate(resDate) and (compareDates(self.panel.fromDate,resDate) < 0 ):
             self.panel.toDate = resDate
             self.panel.Beta = Beta(self.panel.stockObj,self.panel.fromDate, self.panel.toDate)
@@ -325,7 +338,7 @@ Data indicates you should %s" % (Cd('short_ratio'), Cd('50day_moving_avg'), Cd('
             self.changeToDate(None)
         
     def flash_status_message(self, msg, flash_len_ms=1500):
-        """Flashes status message on status bar"""
+        """Flashes status message on status bar, so that it wont appear to have frozen"""
         self.statusbar.SetStatusText(msg)
         self.timeroff = wx.Timer(self)
         self.Bind(
