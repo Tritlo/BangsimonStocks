@@ -107,11 +107,11 @@ def Beta(s, fromDate=None, toDate=None):
     r_a=log_returns(pricelist)
     r_b=log_returns(SPprices)
     cov_ab=cov(array(r_a),array(r_b))[0][1] # We extract the covariance between r_a and r_b from the covariance matrix   
-    
-    return cov_ab/var(array(r_b))
+    return round(cov_ab,6)/round(var(array(r_b)),6) #: some error in cov or var, we must round to get correct value
 
 if __name__ == "__main__":
-    pass
+    SP = stockInfo("^GSPC")
+    print Beta(SP)
     #Google = stockInfo("GOOG",date(2000,1,1),date.today())
     #virkar ekki, getum ekki importad i hring.
     #smaPlot(Google,fromDate = date(2010,1,2), toDate = date(2011,1,2)).show()

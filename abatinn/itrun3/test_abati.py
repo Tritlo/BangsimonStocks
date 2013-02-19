@@ -70,7 +70,9 @@ class testStockInfo(unittest.TestCase):
         with self.assertRaises(ValueError):
             Beta(self.testobj,date.min)
         self.assertIsInstance(Beta(self.testobj),float)
-        
+        SP500 = stockInfo("^GSPC")
+        self.assertEqual(Beta(SP500),1)
+            
     #Check as much as we can of RSS
     def test_Rss(self):
         self.assertIsInstance(self.testobj.getRSS(),list)
