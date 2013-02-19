@@ -1,0 +1,5 @@
+Keyrið forritið stockGUI.py með python. Einhverjir fítusar virka ekki í Windows,
+en þeir virðast virka allir í Ubuntu, Compiz og XMonad. Því ætti að keyra kerfið
+í Linux til að sjá raunverulega  virkni.
+Athugið að í Ubuntu er wx útfærslan e-ð biluð, og því koma upp errorar þegar
+slökkt er á forritinu. Ekki hafa þó áhyggjur af þeim, þeir hafa ekki áhrif á forritið.
