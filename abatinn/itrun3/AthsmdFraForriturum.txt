@@ -24,7 +24,7 @@ hópur vinni saman að fleiri svipuðum verkefnum í framtíðinni.
 
 Þetta verkefni einkenndist af áhugaleysi Ragnheiðar og
 Finns um að taka þátt í forrituninni. Þau unnu í vinnunni
-í kring, svo sem Burn-down gröfum og slíku, en 
+í kring, svo sem Burn-down gröfum, verkáætlunum og slíku, en 
 heildar kóðalínur frá þeim í lokaforritinu ná kannski upp
 í 15, en þetta kemur allt fram í Commitunum sem þau voru að
 gera.
