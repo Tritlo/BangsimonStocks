@@ -1,0 +1,39 @@
+stockUtil: Hjálparföllin dateToString, maxPrice, stringToDate, compareDates og dateSearch fyrir stockInfo
+
+stockInfo: Inniheldur klasann stockInfo sem sækir gögn á yahoo finance og geymir á þægilegu formi
+Innflutt: Allt úr stockUtil
+Klasarit: 
+stockInfo
+ticker : String 
+infoDict : Dictionary 
+infoList : List
+interval : String (d,m or w) 
+fromDate : datetime.date
+toDate : datetime.date
+
+validDate(datetime.date) : Boolean
+listFromTo(fromDate : datetime.date, toDate : datetime.date) : List
+getDate(datetime.date) : Dictionary
+getCurrentProperty(String) : Float
+getCurrent() : Dictionary
+getRSS : List of pairs of strings
+openURL() : Webbrowser link
+__str__() : String
+
+stockAnalysis: Inniheldur föllin movingAverage, BuyOrSell og Beta.
+    Innflutt: stockInfo og allt úr stockUtil
+
+stockPlot: inniheldur fallið stockPlot sem plottar hlutabréfaverð ásamt hreyfðu meðaltali og magntölum.
+    Innflutt: stockInfo og movingAverage
+
+stockGUI: Grafískt notendaviðmót
+    Innflutt: stockInfo, stockPlot, allt úr stockUtil, Beta, BuyOrSell
+    Klasi : initialFrame(wx.Frame)
+        Föll klasa: create_menu, create_main_panel, updateRSS, create_status_bar, draw_figure, plotInformation, tiKeys, tiProfile, updateCurrentData, on_slider_width, on_new, plot_handler, on_save_plot, on_exit, changeFromDate, changeToDate, flash_status_message, on_flash_status_off
+
+stockCLI: Command line interface fyrir verkefnið í lok 2. ítrunar (þyrfti að breyta lítillega til að virka með lokaútgáfu kerfis). 
+Inniheldur föllin Bhelp, Bplot, Bcurrent, Bbeta, Bma, Bnews, Bquit og Bchange
+Innflutt: stockInfo, stockPlot, allt úr stockAnalysis, allt úr stockUtil
+
+
+
