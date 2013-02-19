@@ -6,3 +6,5 @@ On Ubuntu a problem in the version of wxpython causes errors to appear upon quit
 
 If the volume bars are shown on the graph and subplot parameters are adjusted using the 'Configure Subplots' dialog the y-axis for the 
 volume bar graph, which should be short so the bars appear at the bottom of the graph, expands to the same size as the y-axis of the price plot.  
+
+Note: See AthsmdFraForriturum.txt
