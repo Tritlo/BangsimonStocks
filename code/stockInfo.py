@@ -12,11 +12,10 @@ class stockInfo:
     ticker = "" #: The ticker of the given company
     infoDict = {} #: Dictionary containing information about the given company, for ease of checking certain dates
     infoList = [] #: A List of the form ['Date', 'Open', 'High', 'Low', 'Close', 'Volume', 'Adj Close'], containing information about the given company, for ease of creating graphs
-    interval = "d"
     fromDate = date.min #: The date from which the data start
     toDate = date.today() #: The date to which the data is.
     
-    def __init__(self, ticker, fromDate = date.min ,toDate = date.today(), interval = "d"):
+    def __init__(self, ticker, fromDate = date.min ,toDate = date.today()):
         """ 
         #Use: s = stockInfo(t,fd = date.min, td =date.today())
         #Pre: t is the companies ticker, fd and td are date objects. All but t are optional arguments
@@ -24,10 +23,10 @@ class stockInfo:
         """
         fromDay, fromMonth, fromYear = fromDate.day, fromDate.month, fromDate.year
         toDay, toMonth, toYear = toDate.day, toDate.month, toDate.year
-        self.ticker = ticker
-        self.interval = interval
+        self.ticker = ticker 
         self.infoList = []
         self.infoDict = {}
+        interval = "d"
 
         baseurl = "http://ichart.yahoo.com/table.csv?s="
         url = baseurl + ticker +"&a="+str((fromMonth -1))+"&b="+str(fromDay)+"&c="+str(fromYear)+"&d="+str(toMonth-1)+"&e="+str(toDay)+"&f="+str(toYear)+"&g="+str(interval)+"&ignore=.csv"
