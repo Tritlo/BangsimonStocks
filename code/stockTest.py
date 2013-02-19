@@ -76,6 +76,18 @@ class testStockInfo(unittest.TestCase):
     #Check as much as we can of RSS
     def test_Rss(self):
         self.assertIsInstance(self.testobj.getRSS(),list)
+    
+    #check BuyOrSell
+    def test_BuyOrSell(self):
+        k = movingAverage(self.testobj,50).pop()
+        j = movingAverage(self.testobj,200).pop()
+        if k > j:
+            t = 1
+        else:
+            if k < j:
+                t = -1
+        self.assertEqual(BuyOrSell(self.testobj),t)
+
 
     #Check as we can of getCurrent
     def test_current(self):
