@@ -64,10 +64,12 @@ def BuyOrSell(s,date=None):
         return 1
     if shortma<longma:
         return -1
-    if shortma==longma:
-        t=timedelta(days=1)
-        return -BuyOrSell(s,date-t)
+    t=timedelta(days=1)
+    while shortma==longma:
+        date=date-t
+    return -BuyOrSell(s,date)
         # if the moving averages are equal we check which one is crossing above the other
+        # and recommend buying if the 50-day is crossing over the 200-day, and selling if the opposite is true
 
 def Beta(s, fromDate=None, toDate=None):
     """
